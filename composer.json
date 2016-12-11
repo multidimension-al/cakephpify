@@ -1,0 +1,38 @@
+{
+    "name": "multidimensional/cakephpify",
+    "description": "A CakePHP Plugin for Shopify API Authentication.",
+	"version": "0.0.1-alpha",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp","cakephp3","shopify"],
+    "homepage": "https://github.com/multidimension-al/cakephpify",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "multidimension.al",
+            "homepage": "https://multidimension.al",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0",
+		"cakephp/migrations": ">=1.2.0-stable"
+    },
+	"require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shopify\\": "src"
+        }
+    },
+	"autoload-dev": {
+        "psr-4": {
+            "Shopify\\Test\\": "tests"
+		}
+	},
+	"scripts": {
+		"post-install-cmd": "bin/cake ShopifyInstall",
+		"post-update-cmd": "bin/cake ShopifyInstall"	
+	}
+}
