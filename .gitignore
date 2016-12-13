@@ -2,6 +2,10 @@
 
 _notes/
 
+# Netbeans
+
+nbproject/*
+
 # CakePHP 3
 
 /vendor/*
@@ -27,3 +31,4 @@ _notes/
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+/nbproject/private/
