@@ -9,34 +9,27 @@ use Cake\Network\Http\Client;
 
 class ShopifyAPIComponent extends Component {
 		
-	private $api_key;
-	private $shared_secret;
-	private $is_private_app;
-	private $private_app_password;
-	private $nonce;
+	public $api_key;
 	public $shop_domain;
 	public $token;
 	public $isAuthorized;
 
-	public function __construct(&$controller, $settings=array()) {
-		parent::__construct($controller, $settings);
+	private $shared_secret;
+	private $is_private_app;
+	private $private_app_password;
+	private $nonce;
+	
+	/*public function startup(Event $event) {
 		
-		//We get these from ShopifyAuth, incase they were passed manually.
-		$this->api_key = ((isset($settings['api_key'])) ? $settings['api_key'] : Configure::read('Shopify.api_key'));
-		$this->shared_secret = ((isset($settings['shared_secret'])) ? $settings['shared_secret'] : Configure::read('Shopify.shared_secret'));
-		$this->shared_secret = ((isset($settings['scope'])) ? $settings['scope'] : Configure::read('Shopify.scope'));
+	}*/
+	
+	public function initialize(array $config = []) {
+		
+		$this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
+		$this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'));
+		$this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Shopify.scope'));
    		$this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'));
 		$this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password'));		
-		$this->nonce = md5(uniqid());
-	}
-	
-	public function initialize(array $config) {
-	
-		if ((empty($this->api_key)) || (empty($this->shared_secret))) {
-			die("Invalid Credentials");
-		}
-
-		$this->shop_domain = $controller->request->query['shop'];
 		
 	}
 
@@ -44,9 +37,9 @@ class ShopifyAPIComponent extends Component {
 		return $this->shop_domain;
 	}
 
-	public function isAuthorized() {
+	/*public function isAuthorized() {
 		return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;
-	}
+	}*/
 	
 	public function callsMade() {
 		return $this->shopApiCallLimitParam(0);
@@ -89,11 +82,13 @@ class ShopifyAPIComponent extends Component {
 	}
 	
 	public function getAuthorizeUrl($shop_domain, $redirect_url) {
+				
 		$url = 'https://' . $shop_domain . '/admin/oauth/authorize?client_id=' . $this->api_key;
 		$url .= '&scope=' . urlencode($this->scope);
 		$url .= '&redirect_uri=' . urlencode($redirect_url);
-		$url .= '&state=' . $this->nonce;
+		$url .= '&state=' . $this->getNonce($shop_domain);
 		return $url;
+		
 	}
 
 	public function getAccessToken($shop_domain, $code) {
@@ -116,12 +111,24 @@ class ShopifyAPIComponent extends Component {
 	
   	}
 	
-	private function _isAuthorized($query) {
+	public function getNonce($shop_domain) {
+		
+		return md5(strtolower($shop_domain));
+		
+	}
+	
+	public function validDomain($shop_domain) {
+	
+		return true;
+		
+	}
+	
+	public function isAuthorized($query) {
 	  
-		if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->nonce)) {
+		if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
 			return false;
 		}
-				  
+ 
 		$dataString = array();
 		
 		foreach ($query as $key => $value) {
@@ -131,10 +138,9 @@ class ShopifyAPIComponent extends Component {
 				$dataString[] = $key . '=' . $value;
 			}
 		}
-		
+
 		sort($dataString);
 		$string = implode("&", $dataString);
-				
 		return $query['hmac'] == hash_hmac('sha256', $string, $this->shared_secret);
 	
   	}
