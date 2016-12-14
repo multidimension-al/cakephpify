@@ -9,6 +9,8 @@
 
 A CakePHP Plugin for Shopify API Authentication.
 
+# NOTE, WE HAVE NOT YET REACHED A STABLE RELEASE, DO NOT USE THIS IN PRODUCTION!
+
 ## Requirements
 
 * CakePHP 3.3+
