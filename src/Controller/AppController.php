@@ -15,7 +15,7 @@ class AppController extends BaseController
     {
         parent::initialize();
         $this->loadComponent('Flash');
-        //$this->loadComponent('Multidimesional\Shopify.ShopifyAPI');
+        //$this->loadComponent('Multidimesional/Shopify.ShopifyAPI');
 	}
 
 }

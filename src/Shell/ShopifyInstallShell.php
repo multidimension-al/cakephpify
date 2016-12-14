@@ -15,7 +15,7 @@ class ShopifyInstallShell extends Shell {
 		$this->clear();
 		
 		$this->_io->styles('error', ['text' => 'red']);
-		$this->helper('Multidimesional\Shopify.Header')->output();
+		$this->helper('Multidimesional/Shopify.Header')->output();
 	
 		$first_run = ((Configure::check('Shopify')) ? false : true);
 			
@@ -24,16 +24,16 @@ class ShopifyInstallShell extends Shell {
 			
 			$this->out();
 			$this->out('Please enter your API credentials from your Shopify App page.', 2);
-			Configure::write('Multidimesional\Shopify.api_key',$this->in('API Key:'));
+			Configure::write('Multidimesional/Shopify.api_key',$this->in('API Key:'));
 			$this->out();
-			Configure::write('Multidimesional\Shopify.shared_secret', $this->in('Shared Secret:'));
+			Configure::write('Multidimesional/Shopify.shared_secret', $this->in('Shared Secret:'));
 			$this->out();
 			
 			$scope_array = ['read_content', 'write_content', 'read_themes', 'write_themes', 'read_products', 'write_products', 'read_customers', 'write_customers', 'read_orders', 'write_orders', 'read_script_tags', 'write_script_tags', 'read_fulfillments', 'write_fulfillments', 'read_shipping', 'write_shipping', 'read_analytics', 'read_users', 'write_users'];
 			
 			$this->out('Enter your application\'s scope here.', 2);
 			$this->out('Valid scope options:', 2);
-			$this->helper('Multidimesional\Shopify.Table')->output($scope_array);
+			$this->helper('Multidimesional/Shopify.Table')->output($scope_array);
 			$this->out('');
 			$this->out('Separate your desired scope options with a comma.');
 			
@@ -60,7 +60,7 @@ class ShopifyInstallShell extends Shell {
 			
 			} while((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
 			
-			Configure::write('Multidimesional\Shopify.scope',implode(',', $scope));
+			Configure::write('Multidimesional/Shopify.scope',implode(',', $scope));
 			
 			$this->out('');
 			$is_private_app = strtolower($this->in('Is this a private app?', ['y','n']));
@@ -71,12 +71,12 @@ class ShopifyInstallShell extends Shell {
 				$is_private_app = 'false';
 			}
 			
-			Configure::write('Multidimesional\Shopify.is_private_app',$is_private_app);
+			Configure::write('Multidimesional/Shopify.is_private_app',$is_private_app);
 			
 			if($is_private_app == 'true'){
-				Configure::write('Multidimesional\Shopify.private_app_password',$this->in('Private App Password:'));
+				Configure::write('Multidimesional/Shopify.private_app_password',$this->in('Private App Password:'));
 			}else{
-				Configure::write('Multidimesional\Shopify.private_app_password', NULL);
+				Configure::write('Multidimesional/Shopify.private_app_password', NULL);
 			}
 			
 			Configure::dump('shopify', 'default', ['Shopify']);
