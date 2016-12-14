@@ -10,7 +10,7 @@ class InstallController extends AppController {
 	
 	public function initialize() {
 
-		$this->loadComponent('Shopify.ShopifyAPI');
+		$this->loadComponent('Multidimesional\Shopify.ShopifyAPI');
 		$this->loadComponent('Flash');
 		$this->error = false;
 

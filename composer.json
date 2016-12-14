@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Shopify\\": "src"
+            "Multidimesional\\Shopify\\": "src"
         }
     },
 	"autoload-dev": {
         "psr-4": {
-            "Shopify\\Test\\": "tests"
+            "Multidimesional\\Shopify\\Test\\": "tests"
 		}
 	},
 	"scripts": {

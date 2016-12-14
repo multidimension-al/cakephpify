@@ -1,5 +1,4 @@
 <?php
-
 namespace Multidimensional\Shopify\Controller;
 
 use App\Controller\AppController as BaseController;
@@ -16,7 +15,7 @@ class AppController extends BaseController
     {
         parent::initialize();
         $this->loadComponent('Flash');
-        $this->loadComponent('Shopify.ShopifyAPI');
+        //$this->loadComponent('Multidimesional\Shopify.ShopifyAPI');
 	}
 
 }

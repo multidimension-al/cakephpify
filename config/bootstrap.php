@@ -18,7 +18,7 @@ $config = array (
 if (file_exists(CONFIG . 'shopify.php')) {
   Configure::load('shopify');
 } else {
-  Configure::write('Shopify', $config);
+  Configure::write('Multidimesional\Shopify', $config);
 }
 Plugin::load('Migrations');
 
