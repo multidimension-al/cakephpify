@@ -1,5 +1,5 @@
 <?php
-namespace Shopify\Controller;
+namespace Multidimensional\Shopify\Controller;
 
 use Cake\Controller\Event;
 use Cake\Routing\Router;

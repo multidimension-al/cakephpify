@@ -1,5 +1,5 @@
 <?php
-namespace Shopify\Config;
+namespace Multidimensional\Shopify\Config;
 
 use Cake\Routing\Router;
 

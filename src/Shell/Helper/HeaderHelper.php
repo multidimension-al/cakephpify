@@ -1,5 +1,5 @@
 <?php
-namespace Shopify\Shell\Helper;
+namespace Multidimensional\Shopify\Shell\Helper;
 
 use Cake\Console\Helper;
 

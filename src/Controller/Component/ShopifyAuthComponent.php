@@ -1,5 +1,5 @@
 <!--
-namespace Shopify\Controller\Component;
+namespace Multidimensional\Shopify\Controller\Component;
 
 use Cake\Core\Configure;
 use Cake\Controller\Component;

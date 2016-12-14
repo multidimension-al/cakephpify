@@ -1,5 +1,5 @@
 <?php
-namespace Shopify\Model\Table;
+namespace Multidimensional\Shopify\Model\Table;
 
 use Cake\ORM\Table;
 

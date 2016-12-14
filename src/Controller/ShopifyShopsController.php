@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace Multidimensional\Shopify\Controller;
 
 use App\Controller\AppController;
 

@@ -1,7 +1,7 @@
 <?php
-namespace Shopify\Controller;
+namespace Multidimensional\Shopify\Controller;
 
-use Shopify\Controller\AppController;
+use App\Controller\AppController;
 
 /**
  * ShopifyAccessTokens Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopify\Shell;
+namespace Multidimensional\Shopify\Shell;
 
 use Cake\Core\Configure;
 use Cake\Console\Shell;

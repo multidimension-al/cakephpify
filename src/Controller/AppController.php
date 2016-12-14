@@ -1,6 +1,6 @@
 <?php
 
-namespace Shopify\Controller;
+namespace Multidimensional\Shopify\Controller;
 
 use App\Controller\AppController as BaseController;
 
