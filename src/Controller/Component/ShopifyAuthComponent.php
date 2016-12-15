@@ -34,9 +34,9 @@ class ShopifyAuthComponent extends Component {
 
   function initialize(array $config) {
     
-    $this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Multidimesional/Shopify.api_key'));
-    $this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Multidimesional/Shopify.shared_secret'));
-    $this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Multidimesional/Shopify.scope'));
+    $this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Multidimensional/Shopify.api_key'));
+    $this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Multidimensional/Shopify.shared_secret'));
+    $this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Multidimensional/Shopify.scope'));
 
 	if ((empty($this->api_key)) || (empty($this->shared_secret))) {
 		die("Invalid Credentials");
@@ -89,8 +89,8 @@ class ShopifyAuthComponent extends Component {
               		}*/
 
 	              	$this->isAuthorized = true;
-    	          	//$controller->request->session()->write('Multidimesional/Shopify.shop_domain', $shop_domain);
-        	      	//$controller->request->session()->write('Multidimesional/Shopify.token', $token);
+    	          	//$controller->request->session()->write('Multidimensional/Shopify.shop_domain', $shop_domain);
+        	      	//$controller->request->session()->write('Multidimensional/Shopify.token', $token);
             	  	$this->shop_domain = $shop_domain;
               		$this->token = $token;
               		//$controller->redirect('/');
