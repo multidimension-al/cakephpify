@@ -23,16 +23,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Multidimesional\\Shopify\\": "src"
+            "Multidimensional\\Shopify\\": "src"
         }
     },
 	"autoload-dev": {
         "psr-4": {
-            "Multidimesional\\Shopify\\Test\\": "tests"
+            "Multidimensional\\Shopify\\Test\\": "tests"
 		}
-	},
-	"scripts": {
+	}//,
+	/*"scripts": {
 		"post-install-cmd": "bin/cake ShopifyInstall",
 		"post-update-cmd": "bin/cake ShopifyInstall"	
-	}
+	}*/
 }
