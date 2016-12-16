@@ -16,11 +16,11 @@ class ShopifyOAuth2Authenticate extends BaseAuthenticate {
         parent::__construct($registry, $config);
 		
 		$registry->load('Multidimensional/Shopify.ShopifyAPI', [
-            'api_key' => isset($config['api_key']) ? $config['api_key'] : Configure::read('Multidimensional/Shopify.api_key'),
-            'shared_secret' => isset($config['shared_secret']) ? $config['shared_secret'] : Configure::read('Multidimensional/Shopify.shared_secret'),
-            'scope' => isset($config['scope']) ? $config['scope'] : Configure::read('Multidimensional/Shopify.scope'),
-            'is_private_app' => isset($config['is_private_app']) ? $config['is_private_app'] : Configure::read('Multidimensional/Shopify.is_private_app'),
-            'private_app_password' => isset($config['private_app_password']) ? $config['private_app_password'] : Configure::read('Multidimensional/Shopify.private_app_password')
+            'api_key' => isset($config['api_key']) ? $config['api_key'] : Configure::read('Shopify.api_key'),
+            'shared_secret' => isset($config['shared_secret']) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'),
+            'scope' => isset($config['scope']) ? $config['scope'] : Configure::read('Shopify.scope'),
+            'is_private_app' => isset($config['is_private_app']) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'),
+            'private_app_password' => isset($config['private_app_password']) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password')
         ]);
     }
 

@@ -15,7 +15,7 @@ class InstallController extends AppController {
 		$this->loadComponent('Multidimensional/Shopify.ShopifyAPI');
 		$this->loadComponent('Flash');
 		$this->error = false;
-
+		
 	}
 		
 	public function validate($api_key = null) {
