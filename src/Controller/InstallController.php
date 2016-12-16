@@ -1,8 +1,10 @@
 <?php
 namespace Multidimensional\Shopify\Controller;
 
-use Cake\Controller\Event;
+use Cake\Event\Event;
 use Cake\Routing\Router;
+//use Cake\Controller\Component\AuthComponent;
+//use Cake\Controller\Component;
 
 class InstallController extends AppController {
     
@@ -10,11 +12,12 @@ class InstallController extends AppController {
 	
 	public function initialize() {
 
+		parent::initialize();
 		$this->loadComponent('Multidimensional/Shopify.ShopifyAPI');
 		$this->loadComponent('Flash');
 		$this->error = false;
 
-  	}
+	}
 		
 	public function validate($api_key = null) {
 

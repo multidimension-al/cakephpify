@@ -4,7 +4,7 @@ namespace Multidimensional\Shopify\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * ShopifyAccessToken Entity
+ * AccessToken Entity
  *
  * @property int $id
  * @property string $domain
@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $updated_at
  * @property \Cake\I18n\Time $expired_at
  */
-class ShopifyAccessToken extends Entity
+class AccessToken extends Entity
 {
 
     /**

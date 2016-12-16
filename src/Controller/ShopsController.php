@@ -4,11 +4,11 @@ namespace Multidimensional\Shopify\Controller;
 use App\Controller\AppController;
 
 /**
- * ShopifyShops Controller
+ * Shops Controller
  *
- * @property \App\Model\Table\ShopifyShopsTable $ShopifyShops
+ * @property \App\Model\Table\ShopsTable $Shops
  */
-class ShopifyShopsController extends AppController
+class ShopsController extends AppController
 {
 
     /**
@@ -21,10 +21,10 @@ class ShopifyShopsController extends AppController
         $this->paginate = [
             'contain' => ['PrimaryLocations']
         ];
-        $shopifyShops = $this->paginate($this->ShopifyShops);
+        $Shops = $this->paginate($this->Shops);
 
-        $this->set(compact('shopifyShops'));
-        $this->set('_serialize', ['shopifyShops']);
+        $this->set(compact('Shops'));
+        $this->set('_serialize', ['Shops']);
     }
 
     /**
@@ -36,12 +36,12 @@ class ShopifyShopsController extends AppController
      */
     public function view($id = null)
     {
-        $shopifyShop = $this->ShopifyShops->get($id, [
+        $Shop = $this->Shops->get($id, [
             'contain' => ['PrimaryLocations']
         ]);
 
-        $this->set('shopifyShop', $shopifyShop);
-        $this->set('_serialize', ['shopifyShop']);
+        $this->set('Shop', $Shop);
+        $this->set('_serialize', ['Shop']);
     }
 
     /**
@@ -51,10 +51,10 @@ class ShopifyShopsController extends AppController
      */
     public function add()
     {
-        $shopifyShop = $this->ShopifyShops->newEntity();
+        $Shop = $this->Shops->newEntity();
         if ($this->request->is('post')) {
-            $shopifyShop = $this->ShopifyShops->patchEntity($shopifyShop, $this->request->data);
-            if ($this->ShopifyShops->save($shopifyShop)) {
+            $Shop = $this->Shops->patchEntity($Shop, $this->request->data);
+            if ($this->Shops->save($Shop)) {
                 $this->Flash->success(__('The shopify shop has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -62,9 +62,9 @@ class ShopifyShopsController extends AppController
                 $this->Flash->error(__('The shopify shop could not be saved. Please, try again.'));
             }
         }
-        $primaryLocations = $this->ShopifyShops->PrimaryLocations->find('list', ['limit' => 200]);
-        $this->set(compact('shopifyShop', 'primaryLocations'));
-        $this->set('_serialize', ['shopifyShop']);
+        $primaryLocations = $this->Shops->PrimaryLocations->find('list', ['limit' => 200]);
+        $this->set(compact('Shop', 'primaryLocations'));
+        $this->set('_serialize', ['Shop']);
     }
 
     /**
@@ -76,12 +76,12 @@ class ShopifyShopsController extends AppController
      */
     public function edit($id = null)
     {
-        $shopifyShop = $this->ShopifyShops->get($id, [
+        $Shop = $this->Shops->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $shopifyShop = $this->ShopifyShops->patchEntity($shopifyShop, $this->request->data);
-            if ($this->ShopifyShops->save($shopifyShop)) {
+            $Shop = $this->Shops->patchEntity($Shop, $this->request->data);
+            if ($this->Shops->save($Shop)) {
                 $this->Flash->success(__('The shopify shop has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -89,9 +89,9 @@ class ShopifyShopsController extends AppController
                 $this->Flash->error(__('The shopify shop could not be saved. Please, try again.'));
             }
         }
-        $primaryLocations = $this->ShopifyShops->PrimaryLocations->find('list', ['limit' => 200]);
-        $this->set(compact('shopifyShop', 'primaryLocations'));
-        $this->set('_serialize', ['shopifyShop']);
+        $primaryLocations = $this->Shops->PrimaryLocations->find('list', ['limit' => 200]);
+        $this->set(compact('Shop', 'primaryLocations'));
+        $this->set('_serialize', ['Shop']);
     }
 
     /**
@@ -104,8 +104,8 @@ class ShopifyShopsController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $shopifyShop = $this->ShopifyShops->get($id);
-        if ($this->ShopifyShops->delete($shopifyShop)) {
+        $Shop = $this->Shops->get($id);
+        if ($this->Shops->delete($Shop)) {
             $this->Flash->success(__('The shopify shop has been deleted.'));
         } else {
             $this->Flash->error(__('The shopify shop could not be deleted. Please, try again.'));

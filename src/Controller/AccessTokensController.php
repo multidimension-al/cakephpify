@@ -4,11 +4,11 @@ namespace Multidimensional\Shopify\Controller;
 use App\Controller\AppController;
 
 /**
- * ShopifyAccessTokens Controller
+ * AccessTokens Controller
  *
- * @property \Shopify\Model\Table\ShopifyAccessTokensTable $ShopifyAccessTokens
+ * @property \Shopify\Model\Table\AccessTokensTable $AccessTokens
  */
-class ShopifyAccessTokensController extends AppController
+class AccessTokensController extends AppController
 {
 
     /**
@@ -18,10 +18,10 @@ class ShopifyAccessTokensController extends AppController
      */
     public function index()
     {
-        $shopifyAccessTokens = $this->paginate($this->ShopifyAccessTokens);
+        $AccessTokens = $this->paginate($this->AccessTokens);
 
-        $this->set(compact('shopifyAccessTokens'));
-        $this->set('_serialize', ['shopifyAccessTokens']);
+        $this->set(compact('AccessTokens'));
+        $this->set('_serialize', ['AccessTokens']);
     }
 
     /**
@@ -33,12 +33,12 @@ class ShopifyAccessTokensController extends AppController
      */
     public function view($id = null)
     {
-        $shopifyAccessToken = $this->ShopifyAccessTokens->get($id, [
+        $AccessToken = $this->AccessTokens->get($id, [
             'contain' => []
         ]);
 
-        $this->set('shopifyAccessToken', $shopifyAccessToken);
-        $this->set('_serialize', ['shopifyAccessToken']);
+        $this->set('AccessToken', $AccessToken);
+        $this->set('_serialize', ['AccessToken']);
     }
 
     /**
@@ -48,10 +48,10 @@ class ShopifyAccessTokensController extends AppController
      */
     public function add()
     {
-        $shopifyAccessToken = $this->ShopifyAccessTokens->newEntity();
+        $AccessToken = $this->AccessTokens->newEntity();
         if ($this->request->is('post')) {
-            $shopifyAccessToken = $this->ShopifyAccessTokens->patchEntity($shopifyAccessToken, $this->request->data);
-            if ($this->ShopifyAccessTokens->save($shopifyAccessToken)) {
+            $AccessToken = $this->AccessTokens->patchEntity($AccessToken, $this->request->data);
+            if ($this->AccessTokens->save($AccessToken)) {
                 $this->Flash->success(__('The shopify access token has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -59,8 +59,8 @@ class ShopifyAccessTokensController extends AppController
                 $this->Flash->error(__('The shopify access token could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('shopifyAccessToken'));
-        $this->set('_serialize', ['shopifyAccessToken']);
+        $this->set(compact('AccessToken'));
+        $this->set('_serialize', ['AccessToken']);
     }
 
     /**
@@ -72,12 +72,12 @@ class ShopifyAccessTokensController extends AppController
      */
     public function edit($id = null)
     {
-        $shopifyAccessToken = $this->ShopifyAccessTokens->get($id, [
+        $AccessToken = $this->AccessTokens->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $shopifyAccessToken = $this->ShopifyAccessTokens->patchEntity($shopifyAccessToken, $this->request->data);
-            if ($this->ShopifyAccessTokens->save($shopifyAccessToken)) {
+            $AccessToken = $this->AccessTokens->patchEntity($AccessToken, $this->request->data);
+            if ($this->AccessTokens->save($AccessToken)) {
                 $this->Flash->success(__('The shopify access token has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -85,8 +85,8 @@ class ShopifyAccessTokensController extends AppController
                 $this->Flash->error(__('The shopify access token could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('shopifyAccessToken'));
-        $this->set('_serialize', ['shopifyAccessToken']);
+        $this->set(compact('AccessToken'));
+        $this->set('_serialize', ['AccessToken']);
     }
 
     /**
@@ -99,8 +99,8 @@ class ShopifyAccessTokensController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $shopifyAccessToken = $this->ShopifyAccessTokens->get($id);
-        if ($this->ShopifyAccessTokens->delete($shopifyAccessToken)) {
+        $AccessToken = $this->AccessTokens->get($id);
+        if ($this->AccessTokens->delete($AccessToken)) {
             $this->Flash->success(__('The shopify access token has been deleted.'));
         } else {
             $this->Flash->error(__('The shopify access token could not be deleted. Please, try again.'));

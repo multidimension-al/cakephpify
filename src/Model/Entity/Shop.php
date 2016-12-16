@@ -4,7 +4,7 @@ namespace Multidimensional\Shopify\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * ShopifyShop Entity
+ * Shop Entity
  *
  * @property int $id
  * @property string $domain
@@ -56,7 +56,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\PrimaryLocation $primary_location
  */
-class ShopifyShop extends Entity
+class Shop extends Entity
 {
 
     /**

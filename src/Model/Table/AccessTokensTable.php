@@ -7,17 +7,17 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * ShopifyAccessTokens Model
+ * AccessTokens Model
  *
- * @method \Shopify\Model\Entity\ShopifyAccessToken get($primaryKey, $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken newEntity($data = null, array $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken[] newEntities(array $data, array $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken[] patchEntities($entities, array $data, array $options = [])
- * @method \Shopify\Model\Entity\ShopifyAccessToken findOrCreate($search, callable $callback = null)
+ * @method \Shopify\Model\Entity\AccessToken get($primaryKey, $options = [])
+ * @method \Shopify\Model\Entity\AccessToken newEntity($data = null, array $options = [])
+ * @method \Shopify\Model\Entity\AccessToken[] newEntities(array $data, array $options = [])
+ * @method \Shopify\Model\Entity\AccessToken|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Shopify\Model\Entity\AccessToken patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \Shopify\Model\Entity\AccessToken[] patchEntities($entities, array $data, array $options = [])
+ * @method \Shopify\Model\Entity\AccessToken findOrCreate($search, callable $callback = null)
  */
-class ShopifyAccessTokensTable extends Table
+class AccessTokensTable extends Table
 {
 
     /**
@@ -34,7 +34,7 @@ class ShopifyAccessTokensTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 		
-		$this->belongsTo('ShopifyShops', [
+		$this->belongsTo('Shops', [
 				'foreignKey' => 'domain',
 				'bindingKey' => 'domain']);
     }

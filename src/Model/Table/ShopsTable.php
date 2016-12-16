@@ -7,19 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * ShopifyShops Model
+ * Shops Model
  *
  * @property \Cake\ORM\Association\BelongsTo $PrimaryLocations
  *
- * @method \App\Model\Entity\ShopifyShop get($primaryKey, $options = [])
- * @method \App\Model\Entity\ShopifyShop newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\ShopifyShop[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\ShopifyShop|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\ShopifyShop patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\ShopifyShop[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\ShopifyShop findOrCreate($search, callable $callback = null)
+ * @method \App\Model\Entity\Shop get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Shop newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Shop[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Shop|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Shop patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Shop[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Shop findOrCreate($search, callable $callback = null)
  */
-class ShopifyShopsTable extends Table
+class ShopsTable extends Table
 {
 
     /**
@@ -36,7 +36,7 @@ class ShopifyShopsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
-		$this->hasMany('ShopifyAccessTokens', [
+		$this->hasMany('AccessTokens', [
 				'foreignKey' => 'domain',
 				'bindingKey' => 'domain']);
 
