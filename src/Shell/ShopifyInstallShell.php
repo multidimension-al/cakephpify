@@ -75,7 +75,7 @@ class ShopifyInstallShell extends Shell {
 			
 			if($is_private_app == 'true'){
 				Configure::write('Multidimensional/Shopify.private_app_password',$this->in('Private App Password:'));
-			}else{
+			} else {
 				Configure::write('Multidimensional/Shopify.private_app_password', NULL);
 			}
 			

@@ -123,6 +123,12 @@ class ShopifyAPIComponent extends Component {
 		
 	}
 	
+	public function getShopData()
+	
+		return $this->call('GET', '/admin/shop.json');
+	
+	)
+	
 	public function isAuthorized($query) {
 	  
 		if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
