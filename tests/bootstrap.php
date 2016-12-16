@@ -53,4 +53,4 @@ Configure::write('App', [
 ]);
 
 
-Plugin::load('Shopify', ['path' => ROOT]);
+Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);

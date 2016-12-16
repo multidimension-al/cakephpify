@@ -89,7 +89,7 @@ class ShopifyInstallShell extends Shell {
 	
 			$this->out('');
 	
-			$migrations = new Migrations(['plugin' => 'Shopify']);
+			$migrations = new Migrations(['plugin' => 'Multidimensional/Shopify']);
 	
 			$status = $migrations->status();
 	

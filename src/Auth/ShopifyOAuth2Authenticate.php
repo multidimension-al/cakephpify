@@ -59,7 +59,7 @@ class ShopifyOAuth2Authenticate extends BaseAuthenticate {
     }
 
     private function _generateLoginUrl() {
-        return Router::url(['controller' => 'install', 'plugin' => 'Shopify']);
+        return Router::url(['controller' => 'install', 'plugin' => 'Multidimensional/Shopify']);
     }
 
 }
