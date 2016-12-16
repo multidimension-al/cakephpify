@@ -64,7 +64,7 @@ class InstallController extends AppController {
 			
 			if($valid_domain){
 			
-				$redirect_url = Router::url(array('controller' => 'Install', 'action' => 'validate', 'plugin' => 'Shopify', 'id' => $this->ShopifyAPI->api_key), true);
+				$redirect_url = Router::url(array('controller' => 'Install', 'action' => 'validate', 'plugin' => 'Multidimensional/Shopify', 'id' => $this->ShopifyAPI->api_key), true);
 				$auth_url = $this->ShopifyAPI->getAuthorizeUrl($this->request->data['shop_domain'], $redirect_url);
 				$this->redirect($auth_url);
 				
