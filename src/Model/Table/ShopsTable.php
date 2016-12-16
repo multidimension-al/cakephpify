@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Shops Model
  *
- * @property \Cake\ORM\Association\BelongsTo $PrimaryLocations
- *
  * @method \App\Model\Entity\Shop get($primaryKey, $options = [])
  * @method \App\Model\Entity\Shop newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Shop[] newEntities(array $data, array $options = [])
@@ -32,13 +30,13 @@ class ShopsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('shopify_shops');
+        $this->table('shops');
         $this->displayField('name');
         $this->primaryKey('id');
 
 		$this->hasMany('AccessTokens', [
-				'foreignKey' => 'domain',
-				'bindingKey' => 'domain']);
+				'foreignKey' => 'shop_id',
+				'bindingKey' => 'id']);
 
     }
 

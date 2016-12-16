@@ -30,13 +30,13 @@ class AccessTokensTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('shopify_access_tokens');
+        $this->table('access_tokens');
         $this->displayField('id');
         $this->primaryKey('id');
 		
 		$this->belongsTo('Shops', [
-				'foreignKey' => 'domain',
-				'bindingKey' => 'domain']);
+				'foreignKey' => 'id',
+				'bindingKey' => 'shop_id']);
     }
 
     /**
@@ -52,8 +52,8 @@ class AccessTokensTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('domain', 'create')
-            ->notEmpty('domain');
+            ->requirePresence('shop_id', 'create')
+            ->notEmpty('shop_id');
 
         $validator
             ->requirePresence('token', 'create')

@@ -53,8 +53,6 @@ use Cake\ORM\Entity;
  * @property bool $finances
  * @property bool $setup_required
  * @property bool $force_ssl
- *
- * @property \App\Model\Entity\PrimaryLocation $primary_location
  */
 class Shop extends Entity
 {
