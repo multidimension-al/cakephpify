@@ -1,9 +1,24 @@
 <?php
+/**
+ * CakePHPify : CakePHP Plugin for Shopify API Authentication
+ * Copyright (c) Multidimension.al (http://multidimension.al)
+ * Github : https://github.com/multidimension-al/cakephpify
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE file
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     (c) Multidimension.al (http://multidimension.al)
+ * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+
 namespace Multidimensional\Shopify\Controller;
 
 use Cake\Event\Event;
 use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
+use Cake\Network\Session;
 
 class InstallController extends AppController {
     
@@ -38,7 +53,7 @@ class InstallController extends AppController {
 				
 					$shop_entity = $this->ShopifyDatabase->shopDataToDatabase($shop);
 					
-					if($shop_entity){
+					if ($shop_entity) {
 						
 						$access_token_entity = $this->ShopifyDatabase->accessTokenToDatabase(
 							$access_token,
@@ -48,15 +63,17 @@ class InstallController extends AppController {
 						
 						if ($access_token_entity) {
 						
+							$this->request->session()->write([
+								'shopify_access_token_'.$this->ShopifyAPI->api_key => $access_token,
+								'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
+							]);
+						
 							//$this->Auth->setUser($shop_entity);
 							
-							$this->redirect(
-								Router::url([
-									'controller' => 'Shopify',
-									'action' => 'index',
-									'plugin' => false]
-								)
-							);
+							$this->redirect([
+								'controller' => 'Shopify',
+								'plugin' => false]);
+								
 							
 						} else {
 							$this->Flash->set("Error saving access token. Please try again.");
@@ -78,13 +95,14 @@ class InstallController extends AppController {
 			$this->Flash->set("Invalid authoization code. Please try again.");
 		}
 		
+		$this->error = true;
 		$this->render('index');
 		
 	}
   
 	public function index() {
-  	  	  
-		if(!empty($this->request->query['code']) && !$this->error) {
+  	  			
+		if (!empty($this->request->query['code']) && !$this->error) {
 	  
 			$this->render('validate');
 			  
@@ -94,7 +112,7 @@ class InstallController extends AppController {
 				$this->request->data['shop_domain']
 			);
 			
-			if($valid_domain){
+			if ($valid_domain) {
 			
 				$redirect_url = Router::url([
 					'controller' => 'Install',

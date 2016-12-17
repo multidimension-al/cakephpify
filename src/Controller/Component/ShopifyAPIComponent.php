@@ -1,4 +1,17 @@
 <?php
+/**
+ * CakePHPify : CakePHP Plugin for Shopify API Authentication
+ * Copyright (c) Multidimension.al (http://multidimension.al)
+ * Github : https://github.com/multidimension-al/cakephpify
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE file
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     (c) Multidimension.al (http://multidimension.al)
+ * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
 
 namespace Multidimensional\Shopify\Controller\Component;
 
@@ -10,18 +23,14 @@ use Cake\Network\Http\Client;
 class ShopifyAPIComponent extends Component {
 		
 	public $api_key;
-	public $shop_domain;
-	public $token;
-
+	
+	private $shop_domain;
+	private $token;
 	private $shared_secret;
 	private $is_private_app;
 	private $private_app_password;
 	private $nonce;
-	
-	/*public function startup(Event $event) {
 		
-	}*/
-	
 	public function initialize(array $config = []) {
 		
 		$this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
@@ -169,7 +178,7 @@ class ShopifyAPIComponent extends Component {
 	
   	}
 
-	private function _urlEncode($url){
+	private function _urlEncode($url) {
 	
 		$url = str_replace('&', '%26', $url);
 		$url = str_replace('%', '%25', $url);
