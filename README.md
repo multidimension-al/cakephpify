@@ -60,18 +60,8 @@ Add this in your App
 public function initialize()
 {
     parent::initialize();
-    $this->loadComponent('Multidimensional/Shopify.ShopifyAuth');
-}
-```
-
-Optional, if you are using your installation for multiple applications or you do not specify your config file, you can manually configure the code directly in the call:
-
-```php
-// In a controller
-public function initialize()
-{
-    parent::initialize();
-    $this->loadComponent('Multidimensional/Shopify.ShopifyAuth', ['api_key' => '{YOUR_API_KEY_HERE}', 'shared_secret' => '{YOUR_SHARED_SECRET_HERE}', 'scope' => '{YOUR_SCOPE_HERE}', 'is_private_app' => true/false]);
+    $this->loadComponent('Auth', [
+        'authenticate' => ['Multidimensional/Shopify.ShopifyAuth']]);
 }
 ```
 

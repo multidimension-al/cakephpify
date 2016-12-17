@@ -21,7 +21,7 @@ class InstallController extends AppController {
 		
 	public function validate($api_key = null) {
 
-		$is_authorized = $this->ShopifyAPI->isAuthorized($this->request->query);
+		$is_authorized = $this->ShopifyAPI->validateHMAC($this->request->query);
 		
 		if ($is_authorized) {
 		
@@ -32,7 +32,6 @@ class InstallController extends AppController {
 		
 			if ($access_token) {
 				
-				//Download / Update Shop Info
 				$shop = $this->ShopifyAPI->getShopData();
 				
 				if (isset($shop['id'])) {

@@ -12,7 +12,6 @@ class ShopifyAPIComponent extends Component {
 	public $api_key;
 	public $shop_domain;
 	public $token;
-	public $isAuthorized;
 
 	private $shared_secret;
 	private $is_private_app;
@@ -44,9 +43,6 @@ class ShopifyAPIComponent extends Component {
 	public function setAccessToken($token) {
 		return $this->token = $token;
 	}
-	/*public function isAuthorized() {
-		return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;
-	}*/
 	
 	public function callsMade() {
 		return $this->shopApiCallLimitParam(0);
@@ -62,12 +58,12 @@ class ShopifyAPIComponent extends Component {
 
 	public function call($method, $path, $params=array()) {
 		
-		/*if (!$this->isAuthorized()) {
-			return;
-		}*/
+		if (!$this->_isReady()) {
+			return false;
+		}
 		
 		if (!in_array($method, array('POST','PUT','GET','DELETE'))) {
-			return;	
+			return false;	
 		}
 		
 		$http = new Client([
@@ -125,6 +121,13 @@ class ShopifyAPIComponent extends Component {
 		}
 	
   	}
+
+	public function setNonce($shop_domain) {
+		
+		return $this->nonce = md5(strtolower($shop_domain));
+		
+	}
+
 	
 	public function getNonce($shop_domain) {
 		
@@ -144,7 +147,7 @@ class ShopifyAPIComponent extends Component {
 	
 	}
 	
-	public function isAuthorized($query) {
+	public function validateHMAC($query) {
 	  
 		if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
 			return false;
@@ -172,6 +175,10 @@ class ShopifyAPIComponent extends Component {
 		$url = str_replace('%', '%25', $url);
 		return $url;
 		
+	}
+	
+	private function _isReady() {
+		return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;
 	}
 	
 }

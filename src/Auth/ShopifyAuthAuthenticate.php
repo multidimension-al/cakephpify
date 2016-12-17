@@ -8,7 +8,7 @@ use Cake\Auth\BaseAuthenticate;
 use Cake\Network\Request;
 use Cake\Network\Response;
 
-class ShopifyOAuth2Authenticate extends BaseAuthenticate {
+class ShopifyAuthAuthenticate extends BaseAuthenticate {
 
     //public $shopifyAPI;
 
