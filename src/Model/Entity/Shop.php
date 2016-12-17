@@ -70,13 +70,5 @@ class Shop extends Entity
         '*' => true,
         'id' => false
     ];
-	
-	protected function _getDomain($domain) {
-        return ((substr($domain, -14) == '.myshopify.com') ? $domain : $domain.'.myshopify.com'); 
-    }
-	
-	protected function _setDomain($domain) {
-        return str_replace('.myshopify.com', '', $domain); 
-    }
-	
+		
 }

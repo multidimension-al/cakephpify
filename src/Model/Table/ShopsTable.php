@@ -124,7 +124,7 @@ class ShopsTable extends Table
 
         $validator
             ->requirePresence('customer_email', 'create')
-            ->notEmpty('customer_email');
+            ->allowEmpty('customer_email');
 
         $validator
             ->decimal('latitude')

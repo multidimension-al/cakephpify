@@ -25,18 +25,25 @@ class ShopifyAPIComponent extends Component {
 	
 	public function initialize(array $config = []) {
 		
-		$this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Multidimensional/Shopify.api_key'));
-		$this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Multidimensional/Shopify.shared_secret'));
-		$this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Multidimensional/Shopify.scope'));
-   		$this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Multidimensional/Shopify.is_private_app'));
-		$this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Multidimensional/Shopify.private_app_password'));		
+		$this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
+		$this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'));
+		$this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Shopify.scope'));
+   		$this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'));
+		$this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password'));		
 		
 	}
 
+	public function setShopDomain($shop_domain) {
+		return $this->shop_domain = $shop_domain;
+	}
+	
 	public function getShopDomain() {
 		return $this->shop_domain;
 	}
-
+	
+	public function setAccessToken($token) {
+		return $this->token = $token;
+	}
 	/*public function isAuthorized() {
 		return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;
 	}*/
@@ -55,9 +62,9 @@ class ShopifyAPIComponent extends Component {
 
 	public function call($method, $path, $params=array()) {
 		
-		if (!$this->isAuthorized()) {
+		/*if (!$this->isAuthorized()) {
 			return;
-		}
+		}*/
 		
 		if (!in_array($method, array('POST','PUT','GET','DELETE'))) {
 			return;	
@@ -66,10 +73,15 @@ class ShopifyAPIComponent extends Component {
 		$http = new Client([
 			'host' => $this->shop_domain,
 			'scheme' => 'https',
-			'headers' => (($this->is_private_app != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : ''),
-			'auth' => (($this->is_private_app != 'true') ? '' : (['username' => $this->api_key, 'password' => $this->private_app_password]))]);
+			'headers' => (($this->is_private_app != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : []),
+			'auth' => (($this->is_private_app != 'true') ? [] : (['username' => $this->api_key, 'password' => $this->private_app_password]))
+		]);
 							
-		$this->response = $http->{strtolower($method)}($path, ((in_array($method, array('POST','PUT'))) ? json_encode($params) : $params), ((in_array($method, array('POST','PUT'))) ? ['type' => 'json'] : NULL));
+		$this->response = $http->{strtolower($method)}(
+			$path,
+			((in_array($method, array('POST','PUT'))) ? json_encode($params) : $params),
+			((in_array($method, array('POST','PUT'))) ? ['type' => 'json'] : [])
+		);
 		$this->response = $this->response->json;
 
 		return (is_array($this->response) && (count($this->response) > 0)) ? array_shift($this->response) : $this->response;
@@ -93,6 +105,8 @@ class ShopifyAPIComponent extends Component {
 
 	public function getAccessToken($shop_domain, $code) {
 	
+		$this->shop_domain = $shop_domain;
+	
 		$http = new Client([
 			'host' => $shop_domain,
 			'scheme' => 'https'
@@ -104,7 +118,8 @@ class ShopifyAPIComponent extends Component {
 		$response = $response->json;;
 		
 		if (isset($response['access_token'])) {
-			return $response['access_token'];
+			$this->token = $response['access_token'];
+			return $this->token;
 		} else {
 			return false;
 		}
