@@ -33,6 +33,7 @@ class ShopifyAPIComponent extends Component {
 		
 	public function initialize(array $config = []) {
 		
+		parent::initialize($config);
 		$this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
 		$this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'));
 		$this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Shopify.scope'));

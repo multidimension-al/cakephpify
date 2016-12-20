@@ -20,6 +20,8 @@ use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Session;
 
+use Multidimensional\Shopify\Controller\AppController;
+
 class InstallController extends AppController {
     
 	private $error;
@@ -70,7 +72,7 @@ class InstallController extends AppController {
 						
 							//$this->Auth->setUser($shop_entity);
 							
-							$this->redirect([
+							return $this->redirect([
 								'controller' => 'Shopify',
 								'plugin' => false]);
 								
@@ -113,6 +115,10 @@ class InstallController extends AppController {
 			);
 			
 			if ($valid_domain) {
+				
+				$this->request->session()->write([
+					'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->request->data['shop_domain']
+				]);
 			
 				$redirect_url = Router::url([
 					'controller' => 'Install',
@@ -131,7 +137,6 @@ class InstallController extends AppController {
 			} else {
 				
 				$this->Flash->set("Invalid Shopify Domain");
-				$this->render('index');
 				
 			}
 			
@@ -141,6 +146,13 @@ class InstallController extends AppController {
 
 		}
 	  
+	}
+	
+	public function redirect($url, $status = 302) {
+		
+		$this->set('shopify_auth_url', $url);
+		$this->render('redirect');
+		
 	}
   
 }
