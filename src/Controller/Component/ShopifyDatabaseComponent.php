@@ -25,8 +25,8 @@ class ShopifyDatabaseComponent extends Component {
 	
 	public function initialize(array $config = []) {
 	
-		$this->shops = TableRegistry::get('Shops');
-		$this->access_tokens = TableRegistry::get('AccessTokens');
+		$this->shops = TableRegistry::get('Multidimensional/Shopify.Shops');
+		$this->access_tokens = TableRegistry::get('Multidimensional/Shopify.AccessTokens');
 		
 	}
 	
@@ -96,13 +96,17 @@ class ShopifyDatabaseComponent extends Component {
 	
 	public function getShopDataFromAccessToken($access_token, $api_key) {
 		
-		$query = $this->shops->find();
-		$shop_entity = $query->matching('AccessTokens', function ($q) {
-			return $q->where(['AccessTokens.access_token' => $access_token, 'AccessTokens.api_key' => $api_key, 'AccessTokens.expires_at' => NULL]);
-		})->first()->toArray();
-
-		if (is_array($shop_entity)) {
-			return $shop_entity;		
+		$query = $this->access_tokens->find();
+		$query = $query->contain(['Shops']);
+		$query = $query->where(['api_key' => $api_key, 'token' => $access_token]);
+		$query = $query->where(function ($exp, $q) {
+			return $exp->isNull('expired_at');
+		});
+				
+		$shop_entity = $query->first()->toArray();
+								
+		if (is_array($shop_entity['shop'])) {
+			return $shop_entity['shop'];		
 		} else {
 			return false;
 		}
@@ -112,12 +116,16 @@ class ShopifyDatabaseComponent extends Component {
 	public function getAccessTokenFromShopDomain($shop_domain, $api_key) {
 		
 		$query = $this->access_tokens->find();
-		$access_token_entity = $query->matching('Shops', function ($q) {
-			return $q->where(['Shops.myshopify_domain' => $shop_domain, 'api_key' => $api_key]);
-		})->first();
-
-		if ($access_token_entity->access_token) {
-			return $access_token_entity->access_token;		
+		$query = $query->contain(['Shops']);
+		$query = $query->where(['api_key' => $api_key, 'Shops.myshopify_domain' => $shop_domain]);
+		$query = $query->where(function ($exp, $q) {
+			return $exp->isNull('expired_at');
+		});
+				
+		$access_token_entity = $query->first();
+				
+		if ($access_token_entity->token) {
+			return $access_token_entity->token;		
 		} else {
 			return false;
 		}

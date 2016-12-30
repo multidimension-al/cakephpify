@@ -158,7 +158,7 @@ class ShopifyAPIComponent extends Component {
 	}
 	
 	public function validateHMAC($query) {
-	  
+	  	  
 		if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
 			return false;
 		}

@@ -44,13 +44,13 @@ class ShopsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('shops');
-        $this->displayField('name');
-        $this->primaryKey('id');
+        //$this->table('shops');
+        $this->displayField('myshopify_domain');
+        //$this->primaryKey('id');
 
 		$this->hasMany('AccessTokens', [
-				'foreignKey' => 'shop_id',
-				'bindingKey' => 'id']);
+			'className' => 'Multidimensional/Shopify.AccessTokens'
+		]);
 
     }
 
