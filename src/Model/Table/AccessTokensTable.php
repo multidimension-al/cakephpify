@@ -47,9 +47,9 @@ class AccessTokensTable extends Table
         //$this->table('access_tokens');
         $this->displayField('token');
         //$this->primaryKey('id');
-		
-		$this->belongsTo('Shops', [
-			'className' => 'Multidimensional/Shopify.Shops']);
+        
+        $this->belongsTo('Shops', [
+            'className' => 'Multidimensional/Shopify.Shops']);
     }
 
     /**
@@ -63,10 +63,10 @@ class AccessTokensTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-			
-		$validator
-			->requirePresence('api_key', 'create')
-			->notEmpty('api_key');
+            
+        $validator
+            ->requirePresence('api_key', 'create')
+            ->notEmpty('api_key');
 
         $validator
             ->requirePresence('shop_id', 'create')

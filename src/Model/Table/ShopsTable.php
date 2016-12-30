@@ -48,9 +48,9 @@ class ShopsTable extends Table
         $this->displayField('myshopify_domain');
         //$this->primaryKey('id');
 
-		$this->hasMany('AccessTokens', [
-			'className' => 'Multidimensional/Shopify.AccessTokens'
-		]);
+        $this->hasMany('AccessTokens', [
+            'className' => 'Multidimensional/Shopify.AccessTokens'
+        ]);
 
     }
 

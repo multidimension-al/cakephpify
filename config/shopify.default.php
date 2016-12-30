@@ -24,11 +24,13 @@
 
 return array (
   'Shopify' => 
-  array (
-    'api_key' => '',
-    'shared_secret' => '',
-    'scope' => '',
-    'is_private_app' => '',
-	'private_app_password' => ''
-  ),
+    array(
+      '{API_KEY_HERE}' =>
+        array (
+          'shared_secret' => '{SHARED_SECRET_HERE}',
+          'scope' => '{SCOPE_HERE}',
+          'is_private_app' => '{TRUE/FALSE_HERE}',
+          'private_app_password' => '{PRIVATE_APP_PASSWORD_HERE}'
+        )
+    )
 );
