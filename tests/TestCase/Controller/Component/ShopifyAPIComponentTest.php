@@ -23,6 +23,7 @@ use Cake\Controller\ComponentRegistry;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
+use Cake\TestSuite\TestCase;
 
 class ShopifyAPIComponentTest extends TestCase {
  
