@@ -24,6 +24,8 @@ class ShopifyDatabaseComponent extends Component {
     private $shops;
     private $access_tokens;
     
+    public $controller = null;
+    
     public function initialize(array $config = []) {
         $this->shops = TableRegistry::get('Multidimensional/Shopify.Shops');
         $this->access_tokens = TableRegistry::get('Multidimensional/Shopify.AccessTokens');    
