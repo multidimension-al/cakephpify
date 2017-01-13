@@ -17,7 +17,6 @@ namespace Multidimensional\Shopify\Tests\Controller\Component;
 
 use Multidimensional\Shopify\Controller\Component\ShopifyAPIComponent;
 
-use App\Controller\Component\PagematronComponent;
 use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
 use Cake\Event\Event;
