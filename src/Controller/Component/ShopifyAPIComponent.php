@@ -146,9 +146,9 @@ class ShopifyAPIComponent extends Component {
     }
 
     
-    public function getNonce($shop_domain) {
+    public function getNonce() {
         
-        return md5(strtolower($shop_domain));
+        return $this->nonce;
         
     }
     
