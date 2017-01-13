@@ -10,8 +10,9 @@ services:
   - mysql
 
 env:
-  - DB_DSN="mysql://travis@127.0.0.1/database"
-  - DB_DATABASE="database"
+  global:
+    - DB_DSN="mysql://travis@127.0.0.1/database"
+    - DB_DATABASE="database"
 
 before_script:
   - travis_retry composer self-update
