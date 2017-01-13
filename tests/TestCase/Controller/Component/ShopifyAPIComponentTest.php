@@ -21,8 +21,55 @@ use Cake\TestSuite\TestCase;
 
 class ShopifyAPIComponentTest extends TestCase {
  
-    public function setUp() {
+     public $component = null;
+     public $controller = null;
+ 
+     public function setUp() {
         parent::setUp();
+        $request = new Request();
+        $response = new Response();
+        $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
+            ->setConstructorArgs([$request, $response])
+            ->setMethods(null)
+            ->getMock();
+        $registry = new ComponentRegistry($this->controller);
+        $this->component = new PagematronComponent($registry);
+        $event = new Event('Controller.startup', $this->controller);
+        $this->component->startup($event);
     }
-
+    
+    public function tearDown() {
+        parent::tearDown();
+        unset($this->component, $this->controller);
+    }
+    
+    public function testSetShopDomain() {
+        
+        
+    }
+    
+    public function testGetShopDomain() {
+        
+    }
+    
+    public function testSetAccessToken() {
+        
+    }
+    
+    public function testGetAuthorizeUrl() {
+        
+    }
+    
+    public function testGetAccessToken() {
+        
+    }
+    
+    public function testSetNonce() {
+        
+    }
+    
+    public function testGetNonce() {
+        
+    }
+ 
 }
