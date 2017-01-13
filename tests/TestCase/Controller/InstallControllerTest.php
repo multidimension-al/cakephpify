@@ -21,6 +21,9 @@ use Cake\TestSuite\IntegrationTestCase;
 
 class InstallControllerTest extends IntegrationTestCase {
  
+    public $fixtures = ['plugin.Multidimensional/Shopify.Shops',
+                        'plugin.Multidimensional/Shopify.AccessTokens'];
+ 
     public function setUp() {
         parent::setUp();
     }
