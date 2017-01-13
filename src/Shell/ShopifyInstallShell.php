@@ -99,7 +99,7 @@ class ShopifyInstallShell extends Shell {
             
         $this->out('');
         
-        if (($first_run) || (strtolower($this->in('Update Database?', ['y', 'n'])) == 'y')) {            
+        if (($first_run) || (strtolower($this->in('Update Database?', ['y', 'n'])) == 'y')) {
     
             $this->out('');
     
