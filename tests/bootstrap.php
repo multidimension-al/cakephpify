@@ -68,11 +68,12 @@ Configure::write('App', [
 
 ConnectionManager::config('test', [
     'datasource' => getenv('db_datasource'),
+    'persistent' => getenv('db_persistent'),
     'host' => getenv('db_host'),
     'database' => getenv('db_database'),
     'username' => getenv('db_username'),
     'password' => getenv('db_password'),
-    'timezone' => 'UTC'
+    'timezone' => getenv('db_timezone')
 ]);
 
 Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
