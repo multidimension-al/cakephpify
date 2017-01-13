@@ -68,7 +68,16 @@ Configure::write('App', [
 
 Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
 
+if (!getenv('db_dsn')) {
+    putenv('db_dsn=mysql://root:password@localhost/my_database');
+}
+
 ConnectionManager::config('test', [
+    'url' => getenv('db_dsn'),
+    'timezone' => 'UTC'
+]);
+
+/*ConnectionManager::config('test', [
     'datasource' => getenv('db_datasource'),
     'persistent' => getenv('db_persistent'),
     'host' => getenv('db_host'),
@@ -77,4 +86,5 @@ ConnectionManager::config('test', [
     'database' => getenv('db_database')
 ]);
 
-//ConnectionManager::alias('test', 'default');
+ConnectionManager::alias('test', 'default');
+*/
