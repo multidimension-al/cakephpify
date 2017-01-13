@@ -24,5 +24,21 @@ class InstallControllerTest extends TestCase {
     public function setUp() {
         parent::setUp();
     }
+    
+    public function testValidate() {
+        $this->get('/shopify/install/');
+        $this->assertResponseOk();
+        $this->get('/shopify/' . md5(rand(1,10)) . '/install/');
+        $this->assertResponseError();
+    }
+    
+    public function testIndex() {
+        $this->get('/shopify/install/');
+        $this->assertResponseOk();
+    }
+    
+    public function testRedirect() {
+        
+    }
 
 }
