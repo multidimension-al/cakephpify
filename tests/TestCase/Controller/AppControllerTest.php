@@ -21,4 +21,8 @@ use Cake\TestSuite\TestCase;
 
 class AppControllerTest extends TestCase {
 
+    public function setUp() {
+        parent::setUp();
+    }
+ 
 }
