@@ -24,7 +24,7 @@ class AppController extends BaseController
      * Initialize AppController
      *
      * @return void
-    */
+     */
     public function initialize()
     {
         parent::initialize();

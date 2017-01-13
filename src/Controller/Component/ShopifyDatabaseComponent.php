@@ -99,7 +99,7 @@ class ShopifyDatabaseComponent extends Component {
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $api_key, 'token' => $access_token]);
-        $query = $query->where(function ($exp, $q) {
+        $query = $query->where(function($exp, $q) {
             return $exp->isNull('expired_at');
         });
                 
@@ -118,7 +118,7 @@ class ShopifyDatabaseComponent extends Component {
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $api_key, 'Shops.myshopify_domain' => $shop_domain]);
-        $query = $query->where(function ($exp, $q) {
+        $query = $query->where(function($exp, $q) {
             return $exp->isNull('expired_at');
         });
                 

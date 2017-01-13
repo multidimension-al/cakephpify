@@ -37,7 +37,7 @@ class ShopifyAPIComponent extends Component {
         $this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
         $this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'));
         $this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Shopify.scope'));
-           $this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'));
+            $this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'));
         $this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password'));        
         
     }
@@ -66,6 +66,10 @@ class ShopifyAPIComponent extends Component {
         return $this->callLimit() - $this->callsMade();
     }
 
+    /**
+     * @param string $method
+     * @param string $path
+     */
     public function call($method, $path, $params=array()) {
         
         if (!$this->_isReady()) {
@@ -85,8 +89,8 @@ class ShopifyAPIComponent extends Component {
                             
         $this->response = $http->{strtolower($method)}(
             $path,
-            ((in_array($method, array('POST','PUT'))) ? json_encode($params) : $params),
-            ((in_array($method, array('POST','PUT'))) ? ['type' => 'json'] : [])
+            ((in_array($method, array('POST', 'PUT'))) ? json_encode($params) : $params),
+            ((in_array($method, array('POST', 'PUT'))) ? ['type' => 'json'] : [])
         );
         $this->response = $this->response->json;
 
@@ -94,8 +98,11 @@ class ShopifyAPIComponent extends Component {
         
     }
     
+    /**
+     * @param integer $index
+     */
     private function shopApiCallLimitParam($index) {
-        $params = explode("/",$this->response->getHeaderLine('http_x_shopify_shop_api_call_limit'));
+        $params = explode("/", $this->response->getHeaderLine('http_x_shopify_shop_api_call_limit'));
         return (int) $params[$index];
     }
     
@@ -121,7 +128,7 @@ class ShopifyAPIComponent extends Component {
         $response = $http->post('/admin/oauth/access_token', 'client_id=' . $this->api_key . 
                                     '&client_secret=' . $this->shared_secret .
                                     '&code=' . $code);
-        $response = $response->json;;
+        $response = $response->json; ;
         
         if (isset($response['access_token'])) {
             $this->token = $response['access_token'];
@@ -130,7 +137,7 @@ class ShopifyAPIComponent extends Component {
             return false;
         }
     
-      }
+        }
 
     public function setNonce($shop_domain) {
         
@@ -177,8 +184,11 @@ class ShopifyAPIComponent extends Component {
         $string = implode("&", $dataString);
         return $query['hmac'] == hash_hmac('sha256', $string, $this->shared_secret);
     
-      }
+        }
 
+    /**
+     * @param string $url
+     */
     private function _urlEncode($url) {
     
         $url = str_replace('&', '%26', $url);

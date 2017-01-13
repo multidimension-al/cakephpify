@@ -66,8 +66,8 @@ class InstallController extends AppController {
                         if ($access_token_entity) {
                         
                             $this->request->session()->write([
-                                'shopify_access_token_'.$this->ShopifyAPI->api_key => $access_token,
-                                'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
+                                'shopify_access_token_' . $this->ShopifyAPI->api_key => $access_token,
+                                'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
                             ]);
                         
                             //$this->Auth->setUser($shop_entity);
@@ -108,7 +108,7 @@ class InstallController extends AppController {
       
             $this->render('validate');
               
-          } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
+            } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
             
             $valid_domain = $this->ShopifyAPI->validDomain(
                 $this->request->data['shop_domain']
@@ -117,7 +117,7 @@ class InstallController extends AppController {
             if ($valid_domain) {
                 
                 $this->request->session()->write([
-                    'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->request->data['shop_domain']
+                    'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->request->data['shop_domain']
                 ]);
             
                 $redirect_url = Router::url([

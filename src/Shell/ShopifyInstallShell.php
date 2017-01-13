@@ -23,7 +23,7 @@ use Migrations\Migrations;
 
 class ShopifyInstallShell extends Shell {
     
-      public function main() {
+        public function main() {
 
         //Lets Make This FANCY
         $this->clear();
@@ -34,7 +34,7 @@ class ShopifyInstallShell extends Shell {
         $first_run = ((Configure::check('Shopify')) ? false : true);
             
         //Activate Plugin           
-        if ((($first_run) ? (strtolower($this->in('Install Shopify Plugin?', ['y','n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y','n'])) == 'y'))) {
+        if ((($first_run) ? (strtolower($this->in('Install Shopify Plugin?', ['y', 'n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
             
             $this->out();
             $this->out('Please enter your API credentials from your Shopify App page.', 2);
@@ -72,12 +72,12 @@ class ShopifyInstallShell extends Shell {
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');    
                 }
             
-            } while((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
+            } while ((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
             
-            Configure::write('Shopify.' . $api_key . '.scope',implode(',', $scope));
+            Configure::write('Shopify.' . $api_key . '.scope', implode(',', $scope));
             
             $this->out('');
-            $is_private_app = strtolower($this->in('Is this a private app?', ['y','n']));
+            $is_private_app = strtolower($this->in('Is this a private app?', ['y', 'n']));
             
             if ($is_private_app == 'y') {
                 $is_private_app = 'true';    
@@ -85,10 +85,10 @@ class ShopifyInstallShell extends Shell {
                 $is_private_app = 'false';
             }
             
-            Configure::write('Shopify.' . $api_key . '.is_private_app',$is_private_app);
+            Configure::write('Shopify.' . $api_key . '.is_private_app', $is_private_app);
             
             if ($is_private_app == 'true') {
-                Configure::write('Shopify.' . $api_key . '.private_app_password',$this->in('Private App Password:'));
+                Configure::write('Shopify.' . $api_key . '.private_app_password', $this->in('Private App Password:'));
             } else {
                 Configure::write('Shopify.' . $api_key . '.private_app_password', NULL);
             }
@@ -99,7 +99,7 @@ class ShopifyInstallShell extends Shell {
             
         $this->out('');
         
-        if (($first_run) || (strtolower($this->in('Update Database?', ['y','n'])) == 'y')) {            
+        if (($first_run) || (strtolower($this->in('Update Database?', ['y', 'n'])) == 'y')) {            
     
             $this->out('');
     
@@ -109,16 +109,16 @@ class ShopifyInstallShell extends Shell {
     
             if ((is_array($status)) && (count($status))) {
                 
-                $this->out('Updating Databases',2);
+                $this->out('Updating Databases', 2);
               
                 if ($migrations->migrate()) {
-                    $this->out('Success!',2);
+                    $this->out('Success!', 2);
                 } else {
                     $this->_io->out('<error>Update Failed!</error>', 2);
                 }
                 
             } else {
-                $this->out('Shopify Database Files Not Found',2);
+                $this->out('Shopify Database Files Not Found', 2);
             }
         
         }
