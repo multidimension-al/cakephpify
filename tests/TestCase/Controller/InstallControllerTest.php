@@ -17,9 +17,9 @@ namespace Multidimensional\Shopify\Tests\Controller;
 
 use Multidimensional\Shopify\Controller\InstallController;
 
-use Cake\TestSuite\TestCase;
+use Cake\TestSuite\IntegrationTestCase;
 
-class InstallControllerTest extends TestCase {
+class InstallControllerTest extends IntegrationTestCase {
  
     public function setUp() {
         parent::setUp();
