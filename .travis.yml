@@ -14,7 +14,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction
 
 before_install:
-  - mysql -e 'CREATE DATABASE database;'
+  - mysql -e 'CREATE DATABASE $DB_DATABASE;'
 
 script:
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
