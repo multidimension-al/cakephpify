@@ -17,7 +17,12 @@ namespace Multidimensional\Shopify\Tests\Controller\Component;
 
 use Multidimensional\Shopify\Controller\Component\ShopifyAPIComponent;
 
-use Cake\TestSuite\TestCase;
+use App\Controller\Component\PagematronComponent;
+use Cake\Controller\Controller;
+use Cake\Controller\ComponentRegistry;
+use Cake\Event\Event;
+use Cake\Network\Request;
+use Cake\Network\Response;
 
 class ShopifyAPIComponentTest extends TestCase {
  
