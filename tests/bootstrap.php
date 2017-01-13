@@ -67,12 +67,14 @@ Configure::write('App', [
 ]);
 
 ConnectionManager::config('test', [
+    'className' => 'Cake\Database\Connection',
     'datasource' => getenv('db_datasource'),
     'persistent' => getenv('db_persistent'),
     'host' => getenv('db_host'),
     'database' => getenv('db_database'),
     'username' => getenv('db_username'),
     'password' => getenv('db_password'),
+    'encoding' => getenv('db_encoding'),
     'timezone' => getenv('db_timezone')
 ]);
 
