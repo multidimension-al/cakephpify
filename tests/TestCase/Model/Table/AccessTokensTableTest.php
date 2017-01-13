@@ -20,7 +20,9 @@ use Multidimensional\Shopify\Model\Table\AccessTokensTable;
 use Cake\TestSuite\TestCase;
 
 class AccessTokensTableTest extends TestCase {
-
+    
+    public $fixtures = ['plugin.Multidimensional/Shopify.AccessTokens'];
+ 
     public function setUp() {
         parent::setUp();
     }
