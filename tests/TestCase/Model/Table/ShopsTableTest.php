@@ -20,6 +20,8 @@ use Multidimensional\Shopify\Model\Table\ShopsTable;
 use Cake\TestSuite\TestCase;
 
 class ShopsTableTest extends TestCase {
+ 
+    public $fixtures = ['plugin.Multidimensional/Shopify.Shops'];
 
     public function setUp() {
         parent::setUp();
