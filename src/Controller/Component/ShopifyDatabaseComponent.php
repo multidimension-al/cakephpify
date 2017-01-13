@@ -33,6 +33,13 @@ class ShopifyDatabaseComponent extends Component {
         $this->setController($event->subject());
     }
     
+    public function setController($controller) {
+        $this->controller = $controller;
+        if (!isset($this->controller->paginate)) {
+            $this->controller->paginate = [];
+        }
+    }
+    
     public function shopDataToDatabase(array $data) {
         
         $shop_entity = $this->shops->newEntity();
