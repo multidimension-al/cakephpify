@@ -32,6 +32,8 @@ class ShopifyAPIComponent extends Component {
     private $private_app_password;
     private $nonce;
         
+    public $controller = null;
+        
     public function initialize(array $config = []) {
         
         parent::initialize($config);
