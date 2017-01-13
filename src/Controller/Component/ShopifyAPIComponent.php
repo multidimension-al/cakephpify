@@ -70,13 +70,13 @@ class ShopifyAPIComponent extends Component {
      * @param string $method
      * @param string $path
      */
-    public function call($method, $path, $params=array()) {
+    public function call($method, $path, $params = array()) {
         
         if (!$this->_isReady()) {
             return false;
         }
         
-        if (!in_array($method, array('POST','PUT','GET','DELETE'))) {
+        if (!in_array($method, array('POST', 'PUT', 'GET', 'DELETE'))) {
             return false;    
         }
         
