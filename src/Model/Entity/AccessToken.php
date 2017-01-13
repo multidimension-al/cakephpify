@@ -27,8 +27,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $updated_at
  * @property \Cake\I18n\Time $expired_at
  */
-class AccessToken extends Entity
-{
+class AccessToken extends Entity {
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

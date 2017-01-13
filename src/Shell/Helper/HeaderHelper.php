@@ -17,10 +17,8 @@ namespace Multidimensional\Shopify\Shell\Helper;
 
 use Cake\Console\Helper;
 
-class HeaderHelper extends Helper
-{
-    public function output($args = null)
-    {
+class HeaderHelper extends Helper {
+    public function output($args = null) {
         $this->_io->out("\n\n");
         $this->_io->styles('header', ['text' => 'green']);
         $this->_io->out('<header>   _____ __  ______  ____  ____________  __</header>');
