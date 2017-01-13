@@ -19,6 +19,7 @@ use Cake\Core\Configure;
 use Cake\Controller\Component;
 use Cake\Routing\Router;
 use Cake\Network\Http\Client;
+use Cake\Event\Event;
 
 class ShopifyAPIComponent extends Component {
         
