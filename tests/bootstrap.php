@@ -66,6 +66,8 @@ Configure::write('App', [
     ]
 ]);
 
+Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
+
 ConnectionManager::config('test', [
     'datasource' => getenv('db_datasource'),
     'persistent' => getenv('db_persistent'),
@@ -75,6 +77,4 @@ ConnectionManager::config('test', [
     'database' => getenv('db_database')
 ]);
 
-ConnectionManager::alias('test', 'default');
-
-Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
+//ConnectionManager::alias('test', 'default');
