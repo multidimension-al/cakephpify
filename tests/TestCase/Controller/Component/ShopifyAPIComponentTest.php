@@ -20,5 +20,9 @@ use Multidimensional\Shopify\Controller\Component\ShopifyAPIComponent;
 use Cake\TestSuite\TestCase;
 
 class ShopifyAPIComponentTest extends TestCase {
+ 
+    public function setUp() {
+        parent::setUp();
+    }
 
 }
