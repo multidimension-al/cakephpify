@@ -1,11 +1,12 @@
 # CakePHP Plugin for Shopify API Authentication
 
-[![Build Status](https://api.travis-ci.org/multidimension-al/cakephpify.svg?branch=master)](https://travis-ci.org/multidimension-al/cakephpify)
+[![Build Status](https://api.travis-ci.org/multidimension-al/cakephpify.svg)](https://travis-ci.org/multidimension-al/cakephpify)
 [![Latest Stable Version](https://poser.pugx.org/multidimensional/cakephpify/v/stable.svg)](https://packagist.org/packages/multidimensional/cakephpify)
-[![Coverage Status](https://coveralls.io/repos/github/multidimension-al/cakephpify/badge.svg?branch=master)](https://coveralls.io/github/multidimension-al/cakephpify?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/multidimension-al/cakephpify/badges/coverage.png)](https://scrutinizer-ci.com/g/multidimension-al/cakephpify/)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/multidimensional/cakephpify/license.svg)](https://packagist.org/packages/multidimensional/cakephpify)
 [![Total Downloads](https://poser.pugx.org/multidimensional/cakephpify/d/total.svg)](https://packagist.org/packages/multidimensional/cakephpify)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/multidimension-al/cakephpify/badges/quality-score.png)](https://scrutinizer-ci.com/g/multidimension-al/cakephpify/)
 
 A CakePHP Plugin for Shopify API Authentication.
 
