@@ -14,7 +14,9 @@
 	<testsuites>
 		<testsuite name="All Tests">
 			<directory>./tests/TestCase</directory>
-			<exclude>./tests/TestCase</exclude>
+			<exclude>./tests/TestCase/Shell</exclude>
+			<exclude>./tests/TestCase/Auth</exclude>
+			<exclude>./tests/TestCase/Model</exclude>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
 	</testsuites>
