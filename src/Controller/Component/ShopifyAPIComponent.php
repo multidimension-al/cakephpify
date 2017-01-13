@@ -41,6 +41,10 @@ class ShopifyAPIComponent extends Component {
         $this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password'));        
         
     }
+        
+    public function startup(Event $event) {
+        $this->setController($event->subject());
+    }
 
     public function setShopDomain($shop_domain) {
         return $this->shop_domain = $shop_domain;
