@@ -38,7 +38,7 @@ class ShopifyAPIComponentTest extends TestCase {
             ->setMethods(null)
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
-        $this->component = new PagematronComponent($registry);
+        $this->component = new ShopifyAPIComponent($registry);
         $event = new Event('Controller.startup', $this->controller);
         $this->component->startup($event);
     }
