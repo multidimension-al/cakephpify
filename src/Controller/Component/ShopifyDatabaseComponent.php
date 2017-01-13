@@ -17,6 +17,7 @@ namespace Multidimensional\Shopify\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 class ShopifyDatabaseComponent extends Component {
     
