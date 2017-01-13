@@ -78,6 +78,6 @@ ConnectionManager::config('test', [
     'timezone' => getenv('db_timezone')
 ]);
 
-ConnectionManager::alias('default', 'test')
+ConnectionManager::alias('default', 'test');
 
 Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
