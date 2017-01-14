@@ -17,8 +17,7 @@ namespace Multidimensional\Shopify\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class AccessTokensFixture extends TestFixture
-{
+class AccessTokensFixture extends TestFixture {
  
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 10, 'null' => false],
