@@ -26,13 +26,13 @@ use Cake\TestSuite\TestCase;
 
 class ShopifyDatabaseComponentTest extends TestCase {
  
-     public $component = null;
-     public $controller = null;
+        public $component = null;
+        public $controller = null;
  
-     public $fixtures = ['plugin.Multidimensional/Shopify.Shops',
-                         'plugin.Multidimensional/Shopify.AccessTokens'];
+        public $fixtures = ['plugin.Multidimensional/Shopify.Shops',
+                            'plugin.Multidimensional/Shopify.AccessTokens'];
  
-     public function setUp() {
+        public function setUp() {
         parent::setUp();
         $request = new Request();
         $response = new Response();

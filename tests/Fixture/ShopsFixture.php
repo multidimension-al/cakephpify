@@ -17,8 +17,7 @@ namespace Multidimensional\Shopify\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class ShopsFixture extends TestFixture
-{
+class ShopsFixture extends TestFixture {
 
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11],
@@ -70,9 +69,9 @@ class ShopsFixture extends TestFixture
         'force_ssl' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         '_constraints' => [
             'PRIMARY' => ['type' => 'primary', 'columns' => ['id']]
-         ],
+            ],
         '_indexes' => [
-             'domain' => ['type' => 'index', 'columns' => ['myshopify_domain']]
+                'domain' => ['type' => 'index', 'columns' => ['myshopify_domain']]
         ]
     ];
       

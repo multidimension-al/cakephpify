@@ -31,7 +31,7 @@ class InstallControllerTest extends IntegrationTestCase {
     public function testValidate() {
         $this->get('/shopify/install/');
         $this->assertResponseOk();
-        $this->get('/shopify/' . md5(rand(1,10)) . '/install/');
+        $this->get('/shopify/' . md5(rand(1, 10)) . '/install/');
         $this->assertResponseError();
     }
     
