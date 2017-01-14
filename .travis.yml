@@ -6,20 +6,34 @@ php:
   - 7.1
   - hhvm
   
-services:
-  - mysql
-
 env:
   global:
-    - DB_DSN="mysql://travis@127.0.0.1/database"
-    - DB_DATABASE="database"
+    - DB_DATABASE="cakephp_test"
+  matrix: 
+    - DB=mysql DB_DSN='mysql://travis@0.0.0.0/$DB_DATABASE'
+    - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/$DB_DATABASE'
+    - DB=sqlite DB_DSN='sqlite:///:memory:'
+    
+matrix:
+  allow_failures:
+    - php: hhvm
+
+  fast_finish: true
+
+  include:
+    - php: hhvm
+      env: HHVM=1 DB=sqlite DB_DSN='sqlite:///:memory:'
+
+    - php: hhvm
+      env: HHVM=1 DB=mysql DB_DSN='mysql://travis@0.0.0.0/$DB_DATABASE'
 
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
 
 before_install:
-  - mysql -e 'CREATE DATABASE $DB_DATABASE;'
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE $DB_DATABASE;'; fi"
+  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE $DB_DATABASE;' -U postgres; fi"
 
 script:
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
