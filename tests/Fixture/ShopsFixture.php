@@ -66,8 +66,8 @@ class ShopsFixture extends TestFixture
         'has_storefont' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         'eligible_for_card_reader_giveaway' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         'finances' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
-        'setup_required' => ['type' => ''],
-        'force_ssl' => ['type' => ''],
+        'setup_required' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'force_ssl' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         '_constraints' => [
             'PRIMARY' => ['type' => 'primary', 'columns' => ['id']]
          ],
