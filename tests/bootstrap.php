@@ -66,7 +66,7 @@ Configure::write('App', [
     ]
 ]);
 
-Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
+Plugin::load('Multidimensional/Shopify', ['path' => ROOT, 'bootstrap' => true, 'routes' => true]);
 
 if (!getenv('DB_DSN')) {
     putenv('DB_DSN=sqlite:///:memory:');
