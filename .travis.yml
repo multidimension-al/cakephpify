@@ -31,7 +31,7 @@ before_script:
 
 before_install:
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -v'; fi"
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -v; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'SELECT version();'; fi"
 
