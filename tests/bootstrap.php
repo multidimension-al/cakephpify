@@ -69,8 +69,8 @@ Configure::write('App', [
 Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
 
 if (!getenv('DB_DSN')) {
-81	    putenv('DB_DSN=sqlite:///:memory:');
-82	}
+    putenv('DB_DSN=sqlite:///:memory:');
+}
 
 ConnectionManager::config('test', [
     'url' => getenv('DB_DSN'),
