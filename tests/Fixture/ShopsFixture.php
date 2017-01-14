@@ -51,26 +51,29 @@ class ShopsFixture extends TestFixture
         'taxes_included' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         'tax_shipping' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         'country_taxes' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
-        'plan_display_name' => ['type' => ''],
-        'plan_name' => ['type' => ''],
-        'has_discounts' => ['type' => ''],
-        'has_gift_cards' => ['type' => ''],
-        'myshopify_domain' => ['type' => ''],
-        'google_apps_domain' => ['type' => ''],
-        'google_apps_login_enabled' => ['type' => ''],
-        'money_in_emails_format' => ['type' => ''],
-        'money_with_currency_in_emails_format' => ['type' => ''],
-        'eligible_for_payments' => ['type' => ''],
-        'requires_extra_payments_agreement' => ['type' => ''],
-        'password_enabled' => ['type' => ''],
-        'has_storefont' => ['type' => ''],
-        'eligible_for_card_reader_giveaway' => ['type' => ''],
-        'finances' => ['type' => ''],
+        'plan_display_name' => ['type' => 'string', 'length' => 255, 'null' => false]],
+        'plan_name' => ['type' => 'string', 'length' => 255, 'null' => false]],
+        'has_discounts' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'has_gift_cards' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'myshopify_domain' => ['type' => 'string', 'length' => 255, 'null' => false],
+        'google_apps_domain' => ['type' => 'string', 'length' => 255, 'default' => 'NULL', 'null' => true],
+        'google_apps_login_enabled' => ['type' => 'string', 'length' => 255, 'default' => 'NULL', 'null' => true],
+        'money_in_emails_format' => ['type' => 'string', 'length' => 255, 'default' => '${{amount}}', 'null' => false],
+        'money_with_currency_in_emails_format' => ['type' => 'string', 'length' => 255, 'default' => '${{amount}} USD', 'null' => false],
+        'eligible_for_payments' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'requires_extra_payments_agreement' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'password_enabled' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'has_storefont' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'eligible_for_card_reader_giveaway' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
+        'finances' => ['type' => 'integer', 'length' => 1, 'default' => 'NULL', 'null' => true],
         'setup_required' => ['type' => ''],
         'force_ssl' => ['type' => ''],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id']]
-         ]
+            'PRIMARY' => ['type' => 'primary', 'columns' => ['id']]
+         ],
+        '_indexes' => [
+             'domain' => ['type' => 'index', 'columns' => ['myshopify_domain']]
+        ]
     ];
       
 }
