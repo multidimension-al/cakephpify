@@ -19,7 +19,21 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class AccessTokensFixture extends TestFixture
 {
-
-    public $connection = 'test';
+ 
+    public $fields = [
+        'id' => ['type' => 'integer', 'length' => 10, 'null' => false],
+        'shop_id' => ['type' => 'integer', 'length' => 10, 'null' => false],
+        'api_key' => ['type' => 'string', 'length' => 32, 'null' => false],
+        'token' => ['type' => 'string', 'length' => 255, 'null' => false],
+        'created_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP'],
+        'updated_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP'],
+        'expired_at' => ['type' => 'datetime', 'null' => true],
+        '_constraints' => [
+            'PRIMARY' => ['type' => 'primary', 'columns' => ['id']]
+        ],
+        '_indexes' => [
+            'UNIQUE' => ['type' => 'unique', 'columns' => ['shop_id', 'api_key', 'token']]    
+        ]
+    ];
       
 }
