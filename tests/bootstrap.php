@@ -13,15 +13,11 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-// @codingStandardsIgnoreFile
-
-use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
-use Cake\I18n\I18n;
 
-require_once 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 // Path constants to a few helpful things.
 if (!defined('DS')) {
@@ -33,8 +29,13 @@ define('CAKE_CORE_INCLUDE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakeph
 define('CORE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 define('TESTS', ROOT . 'tests');
-define('APP', ROOT . 'tests' . DS . 'test_files' . DS . 'app' . DS);
 define('APP_DIR', 'app');
+
+define('APP', rtrim(sys_get_temp_dir(), DS) . DS . APP_DIR . DS);
+if (!is_dir(APP)) {
+	mkdir(APP, 0770, true);
+}
+
 define('WEBROOT_DIR', 'webroot');
 define('WWW_ROOT', dirname(APP) . DS . 'webroot' . DS);
 define('TMP', sys_get_temp_dir() . DS);
@@ -42,7 +43,7 @@ define('CONFIG', dirname(APP) . DS . 'config' . DS);
 define('CACHE', TMP);
 define('LOGS', TMP);
 
-require_once CORE_PATH . 'config/bootstrap.php';
+require_once CAKE_CORE_INCLUDE_PATH . DS . 'config' . DS . 'bootstrap.php';
 
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
@@ -76,15 +77,3 @@ ConnectionManager::config('test', [
     'url' => getenv('DB_DSN'),
     'timezone' => 'UTC'
 ]);
-
-/*ConnectionManager::config('test', [
-    'datasource' => getenv('db_datasource'),
-    'persistent' => getenv('db_persistent'),
-    'host' => getenv('db_host'),
-    'username' => getenv('db_username'),
-    'password' => getenv('db_password'),
-    'database' => getenv('db_database')
-]);
-
-ConnectionManager::alias('test', 'default');
-*/
