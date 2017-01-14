@@ -69,12 +69,11 @@ Configure::write('App', [
 Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
 
 if (!getenv('DB_DSN')) {
-    putenv('DB=mysql DB_DSN=mysql://root:password@localhost/my_database');
-}
+81	    putenv('DB_DSN=sqlite:///:memory:');
+82	}
 
 ConnectionManager::config('test', [
-    'className' => 'Cake\Database\Connection',
-    'url' => getenv('DS_DSN'),
+    'url' => getenv('DB_DSN'),
     'timezone' => 'UTC'
 ]);
 
