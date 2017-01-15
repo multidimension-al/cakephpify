@@ -24,8 +24,8 @@ class AccessTokensFixture extends TestFixture {
         'shop_id' => ['type' => 'integer', 'length' => 10, 'null' => false],
         'api_key' => ['type' => 'string', 'length' => 32, 'null' => false],
         'token' => ['type' => 'string', 'length' => 255, 'null' => false],
-        'created_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP', 'null' => false],
-        'updated_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP', 'null' => false],
+        'created_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP', 'null' => true],
+        'updated_at' => ['type' => 'datetime', 'default' => 'CURRENT_TIMESTAMP', 'null' => true],
         'expired_at' => ['type' => 'datetime', 'null' => true],
         '_constraints' => [
             'PRIMARY' => ['type' => 'primary', 'columns' => ['id']],
