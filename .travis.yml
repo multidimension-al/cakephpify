@@ -6,7 +6,7 @@ php:
   - 7.1
   - hhvm
   
- addons:
+addons:
   mariadb: '10.1'
   
 env:
