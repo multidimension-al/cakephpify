@@ -39,6 +39,7 @@ before_install:
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql --version; fi"
 
 script:
+  - ./bin/cake/
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
