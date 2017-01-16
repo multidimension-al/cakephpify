@@ -50,32 +50,31 @@ class ShopifyAPIComponentTest extends TestCase {
     }
     
     public function testSetShopDomain() {
-        
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetShopDomain() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testSetAccessToken() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetAuthorizeUrl() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetAccessToken() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testSetNonce() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetNonce() {
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
  
 }
