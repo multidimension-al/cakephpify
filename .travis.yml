@@ -23,10 +23,14 @@ matrix:
 
   include:
     - php: hhvm
-      env: HHVM=1 DB=sqlite DB_DSN='sqlite:///:memory:'
+      env: DB=sqlite DB_DSN='sqlite:///:memory:'
 
     - php: hhvm
-      env: HHVM=1 DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
+
+  exclude:
+    - php: hhvm
+      env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
 
 before_script:
   - travis_retry composer self-update
@@ -39,7 +43,8 @@ before_install:
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql --version; fi"
 
 script:
-  - ./vendor/cakephp/cakephp/bin/cake/
+  - tree -d ./
+  - ./../cakephp/bin/cake/
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
