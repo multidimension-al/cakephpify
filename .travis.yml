@@ -37,7 +37,7 @@ before_script:
   - travis_retry composer require --dev cakephp/bake
 
 script:
-  - ./cakephp/cakephp/src/console
+  - ./vendor/cakephp/cakephp/src/console
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
