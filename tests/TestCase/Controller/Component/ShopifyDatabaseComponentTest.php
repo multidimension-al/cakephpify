@@ -52,28 +52,24 @@ class ShopifyDatabaseComponentTest extends TestCase {
     }
     
     public function testShopDataToDatabase() {
-        
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testAccessTokenToDatabase() {
-       
+       $this->markTestIncomplete('Not implemented yet.');
         
     }
     
     public function testGetShopIdFromDomain() {
-        
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetShopDataFromAccessToken() {
-        
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
     
     public function testGetAccessTokenFromShopDomain() {
-        
-        
+        $this->markTestIncomplete('Not implemented yet.');
     }
 
 }
