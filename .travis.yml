@@ -4,8 +4,7 @@ php:
   - 5.6
   - 7.0
   - 7.1
-  - hhvm
-  
+
 addons:
   mariadb: '10.1'
   
@@ -28,10 +27,6 @@ matrix:
     - php: hhvm
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
 
-  exclude:
-    - php: hhvm
-      env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
-
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
@@ -43,8 +38,7 @@ before_install:
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql --version; fi"
 
 script:
-  - tree -d ./
-  - ./../cakephp/bin/cake/
+  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
