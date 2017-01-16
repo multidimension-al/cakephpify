@@ -34,10 +34,10 @@ before_install:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
-  - travis_retry composer require --dev cakephp/bake
+  - travis_retry composer require --dev cakephp/app
 
 script:
-  - ./vendor/cakephp/cakephp/src/console
+  - ./vendor/cakephp/app/bin/cake;
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
