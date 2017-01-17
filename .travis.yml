@@ -4,15 +4,6 @@ php:
   - 5.6
   - 7.0
   - 7.1
-
-addons:
-  mariadb: '10.1'
-  
-env:
-  matrix: 
-    - DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
-    - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
-    - DB=sqlite DB_DSN='sqlite:///:memory:'
     
 matrix:
   allow_failures:
@@ -26,10 +17,20 @@ matrix:
 
     - php: hhvm
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
+      
+    - env:
+      - DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
+        addons:
+          mariadb: '10.1'
+      - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
+      - DB=sqlite DB_DSN='sqlite:///:memory:'
 
 before_install:
+  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - cd ../../
+  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - travis_retry composer require --dev cakephp/app
+  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - mv ./multidimension-al/cakephpify ./vendors/multidimension-al/cakephpify
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
