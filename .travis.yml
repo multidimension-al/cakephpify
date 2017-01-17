@@ -11,15 +11,14 @@ env:
   - DB=sqlite DB_DSN='sqlite:///:memory:'
     
 matrix:
+  fast_finish: true
   allow_failures:
     - php: hhvm
-
-  fast_finish: true
 
   include:
     - env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
       addons:
-        - mariadb: '10.1'
+        mariadb: '10.1'
  
  exclude:
     - php: hhvm
