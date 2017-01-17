@@ -26,7 +26,12 @@ matrix:
 before_install:
   - cd ../../
   - travis_retry composer require --dev cakephp/app
-  - mkdir vendor/multidimensional/cakephpify
+  - cd vendor
+  - mkdir multidimensional
+  - cd multidimensional
+  - mkdir cakephpify
+  - cd ../../
+  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - mv multidimension-al/cakephpify vendor/multidimensional/cakephpify
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
