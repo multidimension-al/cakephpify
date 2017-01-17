@@ -20,7 +20,7 @@ matrix:
       addons:
         mariadb: '10.1'
  
- exclude:
+  exclude:
     - php: hhvm
       env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
 
