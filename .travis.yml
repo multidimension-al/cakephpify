@@ -29,7 +29,7 @@ before_install:
   - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - travis_retry composer require --dev cakephp/app
   - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-  - mv multidimension-al/cakephpify vendor/multidimensional/cakephpify
+  - mv multidimension-al/cakephpify/* vendor/multidimensional/cakephpify/*
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
 
