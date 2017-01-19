@@ -22,15 +22,15 @@
  *  If you don't have this file, copy it to your main CakePHP config folder.
 /*/
 
-return array (
+return array [
   'Multidimensional/Shopify' => 
-    array(
+    [
       '{API_KEY_HERE}' =>
-        array (
+         [
           'shared_secret' => '{SHARED_SECRET_HERE}',
           'scope' => '{SCOPE_HERE}',
           'is_private_app' => '{TRUE/FALSE_HERE}',
           'private_app_password' => '{PRIVATE_APP_PASSWORD_HERE}'
-        )
-    )
-);
+         ]
+    ]
+];

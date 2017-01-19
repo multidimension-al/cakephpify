@@ -22,20 +22,22 @@ use Cake\Network\Session;
 
 use Multidimensional\Shopify\Controller\AppController;
 
-class InstallController extends AppController {
-    
+class InstallController extends AppController
+{
+
     private $error;
-    
-    public function initialize() {
+
+    public function initialize()
+    {
 
         parent::initialize();
         $this->loadComponent('Multidimensional/Shopify.ShopifyDatabase');
         $this->loadComponent('Multidimensional/Shopify.ShopifyAPI', ['api_key' => $this->request->api_key]);
         $this->loadComponent('Flash');
         $this->error = false;
-        		
+
     }
-        
+
     public function add() {
 
         $is_authorized = $this->ShopifyAPI->validateHMAC($this->request->query);
@@ -46,29 +48,26 @@ class InstallController extends AppController {
                 $this->request->query['shop'],
                 $this->request->query['code']
             );
-        
-            if ($access_token) {
-                
+
+            if ($accessToken) {
                 $shop = $this->ShopifyAPI->getShopData();
-                
+
                 if (isset($shop['id'])) {
-                
-                    $shop_entity = $this->ShopifyDatabase->shopDataToDatabase($shop);
-                    
-                    if ($shop_entity) {
-                        
-                        $access_token_entity = $this->ShopifyDatabase->accessTokenToDatabase(
-                            $access_token,
-                            $shop_entity->id,
+                    $shopEntity = $this->ShopifyDatabase->shopDataToDatabase($shop);
+
+                    if ($shopEntity) {
+                        $accessTokenEntity = $this->ShopifyDatabase->accessTokenToDatabase(
+                            $accessToken,
+                            $shopEntity->id,
                             $this->ShopifyAPI->api_key
                         );
-                        
-                        if ($access_token_entity) {
-                        
+
+                        if ($accessTokenEntity) {
                             $this->request->session()->write([
-                                'shopify_access_token_'.$this->ShopifyAPI->api_key => $access_token,
-                                'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
+                                'shopify_access_token_' . $this->ShopifyAPI->api_key => $accessToken,
+                                'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
                             ]);
+
                         
 							$this->Auth->setUser($shop_entity);
 
@@ -77,36 +76,31 @@ class InstallController extends AppController {
                                 'plugin' => false,
 								'api_key' => $this->ShopifyAPI->api_key]);
                                 
-                            
                         } else {
                             $this->Flash->set("Error saving access token. Please try again.");
                         }
-                    
                     } else {
                         $this->Flash->set("Error inserting Shopify shop data. Please try again.");
                     }
-                    
                 } else {
-                    $this->Flash->set("Error accessing Shopify API. Please try again later.");    
+                    $this->Flash->set("Error accessing Shopify API. Please try again later.");
                 }
-                
             } else {
                 $this->Flash->set("Invalid access token. Pleasy try again.");
             }
-            
         } else {
             $this->Flash->set("Invalid authoization code. Please try again.");
         }
-        
+
         $this->error = true;
         $this->render('index');
-        
     }
-  
-    public function index() {
-                    
+
+    public function index()
+    {
+
         if (!empty($this->request->query['code']) && !$this->error) {
-      
+
             $this->render('add');
               
           } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
@@ -114,48 +108,37 @@ class InstallController extends AppController {
             $valid_domain = $this->ShopifyAPI->validDomain(
                 $this->request->data['shop_domain']
             );
-            
-            if ($valid_domain) {
-                
+
+            if ($validDomain) {
                 $this->request->session()->write([
-                    'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->request->data['shop_domain']
+                    'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->request->data['shop_domain']
                 ]);
-            
-                $redirect_url = Router::url([
+
+                $redirectUrl = Router::url([
                     'controller' => 'Install',
                     'action' => 'add',
                     'plugin' => 'Multidimensional/Shopify',
                     'api_key' => $this->ShopifyAPI->api_key
                 ], true);
-                
-                $auth_url = $this->ShopifyAPI->getAuthorizeUrl(
-                    $this->request->data['shop_domain'],
-                    $redirect_url
-                );
-                
-                $this->redirect($auth_url);
-                
-            } else {
-                
-                $this->Flash->set("Invalid Shopify Domain");
-                
-            }
-            
-        } elseif (!empty($this->error)) {
-            
-            $this->Flash->set($this->error);
 
+                $authUrl = $this->ShopifyAPI->getAuthorizeUrl(
+                    $this->request->data['shop_domain'],
+                    $redirectUrl
+                );
+
+                $this->redirect($authUrl);
+            } else {
+                $this->Flash->set("Invalid Shopify Domain");
+            }
+        } elseif (!empty($this->error)) {
+            $this->Flash->set($this->error);
         }
-      
     }
-    
-    public function redirect($url, $status = 302) {
-        
+
+    public function redirect($url, $status = 302)
+    {
+
         $this->set('shopify_auth_url', $url);
         $this->render('redirect');
-        
     }
-  
 }
-
-?>

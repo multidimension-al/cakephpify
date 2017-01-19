@@ -14,11 +14,24 @@
 	<testsuites>
 		<testsuite name="All Tests">
 			<directory>./tests/TestCase</directory>
-			<exclude>./tests/TestCase</exclude>
+			<exclude>./tests/TestCase/Shell</exclude>
+			<exclude>./tests/TestCase/Auth</exclude>
+			<exclude>./tests/TestCase/Model</exclude>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
 	</testsuites>
-
+	
+	<!-- Setup a listener for fixtures -->
+    <listeners>
+        <listener
+        class="\Cake\TestSuite\Fixture\FixtureInjector"
+        file="./vendor/cakephp/cakephp/src/TestSuite/Fixture/FixtureInjector.php">
+            <arguments>
+                <object class="\Cake\TestSuite\Fixture\FixtureManager" />
+            </arguments>
+        </listener>
+    </listeners>
+	
 	<!-- Add a filter to make sure we don't count vendors and Tests in the coverage report -->
 	<filter>
 		<whitelist>

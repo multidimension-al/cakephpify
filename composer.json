@@ -17,7 +17,8 @@
         "cakephp/migrations": ">=1.2.0-stable"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+		"cakephp/cakephp-codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": {

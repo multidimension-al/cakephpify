@@ -51,7 +51,6 @@ class ShopsTable extends Table
         $this->hasMany('AccessTokens', [
             'className' => 'Multidimensional/Shopify.AccessTokens'
         ]);
-
     }
 
     /**

@@ -34,5 +34,4 @@ class HeaderHelper extends Helper
         $this->_io->out('<header>       by https://multidimension.al        </header>');
         $this->_io->out("\n\n");
     }
-    
 }

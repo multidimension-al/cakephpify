@@ -5,12 +5,65 @@ php:
   - 7.0
   - 7.1
   - hhvm
-  
+
+env:
+  - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
+  - DB=sqlite DB_DSN='sqlite:///:memory:'
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+    
+  include:
+    - php: 5.5
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'
+        
+    - php: 5.6
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'
+        
+    - php: 7.0
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'
+        
+    - php: 7.1
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'
+        
+    - php: hhvm
+      env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'        
+        
+  exclude:
+    - php: hhvm
+      env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
+
+before_install:
+  - cd ../../
+  - travis_retry composer create-project --no-interaction cakephp/app test
+  - cd test && cd vendor && mkdir multidimensional && cd multidimensional
+  - mkdir cakephpify && cd ../../../
+  - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
+  - cd test && bin/cake || true
+  - travis_retry composer require phpunit/phpunit
+  - travis_retry composer require "cakephp/cakephp-codesniffer=2.*"
+  - ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
+  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
+
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction
+  - travis_retry composer install --no-interaction
 
 script:
+  - ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:

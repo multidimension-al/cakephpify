@@ -13,21 +13,17 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Controller;
+namespace Multidimensional\Shopify\Tests\Auth;
 
-use App\Controller\AppController as BaseController;
+use Multidimensional\Shopify\Auth\ShopifyAuthAuthenticate;
 
-class AppController extends BaseController
+use Cake\TestSuite\TestCase;
+
+class ShopifyAuthAuthenticateTest extends TestCase
 {
 
-    /**
-     * Initialize AppController
-     *
-     * @return void
-     */
-    public function initialize()
+    public function setUp()
     {
-        parent::initialize();
-        $this->loadComponent('Flash');
+        parent::setUp();
     }
 }

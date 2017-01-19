@@ -13,58 +13,64 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-// @codingStandardsIgnoreFile
-
-use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
-use Cake\I18n\I18n;
 
-require_once 'vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
-// Path constants to a few helpful things.
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 
-define('ROOT', dirname(__DIR__) . DS);
-define('CAKE_CORE_INCLUDE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
-define('CORE_PATH', ROOT . 'vendor' . DS . 'cakephp' . DS . 'cakephp' . DS);
-define('CAKE', CORE_PATH . 'src' . DS);
-define('TESTS', ROOT . 'tests');
-define('APP', ROOT . 'tests' . DS . 'test_files' . DS . 'app' . DS);
-define('APP_DIR', 'app');
+define('ROOT', dirname(__DIR__));
+define('APP_DIR', 'src');
+define('APP', ROOT . DS . APP_DIR . DS);
+define('CONFIG', ROOT . DS . 'config' . DS);
+define('WWW_ROOT', ROOT . DS . 'webroot' . DS);
 define('WEBROOT_DIR', 'webroot');
-define('WWW_ROOT', dirname(APP) . DS . 'webroot' . DS);
-define('TMP', sys_get_temp_dir() . DS);
-define('CONFIG', dirname(APP) . DS . 'config' . DS);
-define('CACHE', TMP);
-define('LOGS', TMP);
+define('TESTS', ROOT . DS . 'tests' . DS);
+define('TMP', ROOT . DS . 'tmp' . DS);
+define('LOGS', ROOT . DS . 'logs' . DS);
+define('CACHE', TMP . 'cache' . DS);
+define('CAKE_CORE_INCLUDE_PATH', ROOT . DS . 'vendor' . DS . 'cakephp' . DS . 'cakephp');
+define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
+define('CAKE', CORE_PATH . 'src' . DS);
 
-require_once CORE_PATH . 'config/bootstrap.php';
+require_once CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
 
 Configure::write('debug', true);
+
 Configure::write('App', [
     'namespace' => 'App',
-    'encoding' => 'UTF-8',
+    'encoding' => env('APP_ENCODING', 'UTF-8'),
+    'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
     'base' => false,
-    'baseUrl' => false,
     'dir' => 'src',
     'webroot' => WEBROOT_DIR,
-    'www_root' => WWW_ROOT,
-    'fullBaseUrl' => 'http://localhost',
+    'wwwRoot' => WWW_ROOT,
+    // 'baseUrl' => env('SCRIPT_NAME'),
+    'fullBaseUrl' => false,
     'imageBaseUrl' => 'img/',
-    'jsBaseUrl' => 'js/',
     'cssBaseUrl' => 'css/',
+    'jsBaseUrl' => 'js/',
     'paths' => [
-        'plugins' => [dirname(APP) . DS . 'plugins' . DS],
-        'templates' => [APP . 'Template' . DS]
-    ]
+        'plugins' => [ROOT . DS . 'plugins' . DS],
+        'templates' => [APP . 'Template' . DS],
+        'locales' => [APP . 'Locale' . DS],
+    ],
 ]);
 
+Plugin::load('Multidimensional/Shopify', ['path' => ROOT, 'autoload' => true]);
 
-Plugin::load('Multidimensional/Shopify', ['path' => ROOT]);
+if (!getenv('DB_DSN')) {
+    putenv('DB_DSN=sqlite:///:memory:');
+}
+
+ConnectionManager::config('test', [
+    'url' => getenv('DB_DSN'),
+    'timezone' => 'UTC'
+]);

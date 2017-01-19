@@ -52,5 +52,4 @@ class AccessToken extends Entity
     protected $_hidden = [
         'token'
     ];
-        
 }

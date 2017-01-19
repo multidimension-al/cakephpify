@@ -84,5 +84,4 @@ class Shop extends Entity
         '*' => true,
         'id' => false
     ];
-        
 }

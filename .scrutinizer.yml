@@ -1,7 +1,6 @@
 filter:
     paths: 
         - 'src/*'
-    excluded_paths:
         - 'tests/*'
 checks:
     php:
@@ -154,10 +153,9 @@ tools:
         config:
             standard: PSR2
         filter:
-            paths: ['src']
+            paths: ['src', 'tests']
     php_loc:
         enabled: true
-        excluded_dirs: [tests]
+        excluded_dirs: ['tests']
     php_cpd:
         enabled: true
-        excluded_dirs: [tests]
