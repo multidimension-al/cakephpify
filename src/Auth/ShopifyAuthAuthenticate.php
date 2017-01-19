@@ -24,19 +24,21 @@ use Cake\Network\Response;
 use Cake\Network\Session;
 use Cake\Error\Debugger;
 
-use  Multidimensional\Shopify\Auth\Event;
+use Multidimensional\Shopify\Auth\Event;
 
-class ShopifyAuthAuthenticate extends BaseAuthenticate {
+class ShopifyAuthAuthenticate extends BaseAuthenticate
+{
 
     public $api_key;
     private $ShopifyAPI;
     private $ShopifyDatabase;
 
-    public function __construct($registry, array $config = []) {
+    public function __construct($registry, array $config = [])
+    {
         parent::__construct($registry, $config);
-        
+
         $this->api_key = isset($config['api_key']) ? $config['api_key'] : Configure::read('Shopify.api_key');
-        
+
         $this->ShopifyAPI = $registry->load('Multidimensional/Shopify.ShopifyAPI', [
             'api_key' => $this->api_key,
             'shared_secret' => isset($config['shared_secret']) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'),
@@ -44,111 +46,105 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate {
             'is_private_app' => isset($config['is_private_app']) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'),
             'private_app_password' => isset($config['private_app_password']) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password')
         ]);
-        
+
         $this->ShopifyDatabase = $registry->load('Multidimensional/Shopify.ShopifyDatabase');
-        
     }
 
-    public function authenticate(Request $request, Response $response) {
-        
+    public function authenticate(Request $request, Response $response)
+    {
+
         return $this->getUser($request);
-        
     }
 
-    public function unauthenticated(Request $request, Response $response) {
-        
+    public function unauthenticated(Request $request, Response $response)
+    {
+
         if (isset($request->query['hmac'])
             && isset($request->query['shop'])) {
             return null;
         }
-        
+
         if (empty($this->api_key)) {
-            return null;    
+            return null;
         }
-        
+
         if (!empty($request->session()->read('shopify_access_token_' . $this->api_key))
             && !empty($request->session()->read('shopify_shop_domain_' . $this->api_key))) {
-            return null;    
+            return null;
         }
-        
+
         $request->session()->delete('shopify_access_token_' . $this->api_key);
         $request->session()->delete('shopify_shop_domain_' . $this->api_key);
-            
+
         return $response->location($this->_generateLoginUrl());
-        
     }
 
-    public function getUser(Request $request) {
-                
+    public function getUser(Request $request)
+    {
+
         $accessToken = $request->session()->read('shopify_access_token_' . $this->api_key);
         $shopDomain = $request->session()->read('shopify_shop_domain_' . $this->api_key);
-        
+
         if ($shopDomain) {
             $this->ShopifyAPI->setShopDomain($shopDomain);
         }
-        
+
         if ((isset($request->query['hmac']) && isset($request->query['shop']))
             && (!$shopDomain || $request->query['shop'] != $shopDomain)) {
-
-            $is_valid = $this->ShopifyAPI->validateHMAC($request->query);
-            if ($is_valid) {
+            $isValid = $this->ShopifyAPI->validateHMAC($request->query);
+            if ($isValid) {
                 $shopDomain = $this->ShopifyAPI->setShopDomain($request->query['shop']);
-                            
+
                 if (isset($request->query['code'])) {
                     $accessToken = $this->ShopifyAPI->getAccessToken($shopDomain, $request->query['code']);
                 } else {
-                    $accessToken = $this->ShopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->api_key);    
+                    $accessToken = $this->ShopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->api_key);
                 }
-                
             }
         }
-        
+
         if ($accessToken) {
-            
             $this->ShopifyAPI->setAccessToken($accessToken);
             $this->ShopifyAPI->setShopDomain($shopDomain);
 
             $request->session()->write('shopify_access_token_' . $this->api_key, $accessToken);
             $request->session()->write('shopify_shop_domain_' . $this->api_key, $shopDomain);
-            
+
             $shop = $this->ShopifyDatabase->getShopDataFromAccessToken($accessToken, $this->api_key);
 
             if ($shop && is_array($shop)) {
                 return ['id' => $shop['id'], 'username' => $shop['myshopify_domain']];
             }
-            
         }
-        
+
         return false;
-        
     }
 
-    protected function _authenticate(Request $request) {
-    
-        
-        
+    protected function _authenticate(Request $request)
+    {
     }
 
-    public function implementedEvents() {
+    public function implementedEvents()
+    {
         return [
             'Auth.afterIdentify' => 'afterIdentify',
             'Auth.logout' => 'logout'
         ];
     }
-    
-    public function afterIdentify(Event $event, array $user) {
-            
+
+    public function afterIdentify(Event $event, array $user)
+    {
     }
 
-    public function logout(Event $event, array $user) {
-        
+    public function logout(Event $event, array $user)
+    {
+
         //$request->session()->delete('shopify_access_token_' . $this->api_key);
         //$request->session()->delete('shopify_shop_domain_' . $this->api_key);
-        
     }
 
-    private function _generateLoginUrl() {
+    private function _generateLoginUrl()
+    {
         return Router::url(['controller' => 'Install', 'action' => 'index', 'plugin' => 'Multidimensional/Shopify']);
     }
-
 }

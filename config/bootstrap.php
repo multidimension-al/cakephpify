@@ -22,18 +22,16 @@ use Cake\Core\Configure;
  *  UPDATES! ONLY EDIT THE CONFIG/SHOPIFY.PHP FILE IN THE MAIN CONFIG
  *
  */
- 
-$config = array (
+
+$config =  [
     'api_key' => '',
     'shared_secret' => '',
     'scope' => '',
-    'is_private_app' => '');
+    'is_private_app' => ''];
 
 if (file_exists(CONFIG . 'shopify.php')) {
-  Configure::load('shopify');
+    Configure::load('shopify');
 } else {
-  Configure::write('Multidimensional/Shopify', $config);
+    Configure::write('Multidimensional/Shopify', $config);
 }
 Plugin::load('Migrations');
-
-?>

@@ -12,17 +12,18 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Tests\Auth;
 
 use Multidimensional\Shopify\Auth\ShopifyAuthAuthenticate;
 
 use Cake\TestSuite\TestCase;
 
-class ShopifyAuthAuthenticateTest extends TestCase {
+class ShopifyAuthAuthenticateTest extends TestCase
+{
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
     }
- 
 }

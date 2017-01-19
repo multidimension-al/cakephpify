@@ -12,17 +12,18 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Tests\Shell\Helper;
 
 use Multidimensional\Shopify\Shell\Helper\HeaderHelper;
 
 use Cake\TestSuite\TestCase;
 
-class HeaderHelperTest extends TestCase {
+class HeaderHelperTest extends TestCase
+{
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
     }
- 
 }

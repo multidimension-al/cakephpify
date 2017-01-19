@@ -68,7 +68,8 @@ use Cake\ORM\Entity;
  * @property bool $setup_required
  * @property bool $force_ssl
  */
-class Shop extends Entity {
+class Shop extends Entity
+{
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -83,5 +84,4 @@ class Shop extends Entity {
         '*' => true,
         'id' => false
     ];
-        
 }

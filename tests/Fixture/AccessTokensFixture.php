@@ -12,13 +12,14 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class AccessTokensFixture extends TestFixture {
- 
+class AccessTokensFixture extends TestFixture
+{
+
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 10, 'null' => false],
         'shop_id' => ['type' => 'integer', 'length' => 10, 'null' => false],
@@ -29,8 +30,7 @@ class AccessTokensFixture extends TestFixture {
         'expired_at' => ['type' => 'datetime', 'null' => true],
         '_constraints' => [
             'PRIMARY' => ['type' => 'primary', 'columns' => ['id']],
-            'UNIQUE' => ['type' => 'unique', 'columns' => ['shop_id', 'api_key', 'token']]    
+            'UNIQUE' => ['type' => 'unique', 'columns' => ['shop_id', 'api_key', 'token']]
         ]
     ];
-      
 }

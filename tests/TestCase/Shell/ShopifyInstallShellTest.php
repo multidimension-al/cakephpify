@@ -12,17 +12,18 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Tests\Shell;
 
 use Multidimensional\Shopify\Shell\ShopifyInstallShell;
 
 use Cake\TestSuite\TestCase;
 
-class ShopifyInstallShellTest extends TestCase {
+class ShopifyInstallShellTest extends TestCase
+{
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
     }
- 
 }

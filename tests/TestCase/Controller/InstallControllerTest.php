@@ -12,38 +12,42 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Tests\Controller;
 
 use Multidimensional\Shopify\Controller\InstallController;
 
 use Cake\TestSuite\IntegrationTestCase;
 
-class InstallControllerTest extends IntegrationTestCase {
- 
+class InstallControllerTest extends IntegrationTestCase
+{
+
     public $fixtures = ['plugin.Multidimensional/Shopify.Shops',
                         'plugin.Multidimensional/Shopify.AccessTokens'];
- 
-    public function setUp() {
+
+    public function setUp()
+    {
         parent::setUp();
     }
-    
-    public function testValidate() {
+
+    public function testValidate()
+    {
         $this->markTestIncomplete('Not implemented yet.');
         /*$this->get('/shopify/install/');
         $this->assertResponseOk();
         $this->get('/shopify/' . md5(rand(1, 10)) . '/install/');
         $this->assertResponseError();*/
     }
-    
-    public function testIndex() {
+
+    public function testIndex()
+    {
         $this->markTestIncomplete('Not implemented yet.');
         /*$this->get('/shopify/install/');
         $this->assertResponseOk();*/
     }
-    
-    public function testRedirect() {
+
+    public function testRedirect()
+    {
         $this->markTestIncomplete('Not implemented yet.');
     }
-
 }

@@ -19,130 +19,130 @@ use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
-class ShopifyDatabaseComponent extends Component {
-    
+class ShopifyDatabaseComponent extends Component
+{
+
     private $shops;
     private $access_tokens;
-    
+
     public $controller = null;
-    
-    public function initialize(array $config = []) {
+
+    public function initialize(array $config = [])
+    {
         $this->shops = TableRegistry::get('Multidimensional/Shopify.Shops');
-        $this->access_tokens = TableRegistry::get('Multidimensional/Shopify.AccessTokens');    
+        $this->access_tokens = TableRegistry::get('Multidimensional/Shopify.AccessTokens');
     }
-    
-    public function startup(Event $event) {
+
+    public function startup(Event $event)
+    {
         $this->setController($event->subject());
     }
-    
-    public function setController($controller) {
+
+    public function setController($controller)
+    {
         $this->controller = $controller;
         if (!isset($this->controller->paginate)) {
             $this->controller->paginate = [];
         }
     }
-    
-    public function shopDataToDatabase(array $data) {
-        
-        $shop_entity = $this->shops->newEntity();
+
+    public function shopDataToDatabase(array $data)
+    {
+
+        $shopEntity = $this->shops->newEntity();
 
         unset($data['created_at']);
         unset($data['updated_at']);
-                    
-        $shop_entity->set($data);
-        
-        $shop_entity->set(['updated_at' => new \DateTime('now')]);
-        
-        if (!$shop_entity->errors() && $this->shops->save($shop_entity)) {
-            return $shop_entity;
+
+        $shopEntity->set($data);
+
+        $shopEntity->set(['updated_at' => new \DateTime('now')]);
+
+        if (!$shopEntity->errors() && $this->shops->save($shopEntity)) {
+            return $shopEntity;
         } else {
-            return false;    
+            return false;
         }
-        
     }
-    
-        
-    public function accessTokenToDatabase($access_token, $shop_id, $api_key) {
-        
-        $access_token_entity = $this->access_tokens->newEntity();
-        
-        $access_token_array = [
-            'shop_id' => $shop_id,
-            'api_key' => $api_key,
-            'token' => $access_token];
-    
-        $access_token_entity->set($access_token_array);
-    
-        $access_token_id = $this->access_tokens
+
+
+    public function accessTokenToDatabase($accessToken, $shopId, $apiKey)
+    {
+
+        $accessTokenEntity = $this->access_tokens->newEntity();
+
+        $accessTokenArray = [
+            'shop_id' => $shopId,
+            'api_key' => $apiKey,
+            'token' => $accessToken];
+
+        $accessTokenEntity->set($accessTokenArray);
+
+        $accessTokenId = $this->access_tokens
             ->find()
-            ->where($access_token_array)
+            ->where($accessTokenArray)
             ->first();
-    
-        if ($access_token_id) {
-        
-            $access_token_entity->set([
-                'id' => $access_token_id->id,
+
+        if ($accessTokenId) {
+            $accessTokenEntity->set([
+                'id' => $accessTokenId->id,
                 'updated_at' => new \DateTime('now')
             ]);
-            
         }
-                                    
-        if (!$access_token_entity->errors() && $this->access_tokens->save($access_token_entity)) {
-            return $access_token_entity;
-        } else {
-            return false;    
-        }
-        
-    }
-    
-    public function getShopIdFromDomain($domain) {
-        
-        $shop_entity = $this->shops->findByMyshopifyDomain($domain)->first();
-        if ($shop_entity->id) {
-            return (int) $shop_entity->id;        
+
+        if (!$accessTokenEntity->errors() && $this->access_tokens->save($accessTokenEntity)) {
+            return $accessTokenEntity;
         } else {
             return false;
         }
-        
     }
-    
-    public function getShopDataFromAccessToken($access_token, $api_key) {
-        
+
+    public function getShopIdFromDomain($domain)
+    {
+
+        $shopEntity = $this->shops->findByMyshopifyDomain($domain)->first();
+        if ($shopEntity->id) {
+            return (int)$shopEntity->id;
+        } else {
+            return false;
+        }
+    }
+
+    public function getShopDataFromAccessToken($accessToken, $apiKey)
+    {
+
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
-        $query = $query->where(['api_key' => $api_key, 'token' => $access_token]);
-        $query = $query->where(function($exp, $q) {
+        $query = $query->where(['api_key' => $apiKey, 'token' => $accessToken]);
+        $query = $query->where(function ($exp, $q) {
             return $exp->isNull('expired_at');
         });
-                
-        $shop_entity = $query->first()->toArray();
-                                
-        if (is_array($shop_entity['shop'])) {
-            return $shop_entity['shop'];        
+
+        $shopEntity = $query->first()->toArray();
+
+        if (is_array($shopEntity['shop'])) {
+            return $shopEntity['shop'];
         } else {
             return false;
         }
-        
     }
-    
-    public function getAccessTokenFromShopDomain($shop_domain, $api_key) {
-        
+
+    public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
+    {
+
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
-        $query = $query->where(['api_key' => $api_key, 'Shops.myshopify_domain' => $shop_domain]);
-        $query = $query->where(function($exp, $q) {
+        $query = $query->where(['api_key' => $apiKey, 'Shops.myshopify_domain' => $shopDomain]);
+        $query = $query->where(function ($exp, $q) {
             return $exp->isNull('expired_at');
         });
-                
-        $access_token_entity = $query->first();
-                
-        if ($access_token_entity->token) {
-            return $access_token_entity->token;        
+
+        $accessTokenEntity = $query->first();
+
+        if ($accessTokenEntity->token) {
+            return $accessTokenEntity->token;
         } else {
             return false;
         }
-        
     }
-    
-    
 }

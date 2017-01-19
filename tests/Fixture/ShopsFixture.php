@@ -12,12 +12,13 @@
  * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 namespace Multidimensional\Shopify\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class ShopsFixture extends TestFixture {
+class ShopsFixture extends TestFixture
+{
 
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 10],
@@ -74,5 +75,4 @@ class ShopsFixture extends TestFixture {
                 'domain' => ['type' => 'index', 'columns' => ['myshopify_domain']]
         ]
     ];
-      
 }
