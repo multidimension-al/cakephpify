@@ -6,19 +6,18 @@ php:
   - 7.1
   - hhvm
 
-addons:
-  mariadb: '10.1'
-
-env:
-  - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
-  - DB=sqlite DB_DSN='sqlite:///:memory:'
-  - DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'
-    
 matrix:
   fast_finish: true
   allow_failures:
     - php: hhvm
-
+    
+  include:
+    - env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
+    - env: DB=sqlite DB_DSN='sqlite:///:memory:'
+    - env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
+      addons:
+        mariadb: '10.1'
+        
   exclude:
     - php: hhvm
       env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
@@ -29,7 +28,7 @@ before_install:
   - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
-  - cd test && bin/cake
+  - cd test && bin/cake || true
   - travis_retry composer require --dev phpunit/phpunit
   - travis_retry composer require --dev cakephp/cakephp-codesniffer
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
