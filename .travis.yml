@@ -47,19 +47,19 @@ matrix:
 
 before_install:
   - cd ../../
-  - travis_retry composer create-project --dev --no-interaction cakephp/app test
+  - travis_retry composer create-project --no-interaction cakephp/app test
   - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
   - cd test && bin/cake || true
-  - travis_retry composer require --dev phpunit/phpunit
-  - travis_retry composer require --dev cakephp/cakephp-codesniffer
+  - travis_retry composer require phpunit/phpunit
+  - travis_retry composer require cakephp/cakephp-codesniffer
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --require-dev --no-interaction
+  - travis_retry composer install --no-interaction
 
 script:
   - ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/
