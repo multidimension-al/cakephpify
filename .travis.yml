@@ -63,20 +63,21 @@ before_install:
   - travis_retry composer require phpunit/phpunit
   - travis_retry composer require "cakephp/cakephp-codesniffer=2.*"
   - ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer
-  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
-  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
+  - sh -c "if [ $DB = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
+  - sh -c "if [ $DB = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
 
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction
 
 script:
-  - sh -c "if [ '$PHPCS' = '1' ]; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/; fi"
-  - sh -c "if [ '$DEFAULT' = '1' ]; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi"
+  - sh -c "if [ $PHPCS = 1 ]; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/; fi"
+  - sh -c "if [ $DEFAULT = 1 ] && [ '$TRAVIS_PHP_VERSION' = 5.* ]; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi"
+  - sh -c "if [ $DEFAULT = 1 ] && [ '$TRAVIS_PHP_VERSION' != 5.* ]; then ./vendor/bin/phpunit; fi"
 
 after_script:
-  - if [ '$DEFAULT' = '1' ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [ '$DEFAULT' = '1' ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - if [ $DEFAULT = 1 ] && [ $TRAVIS_PHP_VERSION = 5.* ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ $DEFAULT = 1 ] && [ $TRAVIS_PHP_VERSION = 5.* ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
 
 notifications:
   email: false
