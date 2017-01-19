@@ -54,6 +54,7 @@ before_install:
   - cd test && bin/cake || true
   - travis_retry composer require phpunit/phpunit
   - travis_retry composer require cakephp/cakephp-codesniffer
+  - ./vendor/bin/phpcs --config-set installed_paths ./vendor/cakephp/cakephp-codesniffer
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
 
