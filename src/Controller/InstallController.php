@@ -30,13 +30,13 @@ class InstallController extends AppController {
 
         parent::initialize();
         $this->loadComponent('Multidimensional/Shopify.ShopifyDatabase');
-        $this->loadComponent('Multidimensional/Shopify.ShopifyAPI');
+        $this->loadComponent('Multidimensional/Shopify.ShopifyAPI', ['api_key' => $this->request->api_key]);
         $this->loadComponent('Flash');
         $this->error = false;
-        
+        		
     }
         
-    public function validate($api_key = null) {
+    public function add() {
 
         $is_authorized = $this->ShopifyAPI->validateHMAC($this->request->query);
         
@@ -70,11 +70,12 @@ class InstallController extends AppController {
                                 'shopify_shop_domain_'.$this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
                             ]);
                         
-                            //$this->Auth->setUser($shop_entity);
-                            
+							$this->Auth->setUser($shop_entity);
+
                             return $this->redirect([
                                 'controller' => 'Shopify',
-                                'plugin' => false]);
+                                'plugin' => false,
+								'api_key' => $this->ShopifyAPI->api_key]);
                                 
                             
                         } else {
@@ -106,7 +107,7 @@ class InstallController extends AppController {
                     
         if (!empty($this->request->query['code']) && !$this->error) {
       
-            $this->render('validate');
+            $this->render('add');
               
           } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
             
@@ -122,9 +123,9 @@ class InstallController extends AppController {
             
                 $redirect_url = Router::url([
                     'controller' => 'Install',
-                    'action' => 'validate',
+                    'action' => 'add',
                     'plugin' => 'Multidimensional/Shopify',
-                    'id' => $this->ShopifyAPI->api_key
+                    'api_key' => $this->ShopifyAPI->api_key
                 ], true);
                 
                 $auth_url = $this->ShopifyAPI->getAuthorizeUrl(

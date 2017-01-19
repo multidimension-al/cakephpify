@@ -42,7 +42,7 @@ class ShopifyDatabaseComponent extends Component {
         $shop_entity->set(['updated_at' => new \DateTime('now')]);
         
         if (!$shop_entity->errors() && $this->shops->save($shop_entity)) {
-            return $shop_entity;
+            return $shop_entity->toArray();
         } else {
             return false;    
         }
@@ -76,7 +76,7 @@ class ShopifyDatabaseComponent extends Component {
         }
                                     
         if (!$access_token_entity->errors() && $this->access_tokens->save($access_token_entity)) {
-            return $access_token_entity;
+            return $access_token_entity->toArray();
         } else {
             return false;    
         }

@@ -23,7 +23,7 @@
 /*/
 
 return array (
-  'Shopify' => 
+  'Multidimensional/Shopify' => 
     array(
       '{API_KEY_HERE}' =>
         array (

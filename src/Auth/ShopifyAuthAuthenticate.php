@@ -22,7 +22,6 @@ use Cake\Auth\BaseAuthenticate;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\Network\Session;
-use Cake\Error\Debugger;
 
 use  Multidimensional\Shopify\Auth\Event;
 
@@ -35,16 +34,21 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate {
     public function __construct($registry, array $config = []) {
         parent::__construct($registry, $config);
         
-        $this->api_key = isset($config['api_key']) ? $config['api_key'] : Configure::read('Shopify.api_key');
-        
+        $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
+		
+		if (empty($this->api_key)) {
+						
+			$controller = $this->_registry->getController();
+					
+			if (isset($controller->request->api_key)) {
+				$this->api_key = $controller->request->api_key;
+			}
+			
+		}
+		
         $this->ShopifyAPI = $registry->load('Multidimensional/Shopify.ShopifyAPI', [
-            'api_key' => $this->api_key,
-            'shared_secret' => isset($config['shared_secret']) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'),
-            'scope' => isset($config['scope']) ? $config['scope'] : Configure::read('Shopify.scope'),
-            'is_private_app' => isset($config['is_private_app']) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'),
-            'private_app_password' => isset($config['private_app_password']) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password')
-        ]);
-        
+            'api_key' => $this->api_key
+		]);
         $this->ShopifyDatabase = $registry->load('Multidimensional/Shopify.ShopifyDatabase');
         
     }

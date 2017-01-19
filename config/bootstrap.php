@@ -23,11 +23,14 @@ use Cake\Core\Configure;
  *
  */
  
-$config = array (
-    'api_key' => '',
-    'shared_secret' => '',
-    'scope' => '',
-    'is_private_app' => '');
+$config = array('{API_KEY_HERE}' =>
+    array (
+      'shared_secret' => '{SHARED_SECRET_HERE}',
+      'scope' => '{SCOPE_HERE}',
+      'is_private_app' => '{TRUE/FALSE_HERE}',
+      'private_app_password' => '{PRIVATE_APP_PASSWORD_HERE}'
+    )
+);
 
 if (file_exists(CONFIG . 'shopify.php')) {
   Configure::load('shopify');
