@@ -7,13 +7,18 @@ php:
   - hhvm
 
 env:
-  - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
-  - DB=sqlite DB_DSN='sqlite:///:memory:'
+  global:
+    - DEFAULT=1
+  matrix:  
+    - DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test'
+    - DB=sqlite DB_DSN='sqlite:///:memory:'
 
 matrix:
   fast_finish: true
   allow_failures:
     - php: hhvm
+    - php: 5.5
+      env: PHPCS=1 DEFAULT=0
     
   include:
     - php: 5.5
@@ -39,7 +44,10 @@ matrix:
     - php: hhvm
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test'  
       addons:
-        mariadb: '10.1'        
+        mariadb: '10.1'
+        
+    - php: 5.5
+      env: PHPCS=1 DEFAULT=0
         
   exclude:
     - php: hhvm
@@ -63,12 +71,12 @@ before_script:
   - travis_retry composer install --no-interaction
 
 script:
-  - ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/
-  - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+  - sh -c "if [ '$PHPCS' = '1' ]; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/; fi"
+  - sh -c "if [ '$DEFAULT' = '1' ]; then ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover; fi"
 
 after_script:
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - if [ '$DEFAULT' = '1' ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ '$DEFAULT' = '1' ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
 
 notifications:
   email: false
