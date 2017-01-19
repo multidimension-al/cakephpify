@@ -25,7 +25,7 @@ matrix:
 
 before_install:
   - cd ../../
-  - travis_retry composer create-project --prefer-dist cakephp/app test
+  - travis_retry composer create-project --require-dev --no-interaction cakephp/app test
   - cd test
   - cd vendor
   - mkdir multidimensional
@@ -34,6 +34,7 @@ before_install:
   - cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
   - cd test
+  - bin/cake
   - travis_retry composer require --dev phpunit/phpunit
   - travis_retry composer require --dev cakephp/cakephp-codesniffer
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
@@ -41,7 +42,7 @@ before_install:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction
+  - travis_retry composer install --require-dev --no-interaction
 
 script:
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
