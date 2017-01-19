@@ -25,7 +25,6 @@ matrix:
 
 before_install:
   - cd ../../
-  - travis_retry composer self-update
   - travis_retry composer create-project --prefer-dist cakephp/app test
   - cd test
   - cd vendor
@@ -33,9 +32,10 @@ before_install:
   - cd multidimensional
   - mkdir cakephpify
   - cd ../../../
-  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
   - cd test
+  - travis_retry composer require --dev phpunit/phpunit
+  - travis_retry composer require --dev cakephp/cakephp-codesniffer
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi"
 
