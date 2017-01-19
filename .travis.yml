@@ -26,7 +26,7 @@ matrix:
 before_install:
   - cd ../../
   - travis_retry composer create-project --dev --no-interaction cakephp/app test
-  - cd test && cd vendor && mkdir multidimensional && multidimensional
+  - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
   - cd test && bin/cake
