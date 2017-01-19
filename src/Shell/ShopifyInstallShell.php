@@ -27,21 +27,24 @@ class ShopifyInstallShell extends Shell
     public function main()
     {
 
-        //Lets Make This FANCY
         $this->clear();
 
         $this->_io->styles('error', ['text' => 'red']);
         $this->helper('Multidimensional/Shopify.Header')->output();
 
-        $firstRun = ((Configure::check('Shopify')) ? false : true);
+        $first_run = ((Configure::check('Multidimensional/Shopify')) ? false : true);
+            
+        //Activate Plugin           
+        if ((($first_run) ? (strtolower($this->in('Install Shopify Plugin?', ['y','n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y','n'])) == 'y'))) {
+            
 
-        //Activate Plugin
-        if ((($firstRun) ? (strtolower($this->in('Install Shopify Plugin?', ['y', 'n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
             $this->out();
             $this->out('Please enter your API credentials from your Shopify App page.', 2);
             $apiKey = $this->in('API Key:');
             $this->out();
-            Configure::write('Shopify.' . $apiKey . '.shared_secret', $this->in('Shared Secret:'));
+
+            Configure::write('Multidimensional/Shopify.' . $api_key . '.shared_secret', $this->in('Shared Secret:'));
+
             $this->out();
 
             $scopeArray = ['read_content', 'write_content', 'read_themes', 'write_themes', 'read_products', 'write_products', 'read_customers', 'write_customers', 'read_orders', 'write_orders', 'read_script_tags', 'write_script_tags', 'read_fulfillments', 'write_fulfillments', 'read_shipping', 'write_shipping', 'read_analytics', 'read_users', 'write_users'];
@@ -71,10 +74,11 @@ class ShopifyInstallShell extends Shell
                     $this->out('');
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');
                 }
-            } while ((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scopeArray)) > 0));
 
-            Configure::write('Shopify.' . $apiKey . '.scope', implode(',', $scope));
-
+            } while((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
+            
+            Configure::write('Multidimensional/Shopify.' . $api_key . '.scope',implode(',', $scope));
+            
             $this->out('');
             $isPrivateApp = strtolower($this->in('Is this a private app?', ['y', 'n']));
 
@@ -84,15 +88,17 @@ class ShopifyInstallShell extends Shell
                 $isPrivateApp = 'false';
             }
 
-            Configure::write('Shopify.' . $apiKey . '.is_private_app', $isPrivateApp);
-
-            if ($isPrivateApp == 'true') {
-                Configure::write('Shopify.' . $apiKey . '.private_app_password', $this->in('Private App Password:'));
+            
+            Configure::write('Multidimensional/Shopify.' . $api_key . '.is_private_app',$is_private_app);
+            
+            if ($is_private_app == 'true') {
+                Configure::write('Multidimensional/Shopify.' . $api_key . '.private_app_password',$this->in('Private App Password:'));
             } else {
-                Configure::write('Shopify.' . $apiKey . '.private_app_password', null);
+                Configure::write('Multidimensional/Shopify.' . $api_key . '.private_app_password', NULL);
             }
-
-            Configure::dump('shopify', 'default', ['Shopify']);
+            
+            Configure::dump('shopify', 'default', ['Multidimensional/Shopify']);
+            
         }
 
         $this->out('');

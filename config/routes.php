@@ -16,8 +16,17 @@
 namespace Multidimensional\Shopify\Config;
 
 use Cake\Routing\Router;
+use Cake\Core\Configure;
 
-Router::plugin('Multidimensional/Shopify', ['path' => '/shopify'], function ($routes) {
-    $routes->connect('/install/:id', ['controller' => 'Install', 'action' => 'validate'], ['id' => '[0-9a-f]{32}', 'pass' => ['id']]);
-    $routes->connect('/:controller');
+Router::plugin('Multidimensional/Shopify', ['path' => '/'], function ($routes) {
+	$shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Shopify'));
+	if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
+		$routes->connect('/shopify/:api_key/install',
+			['controller' => 'Install', 'action' => 'index'],
+			['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]);
+			
+		$routes->connect('/shopify/:api_key/install',
+			['controller' => 'Install', 'action' => 'add'],
+			['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]);
+	}
 });

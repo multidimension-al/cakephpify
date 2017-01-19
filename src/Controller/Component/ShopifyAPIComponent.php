@@ -20,10 +20,11 @@ use Cake\Controller\Component;
 use Cake\Routing\Router;
 use Cake\Network\Http\Client;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotImplementedException;
 
 class ShopifyAPIComponent extends Component
 {
-
+  
     public $api_key;
 
     private $shop_domain;
@@ -39,11 +40,28 @@ class ShopifyAPIComponent extends Component
     {
 
         parent::initialize($config);
-        $this->api_key = ((isset($config['api_key'])) ? $config['api_key'] : Configure::read('Shopify.api_key'));
-        $this->shared_secret = ((isset($config['shared_secret'])) ? $config['shared_secret'] : Configure::read('Shopify.shared_secret'));
-        $this->scope = ((isset($config['scope'])) ? $config['scope'] : Configure::read('Shopify.scope'));
-            $this->is_private_app = ((isset($config['is_private_app'])) ? $config['is_private_app'] : Configure::read('Shopify.is_private_app'));
-        $this->private_app_password = ((isset($config['private_app_password'])) ? $config['private_app_password'] : Configure::read('Shopify.private_app_password'));
+        
+      $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
+				
+      if (!empty($this->api_key)) {
+
+        $this->shared_secret = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.shared_secret');
+        $this->scope = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.scope');
+        $this->is_private_app = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.is_private_app');
+        $this->private_app_password = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.private_app_password');        
+
+      } else {
+
+        throw new NotImplementedException(__('Shopify API key not found'));
+
+      }
+
+      if (!$this->shared_secret) {
+
+        throw new NotImplementedException(__('Shopify shared secret not found'));
+
+      }
+      
     }
 
     public function startup(Event $event)
@@ -57,6 +75,7 @@ class ShopifyAPIComponent extends Component
         if (!isset($this->controller->paginate)) {
             $this->controller->paginate = [];
         }
+
     }
 
     public function setShopDomain($shopDomain)

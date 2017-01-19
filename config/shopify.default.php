@@ -22,8 +22,8 @@
  *  If you don't have this file, copy it to your main CakePHP config folder.
 /*/
 
-return [
-  'Shopify' =>
+return array [
+  'Multidimensional/Shopify' => 
     [
       '{API_KEY_HERE}' =>
          [
