@@ -14,7 +14,7 @@
  */
 
 
-namespace Multidimensional\Shopify\Shell;
+namespace Multidimensional\Cakephpify\Shell;
 
 use Cake\Core\Configure;
 use Cake\Console\Shell;
@@ -30,9 +30,9 @@ class ShopifyInstallShell extends Shell
         $this->clear();
 
         $this->_io->styles('error', ['text' => 'red']);
-        $this->helper('Multidimensional/Shopify.Header')->output();
+        $this->helper('Multidimensional/Cakephpify.Header')->output();
 
-        $first_run = ((Configure::check('Multidimensional/Shopify')) ? false : true);
+        $first_run = ((Configure::check('Multidimensional/Cakephpify')) ? false : true);
             
         //Activate Plugin           
         if ((($first_run) ? (strtolower($this->in('Install Shopify Plugin?', ['y','n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y','n'])) == 'y'))) {
@@ -43,7 +43,7 @@ class ShopifyInstallShell extends Shell
             $apiKey = $this->in('API Key:');
             $this->out();
 
-            Configure::write('Multidimensional/Shopify.' . $api_key . '.shared_secret', $this->in('Shared Secret:'));
+            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.shared_secret', $this->in('Shared Secret:'));
 
             $this->out();
 
@@ -51,7 +51,7 @@ class ShopifyInstallShell extends Shell
 
             $this->out('Enter your application\'s scope here.', 2);
             $this->out('Valid scope options:', 2);
-            $this->helper('Multidimensional/Shopify.Table')->output($scopeArray);
+            $this->helper('Multidimensional/Cakephpify.Table')->output($scopeArray);
             $this->out('');
             $this->out('Separate your desired scope options with a comma.');
 
@@ -77,7 +77,7 @@ class ShopifyInstallShell extends Shell
 
             } while((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
             
-            Configure::write('Multidimensional/Shopify.' . $api_key . '.scope',implode(',', $scope));
+            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.scope',implode(',', $scope));
             
             $this->out('');
             $isPrivateApp = strtolower($this->in('Is this a private app?', ['y', 'n']));
@@ -89,15 +89,15 @@ class ShopifyInstallShell extends Shell
             }
 
             
-            Configure::write('Multidimensional/Shopify.' . $api_key . '.is_private_app',$is_private_app);
+            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.is_private_app',$is_private_app);
             
             if ($is_private_app == 'true') {
-                Configure::write('Multidimensional/Shopify.' . $api_key . '.private_app_password',$this->in('Private App Password:'));
+                Configure::write('Multidimensional/Cakephpify.' . $api_key . '.private_app_password',$this->in('Private App Password:'));
             } else {
-                Configure::write('Multidimensional/Shopify.' . $api_key . '.private_app_password', NULL);
+                Configure::write('Multidimensional/Cakephpify.' . $api_key . '.private_app_password', NULL);
             }
             
-            Configure::dump('shopify', 'default', ['Multidimensional/Shopify']);
+            Configure::dump('shopify', 'default', ['Multidimensional/Cakephpify']);
             
         }
 
@@ -106,7 +106,7 @@ class ShopifyInstallShell extends Shell
         if (($firstRun) || (strtolower($this->in('Update Database?', ['y', 'n'])) == 'y')) {
             $this->out('');
 
-            $migrations = new Migrations(['plugin' => 'Multidimensional/Shopify']);
+            $migrations = new Migrations(['plugin' => 'Multidimensional/Cakephpify']);
 
             $status = $migrations->status();
 

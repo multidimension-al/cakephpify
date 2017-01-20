@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Shell\Helper;
+namespace Multidimensional\Cakephpify\Shell\Helper;
 
 use Cake\Console\Helper;
 

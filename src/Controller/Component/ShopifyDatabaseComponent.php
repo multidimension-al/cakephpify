@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Controller\Component;
+namespace Multidimensional\Cakephpify\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
@@ -29,8 +29,8 @@ class ShopifyDatabaseComponent extends Component
 
     public function initialize(array $config = [])
     {
-        $this->shops = TableRegistry::get('Multidimensional/Shopify.Shops');
-        $this->access_tokens = TableRegistry::get('Multidimensional/Shopify.AccessTokens');
+        $this->shops = TableRegistry::get('Multidimensional/Cakephpify.Shops');
+        $this->access_tokens = TableRegistry::get('Multidimensional/Cakephpify.AccessTokens');
     }
 
     public function startup(Event $event)

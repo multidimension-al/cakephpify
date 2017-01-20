@@ -13,13 +13,13 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Config;
+namespace Multidimensional\Cakephpify\Config;
 
 use Cake\Routing\Router;
 use Cake\Core\Configure;
 
-Router::plugin('Multidimensional/Shopify', ['path' => '/'], function ($routes) {
-	$shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Shopify'));
+Router::plugin('Multidimensional/Cakephpify', ['path' => '/'], function ($routes) {
+	$shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
 	if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
 		$routes->connect('/shopify/:api_key/install',
 			['controller' => 'Install', 'action' => 'index'],

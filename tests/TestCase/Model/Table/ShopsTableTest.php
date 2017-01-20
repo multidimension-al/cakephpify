@@ -13,16 +13,16 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Tests\Model\Table;
+namespace Multidimensional\Cakephpify\Tests\Model\Table;
 
-use Multidimensional\Shopify\Model\Table\ShopsTable;
+use Multidimensional\Cakephpify\Model\Table\ShopsTable;
 
 use Cake\TestSuite\TestCase;
 
 class ShopsTableTest extends TestCase
 {
 
-    public $fixtures = ['plugin.Multidimensional/Shopify.Shops'];
+    public $fixtures = ['plugin.Multidimensional/Cakephpify.Shops'];
 
     public function setUp()
     {

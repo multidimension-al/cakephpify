@@ -13,9 +13,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Tests\Controller\Component;
+namespace Multidimensional\Cakephpify\Tests\Controller\Component;
 
-use Multidimensional\Shopify\Controller\Component\ShopifyAPIComponent;
+use Multidimensional\Cakephpify\Controller\Component\ShopifyAPIComponent;
 
 use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
@@ -29,7 +29,7 @@ class ShopifyAPIComponentTest extends TestCase
 
     public $component = null;
     public $controller = null;
-    public $fixtures = ['plugin.Multidimensional/Shopify.Shops', 'plugin.Multidimensional/Shopify.AccessTokens'];
+    public $fixtures = ['plugin.Multidimensional/Cakephpify.Shops', 'plugin.Multidimensional/Cakephpify.AccessTokens'];
 
     public function setUp()
     {

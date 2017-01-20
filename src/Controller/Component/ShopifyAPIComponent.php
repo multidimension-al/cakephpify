@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Controller\Component;
+namespace Multidimensional\Cakephpify\Controller\Component;
 
 use Cake\Core\Configure;
 use Cake\Controller\Component;
@@ -45,10 +45,10 @@ class ShopifyAPIComponent extends Component
 				
       if (!empty($this->api_key)) {
 
-        $this->shared_secret = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.shared_secret');
-        $this->scope = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.scope');
-        $this->is_private_app = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.is_private_app');
-        $this->private_app_password = Configure::read('Multidimensional/Shopify.' . $this->api_key . '.private_app_password');        
+        $this->shared_secret = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.shared_secret');
+        $this->scope = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.scope');
+        $this->is_private_app = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.is_private_app');
+        $this->private_app_password = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.private_app_password');        
 
       } else {
 

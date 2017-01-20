@@ -13,9 +13,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Tests\Auth;
+namespace Multidimensional\Cakephpify\Tests\Auth;
 
-use Multidimensional\Shopify\Auth\ShopifyAuthAuthenticate;
+use Multidimensional\Cakephpify\Auth\ShopifyAuthAuthenticate;
 
 use Cake\TestSuite\TestCase;
 

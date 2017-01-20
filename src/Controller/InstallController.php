@@ -13,14 +13,14 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Controller;
+namespace Multidimensional\Cakephpify\Controller;
 
 use Cake\Event\Event;
 use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Session;
 
-use Multidimensional\Shopify\Controller\AppController;
+use Multidimensional\Cakephpify\Controller\AppController;
 
 class InstallController extends AppController
 {
@@ -31,8 +31,8 @@ class InstallController extends AppController
     {
 
         parent::initialize();
-        $this->loadComponent('Multidimensional/Shopify.ShopifyDatabase');
-        $this->loadComponent('Multidimensional/Shopify.ShopifyAPI', ['api_key' => $this->request->api_key]);
+        $this->loadComponent('Multidimensional/Cakephpify.ShopifyDatabase');
+        $this->loadComponent('Multidimensional/Cakephpify.ShopifyAPI', ['api_key' => $this->request->api_key]);
         $this->loadComponent('Flash');
         $this->error = false;
 
@@ -117,7 +117,7 @@ class InstallController extends AppController
                 $redirectUrl = Router::url([
                     'controller' => 'Install',
                     'action' => 'add',
-                    'plugin' => 'Multidimensional/Shopify',
+                    'plugin' => 'Multidimensional/Cakephpify',
                     'api_key' => $this->ShopifyAPI->api_key
                 ], true);
 

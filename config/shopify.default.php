@@ -23,7 +23,7 @@
 /*/
 
 return array [
-  'Multidimensional/Shopify' => 
+  'Multidimensional/Cakephpify' => 
     [
       '{API_KEY_HERE}' =>
          [

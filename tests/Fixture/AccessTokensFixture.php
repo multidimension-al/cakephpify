@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Test\Fixture;
+namespace Multidimensional\Cakephpify\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 

@@ -13,9 +13,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Tests\Shell\Helper;
+namespace Multidimensional\Cakephpify\Tests\Shell\Helper;
 
-use Multidimensional\Shopify\Shell\Helper\TableHelper;
+use Multidimensional\Cakephpify\Shell\Helper\TableHelper;
 
 use Cake\TestSuite\TestCase;
 

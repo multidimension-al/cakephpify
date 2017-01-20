@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Model\Table;
+namespace Multidimensional\Cakephpify\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -49,7 +49,7 @@ class AccessTokensTable extends Table
         //$this->primaryKey('id');
 
         $this->belongsTo('Shops', [
-            'className' => 'Multidimensional/Shopify.Shops']);
+            'className' => 'Multidimensional/Cakephpify.Shops']);
     }
 
     /**

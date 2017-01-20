@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Auth;
+namespace Multidimensional\Cakephpify\Auth;
 
 use Cake\Core\Configure;
 use Cake\Routing\Router;
@@ -23,7 +23,7 @@ use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\Network\Session;
 
-use Multidimensional\Shopify\Auth\Event;
+use Multidimensional\Cakephpify\Auth\Event;
 
 class ShopifyAuthAuthenticate extends BaseAuthenticate
 {
@@ -48,11 +48,11 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 
         }
 		
-        $this->ShopifyAPI = $registry->load('Multidimensional/Shopify.ShopifyAPI', [
+        $this->ShopifyAPI = $registry->load('Multidimensional/Cakephpify.ShopifyAPI', [
             'api_key' => $this->api_key
 		]);
 
-        $this->ShopifyDatabase = $registry->load('Multidimensional/Shopify.ShopifyDatabase');
+        $this->ShopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
     }
 
     public function authenticate(Request $request, Response $response)
@@ -150,6 +150,6 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 
     private function _generateLoginUrl()
     {
-        return Router::url(['controller' => 'Install', 'action' => 'index', 'plugin' => 'Multidimensional/Shopify']);
+        return Router::url(['controller' => 'Install', 'action' => 'index', 'plugin' => 'Multidimensional/Cakephpify']);
     }
 }

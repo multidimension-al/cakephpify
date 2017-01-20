@@ -13,17 +13,17 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Shopify\Tests\Controller;
+namespace Multidimensional\Cakephpify\Tests\Controller;
 
-use Multidimensional\Shopify\Controller\InstallController;
+use Multidimensional\Cakephpify\Controller\InstallController;
 
 use Cake\TestSuite\IntegrationTestCase;
 
 class InstallControllerTest extends IntegrationTestCase
 {
 
-    public $fixtures = ['plugin.Multidimensional/Shopify.Shops',
-                        'plugin.Multidimensional/Shopify.AccessTokens'];
+    public $fixtures = ['plugin.Multidimensional/Cakephpify.Shops',
+                        'plugin.Multidimensional/Cakephpify.AccessTokens'];
 
     public function setUp()
     {

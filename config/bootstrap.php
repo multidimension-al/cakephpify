@@ -35,6 +35,6 @@ $config = ['{API_KEY_HERE}' =>
 if (file_exists(CONFIG . 'shopify.php')) {
     Configure::load('shopify');
 } else {
-    Configure::write('Multidimensional/Shopify', $config);
+    Configure::write('Multidimensional/Cakephpify', $config);
 }
 Plugin::load('Migrations');
