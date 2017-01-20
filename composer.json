@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Multidimensional\\Shopify\\": "src"
+            "Multidimensional\\Cakephpify\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Multidimensional\\Shopify\\Test\\": "tests"
+            "Multidimensional\\Cakephpify\\Test\\": "tests"
         }
     }
 }
