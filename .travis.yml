@@ -63,6 +63,8 @@ before_install:
   - travis_retry composer require phpunit/phpunit
   - travis_retry composer require "cakephp/cakephp-codesniffer=2.*"
   - ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer
+  - rm -f phpunit.xml.dist
+  - mv vendor/multidimensional/cakephpify/tests/phpunit.xml.dist phpunit.xml.dist
   - if [[ $DB = 'mysql' ]] ; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
