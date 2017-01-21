@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Test\Controller\Component;
+namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
 
 use Multidimensional\Cakephpify\Controller\Component\ShopifyAPIComponent;
 

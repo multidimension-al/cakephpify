@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Test\Controller;
+namespace Multidimensional\Cakephpify\Test\TestCase\Controller;
 
 use Multidimensional\Cakephpify\Controller\InstallController;
 
