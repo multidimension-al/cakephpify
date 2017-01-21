@@ -19,6 +19,10 @@ use Migrations\AbstractMigration;
 
 class Database extends AbstractMigration
 {
+    
+    /**
+     * @return void
+     */
     public function up()
     {
         $this->table('access_tokens')
@@ -318,6 +322,9 @@ class Database extends AbstractMigration
             ->update();
     }
 
+    /**
+     * @return void
+     */
     public function down()
     {
         $this->table('access_tokens')

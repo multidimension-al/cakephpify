@@ -56,11 +56,19 @@ class ShopifyAPIComponent extends Component
         }
     }
 
+    /**
+     * @param Event $event
+     * @return void
+     */
     public function startup(Event $event)
     {
         $this->setController($event->subject());
     }
 
+    /**
+     * @param $controller
+     * @return void
+     */
     public function setController($controller)
     {
         $this->controller = $controller;
@@ -69,31 +77,52 @@ class ShopifyAPIComponent extends Component
         }
     }
 
+    /**
+     * @param string $shopDomain
+     * @return string|null
+     */
     public function setShopDomain($shopDomain)
     {
         return $this->shop_domain = $shopDomain;
     }
-
+    
+    /**
+     * @return string|null
+     */
     public function getShopDomain()
     {
         return $this->shop_domain;
     }
 
+    /**
+     * @param string $token
+     * @return string|null
+     */
     public function setAccessToken($token)
     {
         return $this->token = $token;
     }
 
+    /**
+     * @return int|null
+     */
     public function callsMade()
     {
         return $this->shopApiCallLimitParam(0);
     }
-
+    
+    /**
+     * @return int|null
+     */
     public function callLimit()
     {
         return $this->shopApiCallLimitParam(1);
     }
 
+    /**
+     * @param $responseHeaders
+     * @return int|null
+     */
     public function callsLeft($responseHeaders)
     {
         return $this->callLimit() - $this->callsMade();
@@ -102,6 +131,8 @@ class ShopifyAPIComponent extends Component
     /**
      * @param string $method
      * @param string $path
+     * @param array $params
+     * @return array|null
      */
     public function call($method, $path, $params = [])
     {
@@ -132,6 +163,7 @@ class ShopifyAPIComponent extends Component
 
     /**
      * @param int $index
+     * @return int
      */
     private function shopApiCallLimitParam($index)
     {
@@ -140,6 +172,11 @@ class ShopifyAPIComponent extends Component
         return (int)$params[$index];
     }
 
+    /**
+     * @param string $shopDomain
+     * @param string $redirectUrl
+     * @return int
+     */
     public function getAuthorizeUrl($shopDomain, $redirectUrl)
     {
         $url = 'https://' . $shopDomain . '/admin/oauth/authorize?client_id=' . $this->api_key;
@@ -149,6 +186,11 @@ class ShopifyAPIComponent extends Component
         return $url;
     }
 
+    /**
+     * @param string $shopDomain
+     * @param string $code
+     * @return string|bool
+     */
     public function getAccessToken($shopDomain, $code)
     {
         $this->shop_domain = $shopDomain;
@@ -173,27 +215,44 @@ class ShopifyAPIComponent extends Component
         }
     }
 
+    /**
+     * @param string $shopDomain
+     * @return string|null
+     */
     public function setNonce($shopDomain)
     {
         return $this->nonce = md5(strtolower($shopDomain));
     }
 
-
+    /**
+     * @return string|null
+     */
     public function getNonce()
     {
         return $this->nonce;
     }
 
+    /**
+     * @param string $shopDomain
+     * @return bool
+     */
     public function validDomain($shopDomain)
     {
         return true;
     }
 
+    /**
+     * @return json
+     */
     public function getShopData()
     {
         return $this->call('GET', '/admin/shop.json');
     }
 
+    /**
+     * @param array $query
+     * @return bool
+     */
     public function validateHMAC($query)
     {
         if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
@@ -213,11 +272,12 @@ class ShopifyAPIComponent extends Component
         sort($dataString);
         $string = implode("&", $dataString);
 
-        return $query['hmac'] == hash_hmac('sha256', $string, $this->shared_secret);
+        return $query['hmac'] === hash_hmac('sha256', $string, $this->shared_secret);
     }
 
     /**
      * @param string $url
+     * @return string
      */
     private function _urlEncode($url)
     {
@@ -226,6 +286,9 @@ class ShopifyAPIComponent extends Component
         return $url;
     }
 
+    /**
+     * @return bool
+     */
     private function _isReady()
     {
         return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;

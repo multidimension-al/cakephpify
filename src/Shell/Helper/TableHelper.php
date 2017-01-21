@@ -15,8 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Shell\Helper;
 
-use Cake\Console\Shell;
 use Cake\Console\Helper;
+use Cake\Console\Shell;
 
 class TableHelper extends Helper
 {

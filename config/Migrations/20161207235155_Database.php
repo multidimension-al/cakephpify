@@ -19,6 +19,10 @@ use Migrations\AbstractMigration;
 
 class Database extends AbstractMigration
 {
+    
+    /**
+     * @return void
+     */
     public function up()
     {
         $this->table('shopify_access_tokens')
@@ -306,6 +310,9 @@ class Database extends AbstractMigration
             ->create();
     }
 
+    /**
+     * @return void
+     */
     public function down()
     {
         $this->dropTable('shopify_access_tokens');

@@ -15,8 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
 
-use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
+use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;

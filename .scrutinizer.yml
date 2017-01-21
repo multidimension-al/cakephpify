@@ -116,9 +116,9 @@ coding_style:
                 after_type_cast: true
         braces:
             classes_functions:
-                class: newline
-                function: newline
-                closure: newline
+                class: new-line
+                function: new-line
+                closure: new-line
             if:
                 opening: end-of-line
                 always: true
@@ -151,7 +151,7 @@ tools:
     php_code_coverage: false
     php_code_sniffer:
         config:
-            standard: PSR2
+            standard: PSR4
         filter:
             paths: ['src', 'tests']
     php_loc:

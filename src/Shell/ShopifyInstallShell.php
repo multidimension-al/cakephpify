@@ -72,11 +72,11 @@ class ShopifyInstallShell extends Shell
                     $this->out('');
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');
                 }
-				
-				$count = count($scope);
-				$scope_length = strlen(trim(implode("", $scope)));
-				$scope_diff_count = count(array_diff($scope, $scopeArray));
-				
+                
+                $count = count($scope);
+                $scope_length = strlen(trim(implode("", $scope)));
+                $scope_diff_count = count(array_diff($scope, $scopeArray));
+                
             } while ($count && $scope_length > 0 && $scope_diff_count > 0);
 
             Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.scope', implode(',', $scope));
