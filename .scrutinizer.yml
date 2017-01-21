@@ -116,9 +116,9 @@ coding_style:
                 after_type_cast: true
         braces:
             classes_functions:
-                class: end-of-line
-                function: end-of-line
-                closure: end-of-line
+                class: newline
+                function: newline
+                closure: newline
             if:
                 opening: end-of-line
                 always: true

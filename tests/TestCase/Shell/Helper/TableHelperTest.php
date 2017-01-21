@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell\Helper;
 
-use Multidimensional\Cakephpify\Shell\Helper\TableHelper;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Shell\Helper\TableHelper;
 
 class TableHelperTest extends TestCase
 {

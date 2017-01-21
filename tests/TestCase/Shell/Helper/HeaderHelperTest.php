@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell\Helper;
 
-use Multidimensional\Cakephpify\Shell\Helper\HeaderHelper;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Shell\Helper\HeaderHelper;
 
 class HeaderHelperTest extends TestCase
 {

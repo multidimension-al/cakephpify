@@ -16,10 +16,9 @@
 namespace Multidimensional\Cakephpify\Controller;
 
 use Cake\Event\Event;
-use Cake\Routing\Router;
-use Cake\ORM\TableRegistry;
 use Cake\Network\Session;
-
+use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Multidimensional\Cakephpify\Controller\AppController;
 
 class InstallController extends AppController
@@ -29,7 +28,6 @@ class InstallController extends AppController
 
     public function initialize()
     {
-
         parent::initialize();
         $this->loadComponent('Multidimensional/Cakephpify.ShopifyDatabase');
         $this->loadComponent('Multidimensional/Cakephpify.ShopifyAPI', ['api_key' => $this->request->api_key]);
@@ -39,7 +37,6 @@ class InstallController extends AppController
 
     public function add()
     {
-
         $isAuthorized = $this->ShopifyAPI->validateHMAC($this->request->query);
 
         if ($isAuthorized) {
@@ -96,7 +93,6 @@ class InstallController extends AppController
 
     public function index()
     {
-
         if (!empty($this->request->query['code']) && !$this->error) {
             $this->render('add');
         } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
@@ -132,7 +128,6 @@ class InstallController extends AppController
 
     public function redirect($url, $status = 302)
     {
-
         $this->set('shopify_auth_url', $url);
         $this->render('redirect');
     }

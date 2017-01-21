@@ -13,10 +13,8 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Config;
-
-use Cake\Routing\Router;
 use Cake\Core\Configure;
+use Cake\Routing\Router;
 
 Router::plugin('Multidimensional/Cakephpify', ['path' => '/'], function ($routes) {
     $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));

@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell;
 
-use Multidimensional\Cakephpify\Shell\ShopifyInstallShell;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Shell\ShopifyInstallShell;
 
 class ShopifyInstallShellTest extends TestCase
 {

@@ -16,8 +16,8 @@
 namespace Multidimensional\Cakephpify\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class ShopifyDatabaseComponent extends Component
 {
@@ -48,7 +48,6 @@ class ShopifyDatabaseComponent extends Component
 
     public function shopDataToDatabase(array $data)
     {
-
         $shopEntity = $this->shops->newEntity();
 
         unset($data['created_at']);
@@ -68,7 +67,6 @@ class ShopifyDatabaseComponent extends Component
 
     public function accessTokenToDatabase($accessToken, $shopId, $apiKey)
     {
-
         $accessTokenEntity = $this->access_tokens->newEntity();
 
         $accessTokenArray = [
@@ -99,7 +97,6 @@ class ShopifyDatabaseComponent extends Component
 
     public function getShopIdFromDomain($domain)
     {
-
         $shopEntity = $this->shops->findByMyshopifyDomain($domain)->first();
         if ($shopEntity->id) {
             return (int)$shopEntity->id;
@@ -110,7 +107,6 @@ class ShopifyDatabaseComponent extends Component
 
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {
-
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'token' => $accessToken]);
@@ -129,7 +125,6 @@ class ShopifyDatabaseComponent extends Component
 
     public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
     {
-
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'Shops.myshopify_domain' => $shopDomain]);

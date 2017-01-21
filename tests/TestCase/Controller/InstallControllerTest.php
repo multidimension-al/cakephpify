@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Controller;
 
-use Multidimensional\Cakephpify\Controller\InstallController;
-
 use Cake\TestSuite\IntegrationTestCase;
+use Multidimensional\Cakephpify\Controller\InstallController;
 
 class InstallControllerTest extends IntegrationTestCase
 {

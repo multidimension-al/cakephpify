@@ -13,13 +13,14 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+namespace Multidimensional\Cakephpify\Migrations;
+
 use Migrations\AbstractMigration;
 
 class Database extends AbstractMigration
 {
     public function up()
     {
-
         $this->table('access_tokens')
             ->addColumn('shop_id', 'integer', [
                 'default' => null,

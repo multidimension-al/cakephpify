@@ -15,14 +15,13 @@
 
 namespace Multidimensional\Cakephpify\Auth;
 
-use Cake\Core\Configure;
-use Cake\Routing\Router;
-use Cake\Controller\ComponentRegistry;
 use Cake\Auth\BaseAuthenticate;
+use Cake\Controller\ComponentRegistry;
+use Cake\Core\Configure;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\Network\Session;
-
+use Cake\Routing\Router;
 use Multidimensional\Cakephpify\Auth\Event;
 
 class ShopifyAuthAuthenticate extends BaseAuthenticate
@@ -55,13 +54,11 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 
     public function authenticate(Request $request, Response $response)
     {
-
         return $this->getUser($request);
     }
 
     public function unauthenticated(Request $request, Response $response)
     {
-
         if (isset($request->query['hmac'])
             && isset($request->query['shop'])) {
             return null;
@@ -84,7 +81,6 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 
     public function getUser(Request $request)
     {
-
         $accessToken = $request->session()->read('shopify_access_token_' . $this->api_key);
         $shopDomain = $request->session()->read('shopify_shop_domain_' . $this->api_key);
 
@@ -141,7 +137,6 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 
     public function logout(Event $event, array $user)
     {
-
         //$request->session()->delete('shopify_access_token_' . $this->api_key);
         //$request->session()->delete('shopify_shop_domain_' . $this->api_key);
     }

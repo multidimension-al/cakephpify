@@ -15,12 +15,12 @@
 
 namespace Multidimensional\Cakephpify\Controller\Component;
 
-use Cake\Core\Configure;
 use Cake\Controller\Component;
-use Cake\Routing\Router;
-use Cake\Network\Http\Client;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotImplementedException;
+use Cake\Network\Http\Client;
+use Cake\Routing\Router;
 
 class ShopifyAPIComponent extends Component
 {
@@ -38,7 +38,6 @@ class ShopifyAPIComponent extends Component
 
     public function initialize(array $config = [])
     {
-
         parent::initialize($config);
 
         $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
@@ -106,7 +105,6 @@ class ShopifyAPIComponent extends Component
      */
     public function call($method, $path, $params = [])
     {
-
         if (!$this->_isReady()) {
             return false;
         }
@@ -144,18 +142,15 @@ class ShopifyAPIComponent extends Component
 
     public function getAuthorizeUrl($shopDomain, $redirectUrl)
     {
-
         $url = 'https://' . $shopDomain . '/admin/oauth/authorize?client_id=' . $this->api_key;
         $url .= '&scope=' . urlencode($this->scope);
         $url .= '&redirect_uri=' . urlencode($redirectUrl);
         $url .= '&state=' . $this->getNonce($shopDomain);
-
         return $url;
     }
 
     public function getAccessToken($shopDomain, $code)
     {
-
         $this->shop_domain = $shopDomain;
 
         $http = new Client([
@@ -180,32 +175,27 @@ class ShopifyAPIComponent extends Component
 
     public function setNonce($shopDomain)
     {
-
         return $this->nonce = md5(strtolower($shopDomain));
     }
 
 
     public function getNonce()
     {
-
         return $this->nonce;
     }
 
     public function validDomain($shopDomain)
     {
-
         return true;
     }
 
     public function getShopData()
     {
-
         return $this->call('GET', '/admin/shop.json');
     }
 
     public function validateHMAC($query)
     {
-
         if (!is_array($query) || empty($query['hmac']) || !is_string($query['hmac']) || (isset($query['state']) && $query['state'] != $this->getNonce($query['shop']))) {
             return false;
         }
@@ -231,10 +221,8 @@ class ShopifyAPIComponent extends Component
      */
     private function _urlEncode($url)
     {
-
         $url = str_replace('&', '%26', $url);
         $url = str_replace('%', '%25', $url);
-
         return $url;
     }
 

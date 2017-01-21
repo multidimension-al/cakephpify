@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Model\Table;
 
-use Multidimensional\Cakephpify\Model\Table\ShopsTable;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Model\Table\ShopsTable;
 
 class ShopsTableTest extends TestCase
 {

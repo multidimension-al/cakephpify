@@ -15,17 +15,15 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
 
-use Multidimensional\Cakephpify\Controller\Component\ShopifyAPIComponent;
-
-use Multidimensional\Cakephpify\Test\Fixture\ShopsFixture;
-use Multidimensional\Cakephpify\Test\Fixture\AccessTokensFixture;
-
-use Cake\Controller\Controller;
 use Cake\Controller\ComponentRegistry;
+use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Controller\Component\ShopifyAPIComponent;
+use Multidimensional\Cakephpify\Test\Fixture\AccessTokensFixture;
+use Multidimensional\Cakephpify\Test\Fixture\ShopsFixture;
 
 class ShopifyAPIComponentTest extends TestCase
 {

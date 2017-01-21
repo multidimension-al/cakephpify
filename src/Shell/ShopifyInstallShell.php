@@ -16,9 +16,9 @@
 
 namespace Multidimensional\Cakephpify\Shell;
 
-use Cake\Core\Configure;
-use Cake\Console\Shell;
 use Cake\Console\Helper;
+use Cake\Console\Shell;
+use Cake\Core\Configure;
 use Migrations\Migrations;
 
 class ShopifyInstallShell extends Shell
@@ -72,7 +72,12 @@ class ShopifyInstallShell extends Shell
                     $this->out('');
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');
                 }
-            } while ((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scopeArray)) > 0));
+				
+				$count = count($scope);
+				$scope_length = strlen(trim(implode("", $scope)));
+				$scope_diff_count = count(array_diff($scope, $scopeArray));
+				
+            } while ($count && $scope_length > 0 && $scope_diff_count > 0);
 
             Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.scope', implode(',', $scope));
 

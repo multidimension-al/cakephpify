@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Model\Table;
 
-use Multidimensional\Cakephpify\Model\Table\AccessTokensTable;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Model\Table\AccessTokensTable;
 
 class AccessTokensTableTest extends TestCase
 {

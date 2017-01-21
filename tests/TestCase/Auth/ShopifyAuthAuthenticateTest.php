@@ -15,9 +15,8 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Auth;
 
-use Multidimensional\Cakephpify\Auth\ShopifyAuthAuthenticate;
-
 use Cake\TestSuite\TestCase;
+use Multidimensional\Cakephpify\Auth\ShopifyAuthAuthenticate;
 
 class ShopifyAuthAuthenticateTest extends TestCase
 {
