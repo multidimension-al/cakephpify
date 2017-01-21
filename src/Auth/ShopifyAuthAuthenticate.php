@@ -37,20 +37,18 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         parent::__construct($registry, $config);
 
         $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
-		
+
         if (empty($this->api_key)) {
+            $controller = $this->_registry->getController();
 
-          $controller = $this->_registry->getController();
-
-          if (isset($controller->request->api_key)) {
-            $this->api_key = $controller->request->api_key;
-          }
-
+            if (isset($controller->request->api_key)) {
+                $this->api_key = $controller->request->api_key;
+            }
         }
-		
+
         $this->ShopifyAPI = $registry->load('Multidimensional/Cakephpify.ShopifyAPI', [
             'api_key' => $this->api_key
-		]);
+        ]);
 
         $this->ShopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
     }

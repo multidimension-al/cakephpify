@@ -32,18 +32,16 @@ class ShopifyInstallShell extends Shell
         $this->_io->styles('error', ['text' => 'red']);
         $this->helper('Multidimensional/Cakephpify.Header')->output();
 
-        $first_run = ((Configure::check('Multidimensional/Cakephpify')) ? false : true);
-            
-        //Activate Plugin           
-        if ((($first_run) ? (strtolower($this->in('Install Shopify Plugin?', ['y','n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y','n'])) == 'y'))) {
-            
+        $firstRun = ((Configure::check('Multidimensional/Cakephpify')) ? false : true);
 
+        //Activate Plugin
+        if ((($firstRun) ? (strtolower($this->in('Install Shopify Plugin?', ['y', 'n'])) == 'y') : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
             $this->out();
             $this->out('Please enter your API credentials from your Shopify App page.', 2);
             $apiKey = $this->in('API Key:');
             $this->out();
 
-            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.shared_secret', $this->in('Shared Secret:'));
+            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.shared_secret', $this->in('Shared Secret:'));
 
             $this->out();
 
@@ -74,11 +72,10 @@ class ShopifyInstallShell extends Shell
                     $this->out('');
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');
                 }
+            } while ((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scopeArray)) > 0));
 
-            } while((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scope_array)) > 0));
-            
-            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.scope',implode(',', $scope));
-            
+            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.scope', implode(',', $scope));
+
             $this->out('');
             $isPrivateApp = strtolower($this->in('Is this a private app?', ['y', 'n']));
 
@@ -88,17 +85,16 @@ class ShopifyInstallShell extends Shell
                 $isPrivateApp = 'false';
             }
 
-            
-            Configure::write('Multidimensional/Cakephpify.' . $api_key . '.is_private_app',$is_private_app);
-            
-            if ($is_private_app == 'true') {
-                Configure::write('Multidimensional/Cakephpify.' . $api_key . '.private_app_password',$this->in('Private App Password:'));
+
+            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.is_private_app', $isPrivateApp);
+
+            if ($isPrivateApp == 'true') {
+                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.private_app_password', $this->in('Private App Password:'));
             } else {
-                Configure::write('Multidimensional/Cakephpify.' . $api_key . '.private_app_password', NULL);
+                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.private_app_password', null);
             }
-            
+
             Configure::dump('shopify', 'default', ['Multidimensional/Cakephpify']);
-            
         }
 
         $this->out('');

@@ -19,14 +19,18 @@ use Cake\Routing\Router;
 use Cake\Core\Configure;
 
 Router::plugin('Multidimensional/Cakephpify', ['path' => '/'], function ($routes) {
-	$shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
-	if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
-		$routes->connect('/shopify/:api_key/install',
-			['controller' => 'Install', 'action' => 'index'],
-			['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]);
-			
-		$routes->connect('/shopify/:api_key/install',
-			['controller' => 'Install', 'action' => 'add'],
-			['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]);
-	}
+    $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
+    if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
+        $routes->connect(
+            '/shopify/:api_key/install',
+            ['controller' => 'Install', 'action' => 'index'],
+            ['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]
+        );
+
+        $routes->connect(
+            '/shopify/:api_key/install',
+            ['controller' => 'Install', 'action' => 'add'],
+            ['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]
+        );
+    }
 });

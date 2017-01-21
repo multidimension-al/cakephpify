@@ -53,14 +53,13 @@ class ShopifyDatabaseComponent extends Component
 
         unset($data['created_at']);
         unset($data['updated_at']);
-         
-        $shop_entity->set($data);
-        
-        $shop_entity->set(['updated_at' => new \DateTime('now')]);
-        
-        if (!$shop_entity->errors() && $this->shops->save($shop_entity)) {
-            return $shop_entity->toArray();
 
+        $shopEntity->set($data);
+
+        $shopEntity->set(['updated_at' => new \DateTime('now')]);
+
+        if (!$shopEntity->errors() && $this->shops->save($shopEntity)) {
+            return $shopEntity->toArray();
         } else {
             return false;
         }
@@ -90,10 +89,9 @@ class ShopifyDatabaseComponent extends Component
                 'updated_at' => new \DateTime('now')
             ]);
         }
-                                    
-        if (!$access_token_entity->errors() && $this->access_tokens->save($access_token_entity)) {
-            return $access_token_entity->toArray();
 
+        if (!$accessTokenEntity->errors() && $this->access_tokens->save($accessTokenEntity)) {
+            return $accessTokenEntity->toArray();
         } else {
             return false;
         }

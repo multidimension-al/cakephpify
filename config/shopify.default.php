@@ -22,8 +22,8 @@
  *  If you don't have this file, copy it to your main CakePHP config folder.
 /*/
 
-return array [
-  'Multidimensional/Cakephpify' => 
+return [
+  'Multidimensional/Cakephpify' =>
     [
       '{API_KEY_HERE}' =>
          [

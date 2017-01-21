@@ -35,16 +35,15 @@ class InstallController extends AppController
         $this->loadComponent('Multidimensional/Cakephpify.ShopifyAPI', ['api_key' => $this->request->api_key]);
         $this->loadComponent('Flash');
         $this->error = false;
-
     }
 
-    public function add() {
+    public function add()
+    {
 
-        $is_authorized = $this->ShopifyAPI->validateHMAC($this->request->query);
-        
-        if ($is_authorized) {
-        
-            $access_token = $this->ShopifyAPI->getAccessToken(
+        $isAuthorized = $this->ShopifyAPI->validateHMAC($this->request->query);
+
+        if ($isAuthorized) {
+            $accessToken = $this->ShopifyAPI->getAccessToken(
                 $this->request->query['shop'],
                 $this->request->query['code']
             );
@@ -68,14 +67,13 @@ class InstallController extends AppController
                                 'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
                             ]);
 
-                        
-							$this->Auth->setUser($shop_entity);
+
+                            $this->Auth->setUser($shopEntity);
 
                             return $this->redirect([
                                 'controller' => 'Shopify',
                                 'plugin' => false,
-								'api_key' => $this->ShopifyAPI->api_key]);
-                                
+                                'api_key' => $this->ShopifyAPI->api_key]);
                         } else {
                             $this->Flash->set("Error saving access token. Please try again.");
                         }
@@ -100,12 +98,9 @@ class InstallController extends AppController
     {
 
         if (!empty($this->request->query['code']) && !$this->error) {
-
             $this->render('add');
-              
-          } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
-            
-            $valid_domain = $this->ShopifyAPI->validDomain(
+        } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
+            $validDomain = $this->ShopifyAPI->validDomain(
                 $this->request->data['shop_domain']
             );
 
