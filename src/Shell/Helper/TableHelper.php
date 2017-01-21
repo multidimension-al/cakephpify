@@ -21,9 +21,16 @@ use Cake\Console\Shell;
 class TableHelper extends Helper
 {
 
+    /**
+     * @param array $data
+     * @param int $columns
+     * @param int $terminalWidth
+     * @return void
+     */
     public function output($data, $columns = 10, $terminalWidth = 80)
     {
-        while ((count($data) % $columns != 0) && ($columns > 5)) {
+        $dataCount = count($data);
+        while ($dataCount % $columns != 0 && $columns > 5) {
             $columns--;
         }
 
@@ -34,8 +41,9 @@ class TableHelper extends Helper
         }
 
         $this->_io->out(' ' . str_repeat('+-' . str_repeat('-', $maxLength) . '-', $columns) . '+ ');
-
-        for ($i = 0; $i < count($data);) {
+        
+        $dataCount = count($data);
+        for ($i = 0; $i < $dataCount;) {
             $output = " ";
             $j = $i;
             for ($k = $i; $k < ($columns + $j); $k++) {

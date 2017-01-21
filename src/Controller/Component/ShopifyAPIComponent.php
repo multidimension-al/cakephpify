@@ -184,7 +184,7 @@ class ShopifyAPIComponent extends Component
         $url .= '&redirect_uri=' . urlencode($redirectUrl);
         $url .= '&state=' . $this->getNonce($shopDomain);
         
-		return $url;
+        return $url;
     }
 
     /**
@@ -285,7 +285,7 @@ class ShopifyAPIComponent extends Component
         $url = str_replace('&', '%26', $url);
         $url = str_replace('%', '%25', $url);
         
-		return $url;
+        return $url;
     }
 
     /**

@@ -19,7 +19,7 @@ use Migrations\AbstractMigration;
 
 class Database extends AbstractMigration
 {
-    
+
     /**
      * @return void
      */
