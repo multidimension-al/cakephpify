@@ -58,15 +58,12 @@ before_install:
   - travis_retry composer create-project --no-interaction cakephp/app test
   - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
-  - mv multidimension-al/cakephpify test/vendor/multidimensional/cakephpify
-  - find ./ -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-  - cd test/vendor/multidimensional/cakephpify
-  - ls -l
-  - mv -f tests/phpunit.xml.dist ../../../../
-  - cd ../../../ && cd test && bin/cake || true
+  - mv multidimension-al/cakephpify test/vendor/multidimensional
+  - cd test && bin/cake || true
   - travis_retry composer require phpunit/phpunit
   - travis_retry composer require "cakephp/cakephp-codesniffer=2.*"
   - ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer
+  - mv -f ./vendor/multidimensional/cakephpify/tests/phpunit.xml.dist ./
   - if [[ $DB = 'mysql' ]] ; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
