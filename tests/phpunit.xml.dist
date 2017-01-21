@@ -18,10 +18,7 @@
         </testsuite>
         <!-- Add plugin test suites here. -->
 		<testsuite name="Cakephpify Tests">
-			<directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
-			<exclude>./vendor/multidimensional/cakephpify/tests/TestCase/Shell</exclude>
-			<exclude>./vendor/multidimensional/cakephpify/tests/TestCase/Auth</exclude>
-			<exclude>./vendor/multidimensional/cakephpify/tests/TestCase/Model</exclude>
+			<directory>./plugins/multidimensional/cakephpify/tests/TestCase</directory>
 		</testsuite>
     </testsuites>
 
