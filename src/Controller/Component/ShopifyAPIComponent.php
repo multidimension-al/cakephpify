@@ -169,13 +169,13 @@ class ShopifyAPIComponent extends Component
     {
         $params = explode("/", $this->response->getHeaderLine('http_x_shopify_shop_api_call_limit'));
 
-        return (int)$params[$index];
+        return (int) $params[$index];
     }
 
     /**
      * @param string $shopDomain
      * @param string $redirectUrl
-     * @return int
+     * @return string
      */
     public function getAuthorizeUrl($shopDomain, $redirectUrl)
     {
