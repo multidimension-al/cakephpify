@@ -64,7 +64,7 @@ class ShopifyInstallShell extends Shell
                 }
                 $scope = array_map('trim', $scope);
                 $scope = array_map('strtolower', $scope);
-                array_walk($scope, function (&$value) {
+                array_walk($scope, function(&$value) {
                     $value = str_replace(" ", "_", $value);
                 });
 
