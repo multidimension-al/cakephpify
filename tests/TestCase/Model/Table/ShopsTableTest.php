@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Tests\Model\Table;
+namespace Multidimensional\Cakephpify\Test\Model\Table;
 
 use Multidimensional\Cakephpify\Model\Table\ShopsTable;
 

@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Tests\Shell;
+namespace Multidimensional\Cakephpify\Test\Shell;
 
 use Multidimensional\Cakephpify\Shell\ShopifyInstallShell;
 

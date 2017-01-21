@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Tests\Shell\Helper;
+namespace Multidimensional\Cakephpify\Test\Shell\Helper;
 
 use Multidimensional\Cakephpify\Shell\Helper\TableHelper;
 
