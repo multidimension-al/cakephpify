@@ -22,12 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Multidimensional\\Cakephpify\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Multidimensional\\Cakephpify\\Test\\": "tests"
+            "Multidimensional\\Cakephpify\\": "src",
+			"Multidimensional\\Cakephpify\\Test\\": "tests"
         }
     }
 }
