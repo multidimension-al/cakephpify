@@ -37,9 +37,8 @@ class ShopifyInstallShell extends Shell
         $firstRun = ((Configure::check('Multidimensional/Cakephpify')) ? false : true);
 
         //Activate Plugin
-        if ((($firstRun) ? (strtolower($this->in('Install Shopify Plugin?', ['y', 'n'])) == 'y')
-            : (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))) {
-                
+        if ((($firstRun) ? (strtolower($this->in('Install Shopify Plugin?', ['y', 'n'])) == 'y'): (strtolower($this->in('Update Configuration?', ['y', 'n'])) == 'y'))
+        ) {
             $this->out();
             $this->out('Please enter your API credentials from your Shopify App page.', 2);
             $apiKey = $this->in('API Key:');
@@ -49,7 +48,7 @@ class ShopifyInstallShell extends Shell
 
             $this->out();
 
-            $scopeArray = 
+            $scopeArray =
                 ['read_content',
                  'write_content',
                  'read_themes',

@@ -31,11 +31,11 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
     private $ShopifyAPI;
     private $ShopifyDatabase;
 
-	/**
-	 * @param registry $registry
-	 * @param array $config
-	 * @return void
-	 */
+    /**
+     * @param registry $registry
+     * @param array    $config
+     * @return void
+     */
     public function __construct($registry, array $config = [])
     {
         parent::__construct($registry, $config);
@@ -60,21 +60,21 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         $this->ShopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
     }
 
-	/**
-	 * @param Request $request
-	 * @param Response $response
-	 * @return array
-	 */
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @return array
+     */
     public function authenticate(Request $request, Response $response)
     {
         return $this->getUser($request);
     }
 
-	/**
-	 * @param Request $request
-	 * @param Response $response
-	 * @return null|Response
-	 */
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @return null|Response
+     */
     public function unauthenticated(Request $request, Response $response)
     {
         if (isset($request->query['hmac'])
@@ -99,10 +99,10 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         return $response->location($this->_generateLoginUrl());
     }
 
-	/**
-	 * @param Request $request
-	 * @return array|bool
-	 */
+    /**
+     * @param Request $request
+     * @return array|bool
+     */
     public function getUser(Request $request)
     {
         $accessToken = $request->session()->read('shopify_access_token_' . $this->api_key);
@@ -144,17 +144,17 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         return false;
     }
 
-	/**
-	 * @param Request $request
-	 * @return void
-	 */
+    /**
+     * @param Request $request
+     * @return void
+     */
     protected function _authenticate(Request $request)
     {
     }
 
-	/**
-	 * @return array
-	 */
+    /**
+     * @return array
+     */
     public function implementedEvents()
     {
         return [
@@ -163,29 +163,29 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         ];
     }
 
-	/**
-	 * @param Event $event
-	 * @param array $user
-	 * @return void
-	 */
+    /**
+     * @param Event $event
+     * @param array $user
+     * @return void
+     */
     public function afterIdentify(Event $event, array $user)
     {
     }
 
-	/**
-	 * @param Event $event
-	 * @param array $user
-	 * @return void
-	 */
+    /**
+     * @param Event $event
+     * @param array $user
+     * @return void
+     */
     public function logout(Event $event, array $user)
     {
         //$request->session()->delete('shopify_access_token_' . $this->api_key);
         //$request->session()->delete('shopify_shop_domain_' . $this->api_key);
     }
 
-	/**
-	 * @return Router
-	 */
+    /**
+     * @return Router
+     */
     private function _generateLoginUrl()
     {
         return Router::url(['controller' => 'Install', 'action' => 'index', 'plugin' => 'Multidimensional/Cakephpify']);

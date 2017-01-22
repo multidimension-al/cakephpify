@@ -36,10 +36,10 @@ class ShopifyAPIComponent extends Component
 
     public $controller = null;
 
-	/**
-	 * @param array $config
-	 * @return void
-	 */
+    /**
+     * @param array $config
+     * @return void
+     */
     public function initialize(array $config = [])
     {
         parent::initialize($config);
@@ -124,7 +124,7 @@ class ShopifyAPIComponent extends Component
     }
 
     /**
-     * @param $responseHeaders
+     * @param Response $responseHeaders
      * @return int|null
      */
     public function callsLeft($responseHeaders)

@@ -26,7 +26,7 @@ class ShopifyDatabaseComponent extends Component
     private $access_tokens;
 
     public $controller = null;
-    
+
     /**
      * @param array $config
      * @return void
@@ -81,8 +81,8 @@ class ShopifyDatabaseComponent extends Component
     }
 
     /**
-     * @param string $accesstoken
-     * @param int $shopId
+     * @param string $accessToken
+     * @param int    $shopId
      * @param string $apiKey
      * @return array|bool
      */
@@ -131,7 +131,7 @@ class ShopifyDatabaseComponent extends Component
             return false;
         }
     }
-    
+
     /**
      * @param string $accessToken
      * @param string $apiKey

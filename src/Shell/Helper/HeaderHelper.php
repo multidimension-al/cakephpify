@@ -19,10 +19,10 @@ use Cake\Console\Helper;
 
 class HeaderHelper extends Helper
 {
-    
+
     /**
-     * @param null  $args not used
-     * @return void 
+     * @param null $args not used
+     * @return void
      */
     public function output($args = null)
     {

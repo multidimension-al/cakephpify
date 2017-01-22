@@ -25,7 +25,7 @@ class InstallController extends AppController
 {
 
     private $error;
-    
+
     /**
      * @return void
      */
@@ -146,7 +146,7 @@ class InstallController extends AppController
 
     /**
      * @param string $url
-     * @param int $status
+     * @param int    $status
      * @return void
      */
     public function redirect($url, $status = 302)
