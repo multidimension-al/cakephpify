@@ -85,7 +85,7 @@ class ShopifyAPIComponent extends Component
     {
         return $this->shop_domain = $shopDomain;
     }
-    
+
     /**
      * @return string|null
      */
@@ -110,7 +110,7 @@ class ShopifyAPIComponent extends Component
     {
         return $this->shopApiCallLimitParam(0);
     }
-    
+
     /**
      * @return int|null
      */
@@ -171,7 +171,7 @@ class ShopifyAPIComponent extends Component
     {
         $params = explode("/", $this->response->getHeaderLine('http_x_shopify_shop_api_call_limit'));
 
-        return (int) $params[$index];
+        return (int)$params[$index];
     }
 
     /**
@@ -185,7 +185,7 @@ class ShopifyAPIComponent extends Component
         $url .= '&scope=' . urlencode($this->scope);
         $url .= '&redirect_uri=' . urlencode($redirectUrl);
         $url .= '&state=' . $this->getNonce($shopDomain);
-        
+
         return $url;
     }
 
@@ -206,7 +206,8 @@ class ShopifyAPIComponent extends Component
         );
 
         $response = $http->post(
-            '/admin/oauth/access_token', 'client_id=' . $this->api_key .
+            '/admin/oauth/access_token',
+            'client_id=' . $this->api_key .
                                     '&client_secret=' . $this->shared_secret .
             '&code=' . $code
         );
@@ -290,7 +291,7 @@ class ShopifyAPIComponent extends Component
     {
         $url = str_replace('&', '%26', $url);
         $url = str_replace('%', '%25', $url);
-        
+
         return $url;
     }
 

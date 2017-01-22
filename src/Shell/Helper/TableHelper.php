@@ -41,7 +41,7 @@ class TableHelper extends Helper
         }
 
         $this->_io->out(' ' . str_repeat('+-' . str_repeat('-', $maxLength) . '-', $columns) . '+ ');
-        
+
         $dataCount = count($data);
         for ($i = 0; $i < $dataCount;) {
             $output = " ";

@@ -17,7 +17,9 @@ use Cake\Core\Configure;
 use Cake\Routing\Router;
 
 Router::plugin(
-    'Multidimensional/Cakephpify', ['path' => '/'], function ($routes) {
+    'Multidimensional/Cakephpify',
+    ['path' => '/'],
+    function ($routes) {
         $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
         if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
             $routes->connect(

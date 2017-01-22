@@ -101,7 +101,7 @@ class ShopifyDatabaseComponent extends Component
     {
         $shopEntity = $this->shops->findByMyshopifyDomain($domain)->first();
         if ($shopEntity->id) {
-            return (int) $shopEntity->id;
+            return (int)$shopEntity->id;
         } else {
             return false;
         }

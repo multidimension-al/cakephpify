@@ -49,7 +49,8 @@ class AccessTokensTable extends Table
         //$this->primaryKey('id');
 
         $this->belongsTo(
-            'Shops', [
+            'Shops',
+            [
             'className' => 'Multidimensional/Cakephpify.Shops']
         );
     }

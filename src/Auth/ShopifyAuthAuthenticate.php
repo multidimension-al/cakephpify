@@ -46,7 +46,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         }
 
         $this->ShopifyAPI = $registry->load(
-            'Multidimensional/Cakephpify.ShopifyAPI', [
+            'Multidimensional/Cakephpify.ShopifyAPI',
+            [
             'api_key' => $this->api_key
             ]
         );

@@ -49,7 +49,8 @@ class ShopsTable extends Table
         //$this->primaryKey('id');
 
         $this->hasMany(
-            'AccessTokens', [
+            'AccessTokens',
+            [
             'className' => 'Multidimensional/Cakephpify.AccessTokens'
             ]
         );

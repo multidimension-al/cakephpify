@@ -65,7 +65,8 @@ class ShopifyInstallShell extends Shell
                 $scope = array_map('trim', $scope);
                 $scope = array_map('strtolower', $scope);
                 array_walk(
-                    $scope, function (&$value) {
+                    $scope,
+                    function (&$value) {
                         $value = str_replace(" ", "_", $value);
                     }
                 );
@@ -74,12 +75,11 @@ class ShopifyInstallShell extends Shell
                     $this->out('');
                     $this->_io->out('<error>Invalid Scope. Try again, or leave blank to continue.</error>');
                 }
-                
+
                 $count = count($scope);
-                $scope_length = strlen(trim(implode("", $scope)));
-                $scope_diff_count = count(array_diff($scope, $scopeArray));
-                
-            } while ($count && $scope_length > 0 && $scope_diff_count > 0);
+                $scopeLength = strlen(trim(implode("", $scope)));
+                $scopeDiffCount = count(array_diff($scope, $scopeArray));
+            } while ($count && $scopeLength > 0 && $scopeDiffCount > 0);
 
             Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.scope', implode(',', $scope));
 

@@ -117,7 +117,8 @@ class InstallController extends AppController
                     'action' => 'add',
                     'plugin' => 'Multidimensional/Cakephpify',
                     'api_key' => $this->ShopifyAPI->api_key
-                    ], true
+                    ],
+                    true
                 );
 
                 $authUrl = $this->ShopifyAPI->getAuthorizeUrl(
