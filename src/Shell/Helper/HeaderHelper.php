@@ -19,6 +19,11 @@ use Cake\Console\Helper;
 
 class HeaderHelper extends Helper
 {
+    
+    /**
+     * @param null  $args not used
+     * @return void 
+     */
     public function output($args = null)
     {
         $this->_io->out("\n\n");

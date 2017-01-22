@@ -113,7 +113,7 @@ coding_style:
                 after_comma: true
                 before_semicolon: false
                 after_semicolon: true
-                after_type_cast: true
+                after_type_cast: false
         braces:
             classes_functions:
                 class: new-line

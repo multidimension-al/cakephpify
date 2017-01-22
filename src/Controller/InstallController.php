@@ -25,7 +25,10 @@ class InstallController extends AppController
 {
 
     private $error;
-
+    
+    /**
+     * @return void
+     */
     public function initialize()
     {
         parent::initialize();
@@ -35,6 +38,9 @@ class InstallController extends AppController
         $this->error = false;
     }
 
+    /**
+     * @return void|redirect
+     */
     public function add()
     {
         $isAuthorized = $this->ShopifyAPI->validateHMAC($this->request->query);
@@ -95,6 +101,9 @@ class InstallController extends AppController
         $this->render('index');
     }
 
+    /**
+     * @return void|redirect
+     */
     public function index()
     {
         if (!empty($this->request->query['code']) && !$this->error) {
@@ -135,6 +144,11 @@ class InstallController extends AppController
         }
     }
 
+    /**
+     * @param string $url
+     * @param int $status
+     * @return void
+     */
     public function redirect($url, $status = 302)
     {
         $this->set('shopify_auth_url', $url);

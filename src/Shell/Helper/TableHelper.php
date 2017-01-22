@@ -22,9 +22,9 @@ class TableHelper extends Helper
 {
 
     /**
-     * @param array $data
-     * @param int   $columns
-     * @param int   $terminalWidth
+     * @param array $data           array of data to be displayed
+     * @param int   $columns        maximum number of table columns
+     * @param int   $terminalWidth  maximum table width in characters1
      * @return void
      */
     public function output($data, $columns = 10, $terminalWidth = 80)

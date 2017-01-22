@@ -26,18 +26,30 @@ class ShopifyDatabaseComponent extends Component
     private $access_tokens;
 
     public $controller = null;
-
+    
+    /**
+     * @param array $config
+     * @return void
+     */
     public function initialize(array $config = [])
     {
         $this->shops = TableRegistry::get('Multidimensional/Cakephpify.Shops');
         $this->access_tokens = TableRegistry::get('Multidimensional/Cakephpify.AccessTokens');
     }
 
+    /**
+     * @param Event $event
+     * @return void
+     */
     public function startup(Event $event)
     {
         $this->setController($event->subject());
     }
 
+    /**
+     * @param controller $controller
+     * @return void
+     */
     public function setController($controller)
     {
         $this->controller = $controller;
@@ -46,6 +58,10 @@ class ShopifyDatabaseComponent extends Component
         }
     }
 
+    /**
+     * @param array $data
+     * @return array|bool
+     */
     public function shopDataToDatabase(array $data)
     {
         $shopEntity = $this->shops->newEntity();
@@ -64,7 +80,12 @@ class ShopifyDatabaseComponent extends Component
         }
     }
 
-
+    /**
+     * @param string $accesstoken
+     * @param int $shopId
+     * @param string $apiKey
+     * @return array|bool
+     */
     public function accessTokenToDatabase($accessToken, $shopId, $apiKey)
     {
         $accessTokenEntity = $this->access_tokens->newEntity();
@@ -97,6 +118,10 @@ class ShopifyDatabaseComponent extends Component
         }
     }
 
+    /**
+     * @param string $domain
+     * @return int|bool
+     */
     public function getShopIdFromDomain($domain)
     {
         $shopEntity = $this->shops->findByMyshopifyDomain($domain)->first();
@@ -106,7 +131,12 @@ class ShopifyDatabaseComponent extends Component
             return false;
         }
     }
-
+    
+    /**
+     * @param string $accessToken
+     * @param string $apiKey
+     * @return array|bool
+     */
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {
         $query = $this->access_tokens->find();
@@ -127,6 +157,11 @@ class ShopifyDatabaseComponent extends Component
         }
     }
 
+    /**
+     * @param string $shopDomain
+     * @param string $apiKey
+     * @return string|bool
+     */
     public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
     {
         $query = $this->access_tokens->find();
