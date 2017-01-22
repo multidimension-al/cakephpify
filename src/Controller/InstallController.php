@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller;
@@ -59,18 +59,22 @@ class InstallController extends AppController
                         );
 
                         if ($accessTokenEntity) {
-                            $this->request->session()->write([
+                            $this->request->session()->write(
+                                [
                                 'shopify_access_token_' . $this->ShopifyAPI->api_key => $accessToken,
                                 'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
-                            ]);
+                                ]
+                            );
 
 
                             $this->Auth->setUser($shopEntity);
 
-                            return $this->redirect([
+                            return $this->redirect(
+                                [
                                 'controller' => 'Shopify',
                                 'plugin' => false,
-                                'api_key' => $this->ShopifyAPI->api_key]);
+                                'api_key' => $this->ShopifyAPI->api_key]
+                            );
                         } else {
                             $this->Flash->set("Error saving access token. Please try again.");
                         }
@@ -101,16 +105,20 @@ class InstallController extends AppController
             );
 
             if ($validDomain) {
-                $this->request->session()->write([
+                $this->request->session()->write(
+                    [
                     'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->request->data['shop_domain']
-                ]);
+                    ]
+                );
 
-                $redirectUrl = Router::url([
+                $redirectUrl = Router::url(
+                    [
                     'controller' => 'Install',
                     'action' => 'add',
                     'plugin' => 'Multidimensional/Cakephpify',
                     'api_key' => $this->ShopifyAPI->api_key
-                ], true);
+                    ], true
+                );
 
                 $authUrl = $this->ShopifyAPI->getAuthorizeUrl(
                     $this->request->data['shop_domain'],

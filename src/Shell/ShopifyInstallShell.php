@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 
@@ -64,9 +64,11 @@ class ShopifyInstallShell extends Shell
                 }
                 $scope = array_map('trim', $scope);
                 $scope = array_map('strtolower', $scope);
-                array_walk($scope, function(&$value) {
-                    $value = str_replace(" ", "_", $value);
-                });
+                array_walk(
+                    $scope, function (&$value) {
+                        $value = str_replace(" ", "_", $value);
+                    }
+                );
 
                 if ((count($scope)) && (strlen(trim(implode("", $scope))) > 0) && (count(array_diff($scope, $scopeArray)) > 0)) {
                     $this->out('');

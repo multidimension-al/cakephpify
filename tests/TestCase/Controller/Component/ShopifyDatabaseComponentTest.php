@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
@@ -40,9 +40,9 @@ class ShopifyDatabaseComponentTest extends TestCase
         $request = new Request();
         $response = new Response();
         $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
-        ->setConstructorArgs([$request, $response])
-        ->setMethods(null)
-        ->getMock();
+            ->setConstructorArgs([$request, $response])
+            ->setMethods(null)
+            ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new ShopifyDatabaseComponent($registry);
         $event = new Event('Controller.startup', $this->controller);

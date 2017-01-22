@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Model\Table;
@@ -37,7 +37,7 @@ class ShopsTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param  array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config)
@@ -48,15 +48,17 @@ class ShopsTable extends Table
         $this->displayField('myshopify_domain');
         //$this->primaryKey('id');
 
-        $this->hasMany('AccessTokens', [
+        $this->hasMany(
+            'AccessTokens', [
             'className' => 'Multidimensional/Cakephpify.AccessTokens'
-        ]);
+            ]
+        );
     }
 
     /**
      * Default validation rules.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @param  \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
@@ -254,7 +256,7 @@ class ShopsTable extends Table
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @param  \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)

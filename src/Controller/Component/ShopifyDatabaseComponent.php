@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller\Component;
@@ -82,10 +82,12 @@ class ShopifyDatabaseComponent extends Component
             ->first();
 
         if ($accessTokenId) {
-            $accessTokenEntity->set([
+            $accessTokenEntity->set(
+                [
                 'id' => $accessTokenId->id,
                 'updated_at' => new \DateTime('now')
-            ]);
+                ]
+            );
         }
 
         if (!$accessTokenEntity->errors() && $this->access_tokens->save($accessTokenEntity)) {
@@ -110,10 +112,11 @@ class ShopifyDatabaseComponent extends Component
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'token' => $accessToken]);
-        $query = $query->where(function ($exp, $q)
-        {
-            return $exp->isNull('expired_at');
-        });
+        $query = $query->where(
+            function ($exp, $q) {
+                return $exp->isNull('expired_at');
+            }
+        );
 
         $shopEntity = $query->first()->toArray();
 
@@ -129,10 +132,11 @@ class ShopifyDatabaseComponent extends Component
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'Shops.myshopify_domain' => $shopDomain]);
-        $query = $query->where(function ($exp, $q)
-        {
-            return $exp->isNull('expired_at');
-        });
+        $query = $query->where(
+            function ($exp, $q) {
+                return $exp->isNull('expired_at');
+            }
+        );
 
         $accessTokenEntity = $query->first();
 

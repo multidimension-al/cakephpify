@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller\Component;
@@ -131,7 +131,7 @@ class ShopifyAPIComponent extends Component
     /**
      * @param string $method
      * @param string $path
-     * @param array $params
+     * @param array  $params
      * @return array|null
      */
     public function call($method, $path, $params = [])
@@ -144,12 +144,14 @@ class ShopifyAPIComponent extends Component
             return false;
         }
 
-        $http = new Client([
+        $http = new Client(
+            [
             'host' => $this->shop_domain,
             'scheme' => 'https',
             'headers' => (($this->is_private_app != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : []),
             'auth' => (($this->is_private_app != 'true') ? [] : (['username' => $this->api_key, 'password' => $this->private_app_password]))
-        ]);
+            ]
+        );
 
         $this->response = $http->{strtolower($method)}(
             $path,
@@ -196,14 +198,18 @@ class ShopifyAPIComponent extends Component
     {
         $this->shop_domain = $shopDomain;
 
-        $http = new Client([
+        $http = new Client(
+            [
             'host' => $shopDomain,
             'scheme' => 'https'
-        ]);
+            ]
+        );
 
-        $response = $http->post('/admin/oauth/access_token', 'client_id=' . $this->api_key .
+        $response = $http->post(
+            '/admin/oauth/access_token', 'client_id=' . $this->api_key .
                                     '&client_secret=' . $this->shared_secret .
-                                    '&code=' . $code);
+            '&code=' . $code
+        );
         $response = $response->json;
         ;
 

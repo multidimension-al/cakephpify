@@ -8,9 +8,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     (c) Multidimension.al (http://multidimension.al)
- * @link          https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright (c) Multidimension.al (http://multidimension.al)
+ * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Auth;
@@ -45,9 +45,11 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
             }
         }
 
-        $this->ShopifyAPI = $registry->load('Multidimensional/Cakephpify.ShopifyAPI', [
+        $this->ShopifyAPI = $registry->load(
+            'Multidimensional/Cakephpify.ShopifyAPI', [
             'api_key' => $this->api_key
-        ]);
+            ]
+        );
 
         $this->ShopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
     }
@@ -60,7 +62,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
     public function unauthenticated(Request $request, Response $response)
     {
         if (isset($request->query['hmac'])
-            && isset($request->query['shop'])) {
+            && isset($request->query['shop'])
+        ) {
             return null;
         }
 
@@ -69,7 +72,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         }
 
         if (!empty($request->session()->read('shopify_access_token_' . $this->api_key))
-            && !empty($request->session()->read('shopify_shop_domain_' . $this->api_key))) {
+            && !empty($request->session()->read('shopify_shop_domain_' . $this->api_key))
+        ) {
             return null;
         }
 
@@ -89,7 +93,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         }
 
         if ((isset($request->query['hmac']) && isset($request->query['shop']))
-            && (!$shopDomain || $request->query['shop'] != $shopDomain)) {
+            && (!$shopDomain || $request->query['shop'] != $shopDomain)
+        ) {
             $isValid = $this->ShopifyAPI->validateHMAC($request->query);
             if ($isValid) {
                 $shopDomain = $this->ShopifyAPI->setShopDomain($request->query['shop']);
