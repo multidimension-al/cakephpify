@@ -27,7 +27,7 @@ matrix:
       env: CAKE_VERSION='3.4.*'
     - php: 7.1
       env: CAKE_VERSION='3.4.*'
-    
+
   include:
     - php: 5.5
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test' CAKE_VERSION='3.3.*'
@@ -49,7 +49,7 @@ matrix:
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test' CAKE_VERSION='3.3.*'
       addons:
         mariadb: '10.1'
-     - php: 5.5
+    - php: 5.5
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test' CAKE_VERSION='3.4.*'
       addons:
         mariadb: '10.1'
