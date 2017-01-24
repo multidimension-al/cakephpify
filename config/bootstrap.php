@@ -25,10 +25,10 @@ use Cake\Core\Plugin;
 
 $config = ['{API_KEY_HERE}' =>
     [
-      'sharedSecret' => '{SHARED_SECRET_HERE}',
-      'scope' => '{SCOPE_HERE}',
-      'privateApp' => '{TRUE/FALSE_HERE}',
-      'privateAppPassword' => '{PRIVATE_APP_PASSWORD_HERE}'
+        'sharedSecret' => '{SHARED_SECRET_HERE}',
+        'scope' => '{SCOPE_HERE}',
+        'privateApp' => '{TRUE/FALSE_HERE}',
+        'privateAppPassword' => '{PRIVATE_APP_PASSWORD_HERE}'
     ]
 ];
 

@@ -20,7 +20,7 @@ Router::plugin(
     'Multidimensional/Cakephpify',
     ['path' => '/'],
     function ($routes) {
-		$routes->prefix('shopify', function ($routes) {
+        $routes->prefix('shopify', function ($routes) {
         $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
         if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
             $routes->connect(
@@ -29,6 +29,6 @@ Router::plugin(
                 ['apiKey' => implode('|', $shopifyAPIKeys), 'pass' => ['apiKey']]
             );
         }
-		});
+        });
     }
 );
