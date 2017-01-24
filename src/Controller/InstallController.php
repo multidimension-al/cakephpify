@@ -33,7 +33,7 @@ class InstallController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Multidimensional/Cakephpify.ShopifyDatabase');
-        $this->loadComponent('Multidimensional/Cakephpify.ShopifyAPI', ['api_key' => $this->request->api_key]);
+        $this->loadComponent('Multidimensional/Cakephpify.ShopifyAPI', ['apiKey' => $this->request->apiKey]);
         $this->loadComponent('Flash');
         $this->error = false;
     }
@@ -61,14 +61,14 @@ class InstallController extends AppController
                         $accessTokenEntity = $this->ShopifyDatabase->accessTokenToDatabase(
                             $accessToken,
                             $shopEntity->id,
-                            $this->ShopifyAPI->api_key
+                            $this->ShopifyAPI->apiKey
                         );
 
                         if ($accessTokenEntity) {
                             $this->request->session()->write(
                                 [
-                                'shopify_access_token_' . $this->ShopifyAPI->api_key => $accessToken,
-                                'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->ShopifyAPI->getShopDomain()
+                                'shopify_access_token_' . $this->ShopifyAPI->apiKey => $accessToken,
+                                'shopify_shop_domain_' . $this->ShopifyAPI->apiKey => $this->ShopifyAPI->getShopDomain()
                                 ]
                             );
 
@@ -79,7 +79,7 @@ class InstallController extends AppController
                                 [
                                 'controller' => 'Shopify',
                                 'plugin' => false,
-                                'api_key' => $this->ShopifyAPI->api_key]
+                                'apiKey' => $this->ShopifyAPI->apiKey]
                             );
                         } else {
                             $this->Flash->set("Error saving access token. Please try again.");
@@ -116,7 +116,7 @@ class InstallController extends AppController
             if ($validDomain) {
                 $this->request->session()->write(
                     [
-                    'shopify_shop_domain_' . $this->ShopifyAPI->api_key => $this->request->data['shop_domain']
+                    'shopify_shop_domain_' . $this->ShopifyAPI->apiKey => $this->request->data['shop_domain']
                     ]
                 );
 
@@ -125,7 +125,7 @@ class InstallController extends AppController
                     'controller' => 'Install',
                     'action' => 'add',
                     'plugin' => 'Multidimensional/Cakephpify',
-                    'api_key' => $this->ShopifyAPI->api_key
+                    'apiKey' => $this->ShopifyAPI->apiKey
                     ],
                     true
                 );

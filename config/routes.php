@@ -24,9 +24,9 @@ Router::plugin(
         $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
         if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
             $routes->connect(
-                ':api_key/install',
+                ':apiKey/install',
                 ['controller' => 'Install', 'action' => 'index'],
-                ['api_key' => implode('|', $shopifyAPIKeys), 'pass' => ['api_key']]
+                ['apiKey' => implode('|', $shopifyAPIKeys), 'pass' => ['apiKey']]
             );
         }
 		});

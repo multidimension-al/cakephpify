@@ -27,7 +27,7 @@ use Multidimensional\Cakephpify\Auth\Event;
 class ShopifyAuthAuthenticate extends BaseAuthenticate
 {
 
-    public $api_key;
+    public $apiKey;
     private $ShopifyAPI;
     private $ShopifyDatabase;
 
@@ -40,20 +40,20 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
     {
         parent::__construct($registry, $config);
 
-        $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
+        $this->apiKey = isset($config['apiKey']) ? $config['apiKey'] : '';
 
-        if (empty($this->api_key)) {
+        if (empty($this->apiKey)) {
             $controller = $this->_registry->getController();
 
-            if (isset($controller->request->api_key)) {
-                $this->api_key = $controller->request->api_key;
+            if (isset($controller->request->apiKey)) {
+                $this->apiKey = $controller->request->apiKey;
             }
         }
 
         $this->ShopifyAPI = $registry->load(
             'Multidimensional/Cakephpify.ShopifyAPI',
             [
-            'api_key' => $this->api_key
+            'apiKey' => $this->apiKey
             ]
         );
 
@@ -83,18 +83,18 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
             return null;
         }
 
-        if (empty($this->api_key)) {
+        if (empty($this->apiKey)) {
             return null;
         }
 
-        if (!empty($request->session()->read('shopify_access_token_' . $this->api_key))
-            && !empty($request->session()->read('shopify_shop_domain_' . $this->api_key))
+        if (!empty($request->session()->read('shopify_access_token_' . $this->apiKey))
+            && !empty($request->session()->read('shopify_shop_domain_' . $this->apiKey))
         ) {
             return null;
         }
 
-        $request->session()->delete('shopify_access_token_' . $this->api_key);
-        $request->session()->delete('shopify_shop_domain_' . $this->api_key);
+        $request->session()->delete('shopify_access_token_' . $this->apiKey);
+        $request->session()->delete('shopify_shop_domain_' . $this->apiKey);
 
         return $response->location($this->_generateLoginUrl());
     }
@@ -105,8 +105,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
      */
     public function getUser(Request $request)
     {
-        $accessToken = $request->session()->read('shopify_access_token_' . $this->api_key);
-        $shopDomain = $request->session()->read('shopify_shop_domain_' . $this->api_key);
+        $accessToken = $request->session()->read('shopify_access_token_' . $this->apiKey);
+        $shopDomain = $request->session()->read('shopify_shop_domain_' . $this->apiKey);
 
         if ($shopDomain) {
             $this->ShopifyAPI->setShopDomain($shopDomain);
@@ -122,7 +122,7 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
                 if (isset($request->query['code'])) {
                     $accessToken = $this->ShopifyAPI->getAccessToken($shopDomain, $request->query['code']);
                 } else {
-                    $accessToken = $this->ShopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->api_key);
+                    $accessToken = $this->ShopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->apiKey);
                 }
             }
         }
@@ -131,10 +131,10 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
             $this->ShopifyAPI->setAccessToken($accessToken);
             $this->ShopifyAPI->setShopDomain($shopDomain);
 
-            $request->session()->write('shopify_access_token_' . $this->api_key, $accessToken);
-            $request->session()->write('shopify_shop_domain_' . $this->api_key, $shopDomain);
+            $request->session()->write('shopify_access_token_' . $this->apiKey, $accessToken);
+            $request->session()->write('shopify_shop_domain_' . $this->apiKey, $shopDomain);
 
-            $shop = $this->ShopifyDatabase->getShopDataFromAccessToken($accessToken, $this->api_key);
+            $shop = $this->ShopifyDatabase->getShopDataFromAccessToken($accessToken, $this->apiKey);
 
             if ($shop && is_array($shop)) {
                 return ['id' => $shop['id'], 'username' => $shop['myshopify_domain']];
@@ -179,8 +179,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
      */
     public function logout(Event $event, array $user)
     {
-        //$request->session()->delete('shopify_access_token_' . $this->api_key);
-        //$request->session()->delete('shopify_shop_domain_' . $this->api_key);
+        //$request->session()->delete('shopify_access_token_' . $this->apiKey);
+        //$request->session()->delete('shopify_shop_domain_' . $this->apiKey);
     }
 
     /**

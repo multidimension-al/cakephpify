@@ -25,13 +25,13 @@ use Cake\Routing\Router;
 class ShopifyAPIComponent extends Component
 {
 
-    public $api_key;
+    public $apiKey;
 
     private $shop_domain;
     private $token;
-    private $shared_secret;
-    private $is_private_app;
-    private $private_app_password;
+    private $sharedSecret;
+    private $privateApp;
+    private $privateAppPassword;
     private $nonce;
 
     public $controller = null;
@@ -44,18 +44,18 @@ class ShopifyAPIComponent extends Component
     {
         parent::initialize($config);
 
-        $this->api_key = isset($config['api_key']) ? $config['api_key'] : '';
+        $this->apiKey = isset($config['apiKey']) ? $config['apiKey'] : '';
 
-        if (!empty($this->api_key)) {
-            $this->shared_secret = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.shared_secret');
-            $this->scope = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.scope');
-            $this->is_private_app = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.is_private_app');
-            $this->private_app_password = Configure::read('Multidimensional/Cakephpify.' . $this->api_key . '.private_app_password');
+        if (!empty($this->apiKey)) {
+            $this->sharedSecret = Configure::read('Multidimensional/Cakephpify.' . $this->apiKey . '.sharedSecret');
+            $this->scope = Configure::read('Multidimensional/Cakephpify.' . $this->apiKey . '.scope');
+            $this->privateApp = Configure::read('Multidimensional/Cakephpify.' . $this->apiKey . '.privateApp');
+            $this->privateAppPassword = Configure::read('Multidimensional/Cakephpify.' . $this->apiKey . '.privateAppPassword');
         } else {
             throw new NotImplementedException(__('Shopify API key not found'));
         }
 
-        if (!$this->shared_secret) {
+        if (!$this->sharedSecret) {
             throw new NotImplementedException(__('Shopify shared secret not found'));
         }
     }
@@ -152,8 +152,8 @@ class ShopifyAPIComponent extends Component
             [
             'host' => $this->shop_domain,
             'scheme' => 'https',
-            'headers' => (($this->is_private_app != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : []),
-            'auth' => (($this->is_private_app != 'true') ? [] : (['username' => $this->api_key, 'password' => $this->private_app_password]))
+            'headers' => (($this->privateApp != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : []),
+            'auth' => (($this->privateApp != 'true') ? [] : (['username' => $this->apiKey, 'password' => $this->privateAppPassword]))
             ]
         );
 
@@ -185,7 +185,7 @@ class ShopifyAPIComponent extends Component
      */
     public function getAuthorizeUrl($shopDomain, $redirectUrl)
     {
-        $url = 'https://' . $shopDomain . '/admin/oauth/authorize?client_id=' . $this->api_key;
+        $url = 'https://' . $shopDomain . '/admin/oauth/authorize?client_id=' . $this->apiKey;
         $url .= '&scope=' . urlencode($this->scope);
         $url .= '&redirect_uri=' . urlencode($redirectUrl);
         $url .= '&state=' . $this->getNonce($shopDomain);
@@ -211,8 +211,8 @@ class ShopifyAPIComponent extends Component
 
         $response = $http->post(
             '/admin/oauth/access_token',
-            'client_id=' . $this->api_key .
-                                    '&client_secret=' . $this->shared_secret .
+            'client_id=' . $this->apiKey .
+                                    '&client_secret=' . $this->sharedSecret .
             '&code=' . $code
         );
         $response = $response->json;
@@ -284,7 +284,7 @@ class ShopifyAPIComponent extends Component
         sort($dataString);
         $string = implode("&", $dataString);
 
-        return $query['hmac'] === hash_hmac('sha256', $string, $this->shared_secret);
+        return $query['hmac'] === hash_hmac('sha256', $string, $this->sharedSecret);
     }
 
     /**

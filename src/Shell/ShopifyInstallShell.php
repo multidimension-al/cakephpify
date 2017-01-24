@@ -44,7 +44,7 @@ class ShopifyInstallShell extends Shell
             $apiKey = $this->in('API Key:');
             $this->out();
 
-            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.shared_secret', $this->in('Shared Secret:'));
+            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.sharedSecret', $this->in('Shared Secret:'));
 
             $this->out();
 
@@ -115,12 +115,12 @@ class ShopifyInstallShell extends Shell
             }
 
 
-            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.is_private_app', $isPrivateApp);
+            Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.privateApp', $isPrivateApp);
 
             if ($isPrivateApp == 'true') {
-                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.private_app_password', $this->in('Private App Password:'));
+                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.privateAppPassword', $this->in('Private App Password:'));
             } else {
-                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.private_app_password', null);
+                Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.privateAppPassword', null);
             }
 
             Configure::dump('shopify', 'default', ['Multidimensional/Cakephpify']);

@@ -27,10 +27,10 @@ return [
     [
       '{API_KEY_HERE}' =>
          [
-          'shared_secret' => '{SHARED_SECRET_HERE}',
+          'sharedSecret' => '{SHARED_SECRET_HERE}',
           'scope' => '{SCOPE_HERE}',
-          'is_private_app' => '{TRUE/FALSE_HERE}',
-          'private_app_password' => '{PRIVATE_APP_PASSWORD_HERE}'
+          'privateApp' => '{TRUE/FALSE_HERE}',
+          'privateAppPassword' => '{PRIVATE_APP_PASSWORD_HERE}'
          ]
     ]
 ];
