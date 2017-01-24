@@ -34,13 +34,13 @@ composer require --prefer-dist multidimensional/cakephpify
 Load the plugin by running following command in terminal:
 
 ```
-bin/cake plugin load Multidimensional/Shopify -b -r
+bin/cake plugin load Multidimensional/Cakephpify -b -r
 ```
 
 Or by manually adding following line to your app's `config/bootstrap.php`:
 
 ```php
-Plugin::load('Multidimensional/Shopify', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('Multidimensional/Cakephpify', ['bootstrap' => true, 'routes' => true]);
 ```
 
 ## Configuration
@@ -62,7 +62,7 @@ public function initialize()
 {
     parent::initialize();
     $this->loadComponent('Auth', [
-        'authenticate' => ['Multidimensional/Shopify.ShopifyAuth']]);
+        'authenticate' => ['Multidimensional/Cakephpify.ShopifyAuth']]);
 }
 ```
 
