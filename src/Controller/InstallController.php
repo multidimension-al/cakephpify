@@ -43,32 +43,32 @@ class InstallController extends AppController
      */
     public function add()
     {
-        $isAuthorized = $this->ShopifyAPI->validateHMAC($this->request->query);
+        $isAuthorized = $this->shopifyApi->validateHMAC($this->request->query);
 
         if ($isAuthorized) {
-            $accessToken = $this->ShopifyAPI->getAccessToken(
+            $accessToken = $this->shopifyApi->getAccessToken(
                 $this->request->query['shop'],
                 $this->request->query['code']
             );
 
             if ($accessToken) {
-                $shop = $this->ShopifyAPI->getShopData();
+                $shop = $this->shopifyApi->getShopData();
 
                 if (isset($shop['id'])) {
-                    $shopEntity = $this->ShopifyDatabase->shopDataToDatabase($shop);
+                    $shopEntity = $this->shopifyDatabase->shopDataToDatabase($shop);
 
                     if ($shopEntity) {
-                        $accessTokenEntity = $this->ShopifyDatabase->accessTokenToDatabase(
+                        $accessTokenEntity = $this->shopifyDatabase->accessTokenToDatabase(
                             $accessToken,
                             $shopEntity->id,
-                            $this->ShopifyAPI->apiKey
+                            $this->shopifyApi->apiKey
                         );
 
                         if ($accessTokenEntity) {
                             $this->request->session()->write(
                                 [
-                                'shopify_access_token_' . $this->ShopifyAPI->apiKey => $accessToken,
-                                'shopify_shop_domain_' . $this->ShopifyAPI->apiKey => $this->ShopifyAPI->getShopDomain()
+                                'shopify_access_token_' . $this->shopifyApi->apiKey => $accessToken,
+                                'shopify_shop_domain_' . $this->shopifyApi->apiKey => $this->shopifyApi->getShopDomain()
                                 ]
                             );
 
@@ -79,7 +79,7 @@ class InstallController extends AppController
                                 [
                                 'controller' => 'Shopify',
                                 'plugin' => false,
-                                'apiKey' => $this->ShopifyAPI->apiKey]
+                                'apiKey' => $this->shopifyApi->apiKey]
                             );
                         } else {
                             $this->Flash->set("Error saving access token. Please try again.");
@@ -109,14 +109,14 @@ class InstallController extends AppController
         if (!empty($this->request->query['code']) && !$this->error) {
             $this->render('add');
         } elseif (!empty($this->request->data['shop_domain']) && !$this->error) {
-            $validDomain = $this->ShopifyAPI->validDomain(
+            $validDomain = $this->shopifyApi->validDomain(
                 $this->request->data['shop_domain']
             );
 
             if ($validDomain) {
                 $this->request->session()->write(
                     [
-                    'shopify_shop_domain_' . $this->ShopifyAPI->apiKey => $this->request->data['shop_domain']
+                    'shopify_shop_domain_' . $this->shopifyApi->apiKey => $this->request->data['shop_domain']
                     ]
                 );
 
@@ -125,12 +125,12 @@ class InstallController extends AppController
                     'controller' => 'Install',
                     'action' => 'add',
                     'plugin' => 'Multidimensional/Cakephpify',
-                    'apiKey' => $this->ShopifyAPI->apiKey
+                    'apiKey' => $this->shopifyApi->apiKey
                     ],
                     true
                 );
 
-                $authUrl = $this->ShopifyAPI->getAuthorizeUrl(
+                $authUrl = $this->shopifyApi->getAuthorizeUrl(
                     $this->request->data['shop_domain'],
                     $redirectUrl
                 );

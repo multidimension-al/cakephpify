@@ -28,8 +28,8 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
 {
 
     public $apiKey;
-    private $ShopifyAPI;
-    private $ShopifyDatabase;
+    private $shopifyApi;
+    private $shopifyDatabase;
 
     /**
      * @param registry $registry
@@ -50,14 +50,14 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
             }
         }
 
-        $this->ShopifyAPI = $registry->load(
+        $this->shopifyApi = $registry->load(
             'Multidimensional/Cakephpify.ShopifyAPI',
             [
             'apiKey' => $this->apiKey
             ]
         );
 
-        $this->ShopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
+        $this->shopifyDatabase = $registry->load('Multidimensional/Cakephpify.ShopifyDatabase');
     }
 
     /**
@@ -109,32 +109,32 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
         $shopDomain = $request->session()->read('shopify_shop_domain_' . $this->apiKey);
 
         if ($shopDomain) {
-            $this->ShopifyAPI->setShopDomain($shopDomain);
+            $this->shopifyApi->setShopDomain($shopDomain);
         }
 
         if ((isset($request->query['hmac']) && isset($request->query['shop']))
             && (!$shopDomain || $request->query['shop'] != $shopDomain)
         ) {
-            $isValid = $this->ShopifyAPI->validateHMAC($request->query);
+            $isValid = $this->shopifyApi->validateHMAC($request->query);
             if ($isValid) {
-                $shopDomain = $this->ShopifyAPI->setShopDomain($request->query['shop']);
+                $shopDomain = $this->shopifyApi->setShopDomain($request->query['shop']);
 
                 if (isset($request->query['code'])) {
-                    $accessToken = $this->ShopifyAPI->getAccessToken($shopDomain, $request->query['code']);
+                    $accessToken = $this->shopifyApi->getAccessToken($shopDomain, $request->query['code']);
                 } else {
-                    $accessToken = $this->ShopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->apiKey);
+                    $accessToken = $this->shopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->apiKey);
                 }
             }
         }
 
         if ($accessToken) {
-            $this->ShopifyAPI->setAccessToken($accessToken);
-            $this->ShopifyAPI->setShopDomain($shopDomain);
+            $this->shopifyApi->setAccessToken($accessToken);
+            $this->shopifyApi->setShopDomain($shopDomain);
 
             $request->session()->write('shopify_access_token_' . $this->apiKey, $accessToken);
             $request->session()->write('shopify_shop_domain_' . $this->apiKey, $shopDomain);
 
-            $shop = $this->ShopifyDatabase->getShopDataFromAccessToken($accessToken, $this->apiKey);
+            $shop = $this->shopifyDatabase->getShopDataFromAccessToken($accessToken, $this->apiKey);
 
             if ($shop && is_array($shop)) {
                 return ['id' => $shop['id'], 'username' => $shop['myshopify_domain']];
