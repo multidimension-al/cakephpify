@@ -91,7 +91,7 @@ before_install:
   - cd test && bin/cake || true
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
-  - if [[ $PHPCS = 1 ]] ; then./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer ; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer ; fi
   - mv -f ./plugins/multidimensional/cakephpify/tests/phpunit.xml.dist ./
   - if [[ $DB = 'mysql' ]] ; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
