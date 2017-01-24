@@ -24,7 +24,7 @@
         "psr-4": {
             "Multidimensional\\Cakephpify\\": "src",
             "Multidimensional\\Cakephpify\\Test\\": "tests",
-            "Multidimensional\\Cakephpify\\Migrations": "config/Migrations"
+            "Multidimensional\\Cakephpify\\Migrations\\": "config/Migrations"
         }
     }
 }
