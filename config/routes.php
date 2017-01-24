@@ -21,12 +21,12 @@ Router::plugin(
     ['path' => '/'],
     function ($routes) {
         $routes->prefix('shopify', function ($routes) {
-        $shopifyAPIKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
-        if (is_array($shopifyAPIKeys) && count($shopifyAPIKeys) >= 0) {
+        $shopifyApiKeys = array_keys(Configure::read('Multidimensional/Cakephpify'));
+        if (is_array($shopifyApiKeys) && count($shopifyApiKeys) >= 0) {
             $routes->connect(
-                ':apiKey/install',
+                '/:apiKey/install',
                 ['controller' => 'Install', 'action' => 'index'],
-                ['apiKey' => implode('|', $shopifyAPIKeys), 'pass' => ['apiKey']]
+                ['apiKey' => implode('|', $shopifyApiKeys), 'pass' => ['apiKey']]
             );
         }
         });
