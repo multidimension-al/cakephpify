@@ -15,7 +15,7 @@
 
 use Migrations\AbstractMigration;
 
-class Database extends AbstractMigration
+class DatabaseV2 extends AbstractMigration
 {
 
     /**
