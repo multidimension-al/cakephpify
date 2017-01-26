@@ -8,17 +8,18 @@
 	>
 	<php>
 		<ini name="memory_limit" value="-1"/>
+		<ini name="apc.enable_cli" value="1"/>
 	</php>
 
 	<!-- Add any additional test suites you want to run here -->
 	<testsuites>
-		<testsuite name="All Tests">
+		<testsuite name="App Test Suite">
 			<directory>./tests/TestCase</directory>
-			<exclude>./tests/TestCase/Shell</exclude>
-			<exclude>./tests/TestCase/Auth</exclude>
-			<exclude>./tests/TestCase/Model</exclude>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
+		<testsuite name="Cakephpify Tests">
+			<directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
+		</testsuite>
 	</testsuites>
 	
 	<!-- Setup a listener for fixtures -->
@@ -36,8 +37,9 @@
 	<filter>
 		<whitelist>
 			<directory suffix=".php">./src</directory>
+			<directory suffix=".php">./plugins/*/src/</directory>
+			<directory suffix=".php">./vendor/multidimensional/cakephpify/src/</directory>
 			<exclude>
-				<directory>./vendor</directory>
 				<directory>./tests</directory>
 			</exclude>
 		</whitelist>
