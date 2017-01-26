@@ -18,7 +18,7 @@
 		</testsuite>
 		<!-- Add plugin test suites here. -->
 		<testsuite name="Cakephpify Tests">
-			<directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
+			<directory>./plugins/multidimensional/cakephpify/tests/TestCase</directory>
 		</testsuite>
 	</testsuites>
 	
@@ -37,10 +37,10 @@
 	<filter>
 		<whitelist>
 			<directory suffix=".php">./src</directory>
-			<directory suffix=".php">./plugins/*/src/</directory>
-			<directory suffix=".php">./vendor/multidimensional/cakephpify/src/</directory>
+			<directory suffix=".php">./plugins/multidimensional/cakephpify/src/</directory>
 			<exclude>
 				<directory>./tests</directory>
+				<directory>./vendor</directory>
 			</exclude>
 		</whitelist>
 	</filter>
