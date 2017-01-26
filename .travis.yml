@@ -97,7 +97,8 @@ before_install:
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
 before_script:
-  - travis_retry composer install --no-interaction
+  - travis_retry composer update --no-interaction
+  - bin/cake plugin load Multidimensional/Cakephpify -b -r || true
 
 script:
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./plugins/multidimensional/cakephpify/ ; fi
