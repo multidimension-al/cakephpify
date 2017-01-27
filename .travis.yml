@@ -85,12 +85,12 @@ matrix:
 before_install:
   - printenv || true
   - cd ../../
-  - travis_retry composer create-project cakephp/app=$CAKE_VERSION test --no-interaction
+  - travis_retry composer create-project cakephp/app=$CAKE_VERSION test --no-interaction --s dev
   - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional
   - cd test && bin/cake || true
-  - travis_retry composer require "multidimensional/cakephpify:$TRAVIS_BRANCH#$TRAVIS_COMMIT" --no-interaction
+  - travis_retry composer require "multidimensional/cakephpify:dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT" --no-interaction
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require "cakephp/migrations:>=1.2.0-stable" --no-interaction ; fi
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
