@@ -23,7 +23,7 @@ mb_internal_encoding('UTF-8');
 
 Configure::write('debug', true);
 
-Plugin::load('Multidimensional/Cakephpify', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
+Plugin::load('Multidimensional/Cakephpify', ['bootstrap' => true, 'routes' => true]);
 
 if (!getenv('DB_DSN')) {
     putenv('DB_DSN=sqlite:///:memory:');
