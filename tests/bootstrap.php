@@ -18,8 +18,6 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 
-//require dirname(__DIR__) . '/vendor/autoload.php';
-
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
 

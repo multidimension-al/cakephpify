@@ -85,14 +85,14 @@ matrix:
 before_install:
   - cd ../../
   - travis_retry composer create-project cakephp/app=$CAKE_VERSION test --no-interaction
-  - cd test && cd plugins && mkdir multidimensional && cd multidimensional
+  - cd test && cd vendor && mkdir multidimensional && cd multidimensional
   - mkdir cakephpify && cd ../../../
-  - mv multidimension-al/cakephpify test/plugins/multidimensional
+  - mv multidimension-al/cakephpify test/vendor/multidimensional
   - cd test && bin/cake || true
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer ; fi
-  - mv -f ./plugins/multidimensional/cakephpify/tests/phpunit.xml.dist ./
+  - mv -f ./vendor/multidimensional/cakephpify/tests/phpunit.xml.dist ./
   - if [[ $DB = 'mysql' ]] ; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
@@ -100,12 +100,12 @@ before_script:
   - travis_retry composer update --no-interaction
 
 script:
-  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./plugins/multidimensional/cakephpify/ ; fi
-  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=plugins/multidimensional/cakephpify/coverage.clover ; fi
+  - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/ ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then ./vendor/bin/phpunit --coverage-text --coverage-clover=vendor/multidimensional/cakephpify/coverage.clover ; fi
   - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 5.5 && $TRAVIS_PHP_VERSION != 5.6 ]] ; then ./vendor/bin/phpunit ; fi
 
 after_script:
-  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then cd plugins/multidimensional/cakephpify/ ; fi
+  - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then cd vendor/multidimensional/cakephpify/ ; fi
   - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then wget https://scrutinizer-ci.com/ocular.phar ; fi
   - if [[ $DEFAULT = 1 && $TRAVIS_PHP_VERSION != 7.0 && $TRAVIS_PHP_VERSION != 7.1 && $TRAVIS_PHP_VERSION != 'hhvm' ]] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover ; fi
 

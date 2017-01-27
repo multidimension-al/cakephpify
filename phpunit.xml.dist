@@ -4,7 +4,7 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    bootstrap="./plugins/multidimensional/cakephpify/tests/bootstrap.php"
+    bootstrap="./vendor/multidimensional/cakephpify/tests/bootstrap.php"
     >
     <php>
         <ini name="memory_limit" value="-1"/>
@@ -13,9 +13,12 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
+        <testsuite name="App Test Suite">
+            <directory>./tests/TestCase</directory>
+        </testsuite>
         <!-- Add plugin test suites here. -->
         <testsuite name="Cakephpify Tests">
-            <directory>./plugins/multidimensional/cakephpify/tests/TestCase</directory>
+            <directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
         </testsuite>
     </testsuites>
     
@@ -33,7 +36,7 @@
     <!-- Add a filter to make sure we don't count vendors and Tests in the coverage report -->
     <filter>
         <whitelist>
-            <directory suffix=".php">./plugins/multidimensional/cakephpify/src/</directory>
+            <directory suffix=".php">./vendor/multidimensional/cakephpify/src/</directory>
         </whitelist>
     </filter>
 </phpunit>
