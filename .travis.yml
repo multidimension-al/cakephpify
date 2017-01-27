@@ -89,6 +89,7 @@ before_install:
   - mkdir cakephpify && cd ../../../
   - mv multidimension-al/cakephpify test/vendor/multidimensional
   - cd test && bin/cake || true
+  - travis_retry composer require multidimensional/cakephpify --no-interaction ; fi
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require "cakephp/migrations:>=1.2.0-stable" --no-interaction ; fi
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require phpunit/phpunit --no-interaction ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer=2.*" --no-interaction ; fi
@@ -98,6 +99,7 @@ before_install:
   - if [[ $DB = 'pgsql' ]] ; then psql -c 'CREATE DATABASE cakephp_test;' -U postgres; fi
 
 before_script:
+  - travis_retry composer dump-autoload --no-interaction
   - travis_retry composer update --no-interaction
 
 script:
