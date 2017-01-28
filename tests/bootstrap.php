@@ -18,9 +18,7 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 
-require_once __DIR__ . '/../../../../config/paths.php';
-
-Configure::load('bootstrap');
+require_once __DIR__ . '/../../../../config/bootstrap.php';
 
 date_default_timezone_set('UTC');
 mb_internal_encoding('UTF-8');
