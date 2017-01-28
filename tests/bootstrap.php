@@ -18,7 +18,7 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 
-require '../../../../config/paths.php';
+require __DIR__ . '/config/paths.php';
 
 Configure::load('bootstrap');
 
