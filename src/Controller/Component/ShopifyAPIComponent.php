@@ -76,9 +76,6 @@ class ShopifyAPIComponent extends Component
     public function setController($controller)
     {
         $this->controller = $controller;
-        if (!isset($this->controller->paginate)) {
-            $this->controller->paginate = [];
-        }
     }
 
     /**
