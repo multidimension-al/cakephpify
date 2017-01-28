@@ -102,6 +102,7 @@ before_install:
 before_script:
   - travis_retry composer dump-autoload --no-interaction
   - travis_retry composer update --no-interaction
+  - bin/cake plugin load Multidimensional/Cakephpify -b -r
 
 script:
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --standard=CakePHP ./vendor/multidimensional/cakephpify/ ; fi

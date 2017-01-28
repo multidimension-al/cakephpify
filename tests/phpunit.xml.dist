@@ -4,7 +4,7 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    bootstrap="./vendor/multidimensional/cakephpify/tests/bootstrap.php"
+    bootstrap="./config/bootstrap.php"
     >
     <php>
         <ini name="memory_limit" value="-1"/>
@@ -15,7 +15,7 @@
     <testsuites>
         <testsuite name="App Test Suite">
             <directory>./tests/TestCase</directory>
-           </testsuite>
+        </testsuite>
         <!-- Add plugin test suites here. -->
         <testsuite name="Cakephpify Tests">
             <directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
