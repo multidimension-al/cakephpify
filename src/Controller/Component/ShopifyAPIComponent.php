@@ -96,6 +96,15 @@ class ShopifyAPIComponent extends Component
     }
 
     /**
+     * @param string $shopDomain
+     * @return bool
+     */
+    public function validDomain($shopDomain)
+    {
+        return preg_match('/^([A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?)\.myshopify\.com$/i', $shopDomain);
+    }
+    
+    /**
      * @param string $token
      * @return string|null
      */
@@ -239,15 +248,6 @@ class ShopifyAPIComponent extends Component
     public function getNonce()
     {
         return $this->nonce;
-    }
-
-    /**
-     * @param string $shopDomain
-     * @return bool
-     */
-    public function validDomain($shopDomain)
-    {
-        return true;
     }
 
     /**

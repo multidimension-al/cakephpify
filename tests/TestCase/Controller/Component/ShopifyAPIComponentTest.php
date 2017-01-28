@@ -80,21 +80,21 @@ class ShopifyAPIComponentTest extends TestCase
         $this->assertSame($return, $shopDomain);
         
         $shopDomain = null;
-		$this->assertNull($shopDomain);
+        $this->assertNull($shopDomain);
         $return = $this->component->setShopDomain($shopDomain);
         $this->assertNull($return);
         $return = $this->component->getShopDomain();
         $this->assertNull($return);
         
         $shopDomain = false;
-		$this->assertFalse($shopDomain);
+        $this->assertFalse($shopDomain);
         $return = $this->component->setShopDomain($shopDomain);
         $this->assertFalse($return);
         $return = $this->component->getShopDomain();
         $this->assertFalse($return);
         
         $shopDomain = true;
-		$this->assertTrue($shopDomain);
+        $this->assertTrue($shopDomain);
         $return = $this->component->setShopDomain($shopDomain);
         $this->assertTrue($return);
         $return = $this->component->getShopDomain();
@@ -116,7 +116,7 @@ class ShopifyAPIComponentTest extends TestCase
         $return = $this->component->validDomain($shopDomain);
         $this->assertTrue($return);
         
-        /*$shopDomain = 'test.myshopify.net';
+        $shopDomain = 'test.myshopify.net';
         $return = $this->component->validDomain($shopDomain);
         $this->assertFalse($return);
         
@@ -129,16 +129,19 @@ class ShopifyAPIComponentTest extends TestCase
         $this->assertFalse($return);
         
         $shopDomain = null;
+        $this->assertNull($shopDomain);
         $return = $this->component->validDomain($shopDomain);
         $this->assertFalse($return);
         
         $shopDomain = false;
+        $this->assertFalse($shopDomain);
         $return = $this->component->validDomain($shopDomain);
         $this->assertFalse($return);
         
         $shopDomain = true;
+        $this->assertTrue($shopDomain);
         $return = $this->component->validDomain($shopDomain);
-        $this->assertFalse($return);*/
+        $this->assertFalse($return);
     }
 
     public function testSetAccessToken()
@@ -170,46 +173,46 @@ class ShopifyAPIComponentTest extends TestCase
         $return = $this->component->getNonce();
         $this->assertSame($return, '339fdccae930940993141bde32be560f');
         
-		$shopDomain = "example.com"; //5ababd603b22780302dd8d83498e5172
+        $shopDomain = "example.com"; //5ababd603b22780302dd8d83498e5172
         $return = $this->component->setNonce($shopDomain);
         $this->assertSame($return, '5ababd603b22780302dd8d83498e5172');
         $return = $this->component->getNonce();
         $this->assertSame($return, '5ababd603b22780302dd8d83498e5172');
-		
+        
         $shopDomain = null; //d41d8cd98f00b204e9800998ecf8427e
-		$this->assertNull($shopDomain);
+        $this->assertNull($shopDomain);
         $return = $this->component->setNonce($shopDomain);
         $this->assertSame($return, 'd41d8cd98f00b204e9800998ecf8427e');
         $return = $this->component->getNonce();
         $this->assertSame($return, 'd41d8cd98f00b204e9800998ecf8427e');
         
         $shopDomain = false; //d41d8cd98f00b204e9800998ecf8427e
-		$this->assertFalse($shopDomain);
+        $this->assertFalse($shopDomain);
         $return = $this->component->setNonce($shopDomain);
         $this->assertSame($return, 'd41d8cd98f00b204e9800998ecf8427e');
         $return = $this->component->getNonce();
         $this->assertSame($return, 'd41d8cd98f00b204e9800998ecf8427e');
         
         $shopDomain = true; //c4ca4238a0b923820dcc509a6f75849b
-		$this->assertTrue($shopDomain);
-        $return = $this->component->setNonce($nonce);
+        $this->assertTrue($shopDomain);
+        $return = $this->component->setNonce($shopDomain);
         $this->assertSame($return, 'c4ca4238a0b923820dcc509a6f75849b');
         $return = $this->component->getNonce();
         $this->assertSame($return, 'c4ca4238a0b923820dcc509a6f75849b');
     }
-	
-	public function testValidateHMAC()
-	{
-		$return = $this->component->validateHMAC(null);
-		$this->assertFalse($return);
-		
-		$return = $this->component->validateHMAC([]);
-		$this->assertFalse($return);
-		
-		$return = $this->component->validateHMAC(['hmac' => null]);
-		$this->assertFalse($return);
-		
-		$return = $this->component->validateHMAC(['hmac' => 'string']);
-		$this->assertFalse($return);
-	}
+    
+    public function testValidateHMAC()
+    {
+        $return = $this->component->validateHMAC(null);
+        $this->assertFalse($return);
+        
+        $return = $this->component->validateHMAC([]);
+        $this->assertFalse($return);
+        
+        $return = $this->component->validateHMAC(['hmac' => null]);
+        $this->assertFalse($return);
+        
+        $return = $this->component->validateHMAC(['hmac' => 'string']);
+        $this->assertFalse($return);
+    }
 }
