@@ -18,6 +18,8 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 
+require '../../../../config/paths.php';
+
 Configure::load('bootstrap');
 
 date_default_timezone_set('UTC');
