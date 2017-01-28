@@ -13,10 +13,7 @@
 
     <!-- Add any additional test suites you want to run here -->
     <testsuites>
-        <testsuite name="App Test Suite">
-            <directory>./tests/TestCase</directory>
-        </testsuite>
-        <!-- Add plugin test suites here. -->
+	    <!-- Add plugin test suites here. -->
         <testsuite name="Cakephpify Tests">
             <directory>./vendor/multidimensional/cakephpify/tests/TestCase</directory>
         </testsuite>
