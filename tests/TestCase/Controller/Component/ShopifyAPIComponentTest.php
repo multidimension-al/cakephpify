@@ -52,8 +52,8 @@ class ShopifyAPIComponentTest extends TestCase
             ->setConstructorArgs([$request, $response])
             ->setMethods(null)
             ->getMock();
-        $registry = new ComponentRegistry($this->controller, ['apiKey' => 'abc123']);
-        $this->component = new ShopifyAPIComponent($registry);
+        $registry = new ComponentRegistry($this->controller);
+        $this->component = new ShopifyAPIComponent($registry, ['apiKey' => 'abc123']);
         $event = new Event('Controller.startup', $this->controller);
         $this->component->startup($event);
     }
