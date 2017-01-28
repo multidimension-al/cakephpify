@@ -31,6 +31,7 @@ if (!getenv('DB_DSN')) {
     putenv('DB_DSN=sqlite:///:memory:');
 }
 
+ConnectionManager::drop('test');
 ConnectionManager::config('test', [
     'url' => getenv('DB_DSN'),
     'timezone' => 'UTC'
