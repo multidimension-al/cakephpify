@@ -17,6 +17,7 @@ namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
 
 use Cake\Controller\ComponentRegistry;
 use Cake\Controller\Controller;
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
@@ -35,15 +36,24 @@ class ShopifyAPIComponentTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+		
+		Configure::write('Multidimensional/Cakephpify', [
+				'abc123' =>
+					[
+					'sharedSecret' => 'abc123',
+					'scope' => '',
+					'privateApp' => false,
+					'privateAppPassword' => NULL]
+					]);
+		
         $request = new Request();
         $response = new Response();
         $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
             ->setConstructorArgs([$request, $response])
             ->setMethods(null)
             ->getMock();
-        $registry = new ComponentRegistry($this->controller);
+        $registry = new ComponentRegistry($this->controller, ['apiKey' => 'abc123']);
         $this->component = new ShopifyAPIComponent($registry);
-		$this->component->initialize(['apiKey' => 'abc123']);
         $event = new Event('Controller.startup', $this->controller);
         $this->component->startup($event);
     }
@@ -86,6 +96,46 @@ class ShopifyAPIComponentTest extends TestCase
 		$this->assertTrue($return);
 		$return = $this->component->getShopDomain();
 		$this->assertTrue($return);
+		
+		$shopDomain = "test.myshopify.com";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertTrue($return);
+		
+		$shopDomain = "TEST.MYshopify.COM";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertTrue($return);
+		
+		$shopDomain = "random.myshopify.com";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertTrue($return);
+		
+		$shopDomain = "www.myshopify.com";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertTrue($return);
+		
+		/*$shopDomain = "test.myshopify.net";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);
+		
+		$shopDomain = "http://test.myshopify.com/";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);
+		
+		$shopDomain = "google.com";
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);
+		
+		$shopDomain = NULL;
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);
+		
+		$shopDomain = false;
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);
+		
+		$shopDomain = true;
+		$return = $this->component->validDomain($shopDomain);
+		$this->assertFalse($return);*/
     }
 
     public function testSetAccessToken()
@@ -136,5 +186,4 @@ class ShopifyAPIComponentTest extends TestCase
 		$return = $this->component->getNonce();
 		$this->assertTrue($return);
     }
-
 }
