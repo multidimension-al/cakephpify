@@ -27,7 +27,7 @@ class ShopifyAPIComponent extends Component
 
     public $apiKey;
 
-    private $shop_domain;
+    private $shopDomain;
     private $token;
     private $sharedSecret;
     private $privateApp;
@@ -56,7 +56,7 @@ class ShopifyAPIComponent extends Component
         }
 
         if (!$this->sharedSecret) {
-            throw new NotImplementedException(__('Shopify shared secret not found'));
+            throw new NotImplementedException(__('Shopify Shared Secret not found'));
         }
     }
 
@@ -87,7 +87,7 @@ class ShopifyAPIComponent extends Component
      */
     public function setShopDomain($shopDomain)
     {
-        return $this->shop_domain = $shopDomain;
+        return $this->shopDomain = $shopDomain;
     }
 
     /**
@@ -95,7 +95,7 @@ class ShopifyAPIComponent extends Component
      */
     public function getShopDomain()
     {
-        return $this->shop_domain;
+        return $this->shopDomain;
     }
 
     /**
@@ -150,7 +150,7 @@ class ShopifyAPIComponent extends Component
 
         $http = new Client(
             [
-            'host' => $this->shop_domain,
+            'host' => $this->shopDomain,
             'scheme' => 'https',
             'headers' => (($this->privateApp != 'true') ? (['X-Shopify-Access-Token' => $this->token]) : []),
             'auth' => (($this->privateApp != 'true') ? [] : (['username' => $this->apiKey, 'password' => $this->privateAppPassword]))
@@ -200,7 +200,7 @@ class ShopifyAPIComponent extends Component
      */
     public function getAccessToken($shopDomain, $code)
     {
-        $this->shop_domain = $shopDomain;
+        $this->shopDomain = $shopDomain;
 
         $http = new Client(
             [
@@ -304,6 +304,6 @@ class ShopifyAPIComponent extends Component
      */
     private function _isReady()
     {
-        return strlen($this->shop_domain) > 0 && strlen($this->token) > 0;
+        return strlen($this->shopDomain) > 0 && strlen($this->token) > 0;
     }
 }

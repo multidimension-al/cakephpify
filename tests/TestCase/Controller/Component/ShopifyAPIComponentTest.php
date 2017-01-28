@@ -43,6 +43,7 @@ class ShopifyAPIComponentTest extends TestCase
             ->getMock();
         $registry = new ComponentRegistry($this->controller);
         $this->component = new ShopifyAPIComponent($registry);
+		$this->component->initialize(['apiKey' => 'abc123']);
         $event = new Event('Controller.startup', $this->controller);
         $this->component->startup($event);
     }
@@ -53,14 +54,38 @@ class ShopifyAPIComponentTest extends TestCase
         unset($this->component, $this->controller);
     }
 
-    public function testSetShopDomain()
+    public function testShopDomain()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    public function testGetShopDomain()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+		$shopDomain = "test.myshopify.com";
+		$return = $this->component->setShopDomain($shopDomain);
+		$this->assertSame($return, $shopDomain);
+		$return = $this->component->getShopDomain();
+		$this->assertSame($return, $shopDomain);
+		
+		$shopDomain = "random.myshopify.com";
+		$this->component->setShopDomain($shopDomain);
+		$return = $this->component->setShopDomain($shopDomain);
+		$this->assertSame($return, $shopDomain);
+		$return = $this->component->getShopDomain();
+		$this->assertSame($return, $shopDomain);
+		
+		$shopDomain = NULL;
+		$return = $this->component->setShopDomain($shopDomain);
+		$this->assertNull($return);
+		$return = $this->component->getShopDomain();
+		$this->assertNull($return);
+		
+		$shopDomain = false;
+		$return = $this->component->setShopDomain($shopDomain);
+		$this->assertFalse($return);
+		$return = $this->component->getShopDomain();
+		$this->assertFalse($return);
+		
+		$shopDomain = true;
+		$return = $this->component->setShopDomain($shopDomain);
+		$this->assertTrue($return);
+		$return = $this->component->getShopDomain();
+		$this->assertTrue($return);
     }
 
     public function testSetAccessToken()
@@ -78,13 +103,38 @@ class ShopifyAPIComponentTest extends TestCase
         $this->markTestIncomplete('Not implemented yet.');
     }
 
-    public function testSetNonce()
+    public function testNonce()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+		$nonce = md5(rand());
+		$return = $this->component->setNonce($nonce);
+		$this->assertSame($return, $nonce);
+		$return = $this->component->getNonce();
+		$this->assertSame($return, $nonce);
+		
+		$nonce = md5(rand());
+		$this->component->setNonce($nonce);
+		$return = $this->component->setNonce($nonce);
+		$this->assertSame($return, $nonce);
+		$return = $this->component->getNonce();
+		$this->assertSame($return, $nonce);
+		
+		$nonce = NULL;
+		$return = $this->component->setNonce($nonce);
+		$this->assertNull($return);
+		$return = $this->component->getNonce();
+		$this->assertNull($return);
+		
+		$nonce = false;
+		$return = $this->component->setNonce($nonce);
+		$this->assertFalse($return);
+		$return = $this->component->getNonce();
+		$this->assertFalse($return);
+		
+		$nonce = true;
+		$return = $this->component->setNonce($nonce);
+		$this->assertTrue($return);
+		$return = $this->component->getNonce();
+		$this->assertTrue($return);
     }
 
-    public function testGetNonce()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }
