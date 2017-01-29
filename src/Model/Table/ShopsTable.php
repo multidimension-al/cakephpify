@@ -265,15 +265,12 @@ class ShopsTable extends Table
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
-    }
-	
-	
+    } 
+    
     public function findByShopDomain(Query $query, array $options)
     {
-		$shopDomain = $options['domain'];
-		
+        $shopDomain = $options['domain'];
+        
         return $query->where(['myshopify_domain' => $shopDomain]);
-    }
-
-	
+    }    
 }

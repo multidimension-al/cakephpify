@@ -28,13 +28,13 @@ class ShopifyInstallShellTest extends TestCase
     {
         parent::setUp();
         
-		$this->out = new ConsoleOutput();
+        $this->out = new ConsoleOutput();
         $io = new ConsoleIo($this->out);
         $this->Shell = $this->getMockBuilder('ShopifyInstallShell')
             ->setMethods(['in', 'err', '_stop', 'clear'])
             ->setConstructorArgs([$io])
-            ->getMock();			
-	}
+            ->getMock();            
+    }
     
     public function tearDown()
     {
@@ -45,10 +45,10 @@ class ShopifyInstallShellTest extends TestCase
     public function testMain()
     {
         $this->markTestIncomplete('Not implemented yet.'); 
-		/*$this->Shell->main();
+        /*$this->Shell->main();
         $output = $this->out->messages();
-		$expected = "/(.*)/";
+        $expected = "/(.*)/";
         $this->assertRegExp($expected, $output);
-		*/
+        */
     }
 }
