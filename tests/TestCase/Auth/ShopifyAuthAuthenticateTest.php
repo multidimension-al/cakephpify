@@ -25,4 +25,35 @@ class ShopifyAuthAuthenticateTest extends TestCase
     {
         parent::setUp();
     }
+    
+    public function testAuthenticate()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
+    public function testUnauthenticated()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
+    public function testGetUser()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
+    public function testImplementedEvents()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
+    public function testAfterIdentify()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
+    public function testLogout()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+    
 }

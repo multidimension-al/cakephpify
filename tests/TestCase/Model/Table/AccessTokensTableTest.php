@@ -27,4 +27,10 @@ class AccessTokensTableTest extends TestCase
     {
         parent::setUp();
     }
+    
+    public function testValidation()
+    {
+        $this->markTestIncomplete('Not implemented yet.');        
+    }
+    
 }

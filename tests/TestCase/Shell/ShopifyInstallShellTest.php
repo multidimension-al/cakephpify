@@ -25,4 +25,9 @@ class ShopifyInstallShellTest extends TestCase
     {
         parent::setUp();
     }
+    
+    public function testMain()
+    {
+        $this->markTestIncomplete('Not implemented yet.');    
+    }
 }
