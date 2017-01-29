@@ -266,4 +266,12 @@ class ShopsTable extends Table
 
         return $rules;
     }
+	
+	
+    public function findByMyshopifyDomain(Query $query, array $options)
+    {
+        return $query->where(['myshopify_domain' => $options[0]);
+    }
+
+	
 }
