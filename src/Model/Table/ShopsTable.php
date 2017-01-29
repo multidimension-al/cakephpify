@@ -272,7 +272,7 @@ class ShopsTable extends Table
     * @param array $options
     * @return Query
     */
-    public function findByShopDomain(Query $query, array $options)
+    public function findShopDomain(Query $query, array $options)
     {
         $shopDomain = $options['domain'];
 

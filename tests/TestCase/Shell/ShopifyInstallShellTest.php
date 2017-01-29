@@ -32,7 +32,7 @@ class ShopifyInstallShellTest extends TestCase
         $io = new ConsoleIo($this->out);
         $this->Shell = $this->getMockBuilder('ShopifyInstallShell')
             ->setMethods(['in', 'err', '_stop', 'clear'])
-            ->setConstructorArgs()
+            ->setConstructorArgs([])
             ->getMock();            
     }
     
