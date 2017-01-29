@@ -13,7 +13,7 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-namespace Multidimensional\Cakephpify\Controller;
+namespace Multidimensional\Cakephpify\Controller\Shopify;
 
 use Cake\Event\Event;
 use Cake\Network\Session;
