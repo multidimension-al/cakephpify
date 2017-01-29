@@ -164,7 +164,7 @@ class ShopifyAPIComponentTest extends TestCase
         $return = $this->component->setAccessToken($token);
         $this->assertFalse($return);
         $return = $this->component->getAccessToken();
-        $this->assertFalee($return);
+        $this->assertFalse($return);
         
         $token = true;
         $this->assertTrue($token);
