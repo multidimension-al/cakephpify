@@ -64,7 +64,7 @@ matrix:
     - php: hhvm
       env: DB=mysql DB_DSN='mysql://travis@0.0.0.0/cakephp_test' CAKE_VERSION='dev-3.next'
       addons:
-        mariadb: '10.1'*/
+        mariadb: '10.1'
     - php: 7.0
       env: PHPCS=1 DEFAULT=0
 
