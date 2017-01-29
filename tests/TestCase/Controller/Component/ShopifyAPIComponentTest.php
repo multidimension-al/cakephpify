@@ -144,9 +144,34 @@ class ShopifyAPIComponentTest extends TestCase
         $this->assertFalse($return);
     }
 
-    public function testSetAccessToken()
+    public function testAccessToken()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $token = md5(rand());
+        $return = $this->component->setAccessToken($token);
+        $this->assertSame($return, $token);
+        $return = $this->component->getAccessToken();
+        $this->assertSame($return, $token);
+        
+        $token = null;
+        $this->assertNull($token);
+        $return = $this->component->setAccessToken($token);
+        $this->assertNull($return);
+        $return = $this->component->getAccessToken();
+        $this->assertNull($return);
+        
+        $token = false;
+        $this->assertFalse($token);
+        $return = $this->component->setAccessToken($token);
+        $this->assertFalse($return);
+        $return = $this->component->getAccessToken();
+        $this->assertFalee($return);
+        
+        $token = true;
+        $this->assertTrue($token);
+        $return = $this->component->setAccessToken($token);
+        $this->assertTrue($return);
+        $return = $this->component->getAccessToken();
+        $this->assertTrue($return);
     }
 
     public function testGetAuthorizeUrl()
@@ -154,7 +179,7 @@ class ShopifyAPIComponentTest extends TestCase
         $this->markTestIncomplete('Not implemented yet.');
     }
 
-    public function testGetAccessToken()
+    public function testRequestAccessToken()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

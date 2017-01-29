@@ -120,7 +120,7 @@ class ShopifyAuthAuthenticate extends BaseAuthenticate
                 $shopDomain = $this->shopifyApi->setShopDomain($request->query['shop']);
 
                 if (isset($request->query['code'])) {
-                    $accessToken = $this->shopifyApi->getAccessToken($shopDomain, $request->query['code']);
+                    $accessToken = $this->shopifyApi->requestAccessToken($shopDomain, $request->query['code']);
                 } else {
                     $accessToken = $this->shopifyDatabase->getAccessTokenFromShopDomain($shopDomain, $this->apiKey);
                 }

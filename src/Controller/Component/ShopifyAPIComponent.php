@@ -112,6 +112,14 @@ class ShopifyAPIComponent extends Component
     {
         return $this->token = $token;
     }
+    
+    /**
+     * @return string|null
+     */
+    public function getAccessToken()
+    {
+        return $this->token;
+    }
 
     /**
      * @return int|null
@@ -202,9 +210,9 @@ class ShopifyAPIComponent extends Component
     /**
      * @param string $shopDomain
      * @param string $code
-     * @return string|bool
+     * @return string|false
      */
-    public function getAccessToken($shopDomain, $code)
+    public function requestAccessToken($shopDomain, $code)
     {
         $this->shopDomain = $shopDomain;
 

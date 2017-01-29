@@ -53,14 +53,11 @@ class ShopifyDatabaseComponent extends Component
     public function setController($controller)
     {
         $this->controller = $controller;
-        if (!isset($this->controller->paginate)) {
-            $this->controller->paginate = [];
-        }
     }
 
     /**
      * @param array $data
-     * @return array|bool
+     * @return array|false
      */
     public function shopDataToDatabase(array $data)
     {
@@ -84,7 +81,7 @@ class ShopifyDatabaseComponent extends Component
      * @param string $accessToken
      * @param int    $shopId
      * @param string $apiKey
-     * @return array|bool
+     * @return array|false
      */
     public function accessTokenToDatabase($accessToken, $shopId, $apiKey)
     {
@@ -128,7 +125,7 @@ class ShopifyDatabaseComponent extends Component
             return false;    
         }
 
-        $query = $this->shops->find;
+        $query = $this->shops->find();
         $query = $query->findByShopDomain(['domain' => $domain]);
         $shopEntity = $query->first();
             

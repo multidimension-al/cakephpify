@@ -46,7 +46,7 @@ class InstallController extends AppController
         $isAuthorized = $this->shopifyApi->validateHMAC($this->request->query);
 
         if ($isAuthorized) {
-            $accessToken = $this->shopifyApi->getAccessToken(
+            $accessToken = $this->shopifyApi->requestAccessToken(
                 $this->request->query['shop'],
                 $this->request->query['code']
             );
