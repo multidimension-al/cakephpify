@@ -67,16 +67,71 @@ class ShopifyDatabaseComponentTest extends TestCase
 
     public function testGetShopIdFromDomain()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+		//$return = $this->component->getShopIdFromDomain('test.myshopify.com');
+		//$this->assertSame($return, 8675309);
+		//$this->assertEquals($return, 8675309);
+
+		$return = $this->component->getShopIdFromDomain('false.myshopify.com');
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopIdFromDomain('not-a-domain.com');
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopIdFromDomain(null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopIdFromDomain(true);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopIdFromDomain(false);
+		$this->assertFalse($return);
     }
 
     public function testGetShopDataFromAccessToken()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $return = $this->component->getShopDataFromAccessToken(null, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(null, true);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(true, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(null, false);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(false, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(false, false);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getShopDataFromAccessToken(true, true);
+		$this->assertFalse($return);
     }
 
     public function testGetAccessTokenFromShopDomain()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $return = $this->component->getAccessTokenFromShopDomain(null, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(null, true);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(true, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(null, false);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(false, null);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(false, false);
+		$this->assertFalse($return);
+		
+		$return = $this->component->getAccessTokenFromShopDomain(true, true);
+		$this->assertFalse($return);		
     }
 }

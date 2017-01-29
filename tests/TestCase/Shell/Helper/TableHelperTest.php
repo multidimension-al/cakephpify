@@ -15,19 +15,54 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell\Helper;
 
+use Cake\Console\ConsoleIo;
+use Cake\TestSuite\Stub\ConsoleOutput;
 use Cake\TestSuite\TestCase;
 use Multidimensional\Cakephpify\Shell\Helper\TableHelper;
 
 class TableHelperTest extends TestCase
 {
 
+    /**
+     * @var ConsoleOutput
+     */
+    public $stub;
+    
+    /**
+     * @var ConsoleIo
+     */
+     
+    public $io;
+    
+    /**
+     * @var TableHelper
+     */
+    public $helper;
+
+    /**
+     * setUp method
+     *
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
+        
+        $this->stub = new ConsoleOutput();
+        $this->io = new ConsoleIo($this->stub);
+        $this->helper = new TableHelper($this->io);
     }
     
     public function testOutput()
     {
-        $this->markTestIncomplete('Not implemented yet.');    
+        $this->markTestIncomplete('Not implemented yet.');
+        /*$data = [
+        
+        ];
+        $this->helper->output($data);
+        $expected = [
+        
+        ];
+        $this->assertEquals($expected, $this->stub->messages());*/
     }
 }

@@ -120,7 +120,7 @@ class ShopifyDatabaseComponent extends Component
 
     /**
      * @param string $domain
-     * @return int|bool
+     * @return int|false
      */
     public function getShopIdFromDomain($domain)
     {
@@ -135,7 +135,7 @@ class ShopifyDatabaseComponent extends Component
     /**
      * @param string $accessToken
      * @param string $apiKey
-     * @return array|bool
+     * @return array|false
      */
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {

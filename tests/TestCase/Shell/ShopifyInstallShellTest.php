@@ -15,8 +15,11 @@
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell;
 
+use Cake\Console\ConsoleIo;
+use Cake\TestSuite\Stub\ConsoleOutput;
 use Cake\TestSuite\TestCase;
 use Multidimensional\Cakephpify\Shell\ShopifyInstallShell;
+use Symfony\Component\Console\Output\NullOutput;
 
 class ShopifyInstallShellTest extends TestCase
 {
@@ -24,10 +27,28 @@ class ShopifyInstallShellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        
+		$this->out = new ConsoleOutput();
+        $io = new ConsoleIo($this->out);
+        $this->Shell = $this->getMockBuilder('ShopifyInstallShell')
+            ->setMethods(['in', 'err', '_stop', 'clear'])
+            ->setConstructorArgs([$io])
+            ->getMock();			
+	}
+    
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->shell);
     }
     
     public function testMain()
     {
-        $this->markTestIncomplete('Not implemented yet.');    
+        $this->markTestIncomplete('Not implemented yet.'); 
+		/*$this->Shell->main();
+        $output = $this->out->messages();
+		$expected = "/(.*)/";
+        $this->assertRegExp($expected, $output);
+		*/
     }
 }

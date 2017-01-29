@@ -44,7 +44,7 @@ class TableHelper extends Helper
 
         $dataCount = count($data);
         for ($i = 0; $i < $dataCount;) {
-            $output = " ";
+            $output = ' ';
             $j = $i;
             for ($k = $i; $k < ($columns + $j); $k++) {
                 if (!isset($data[$i])) {
