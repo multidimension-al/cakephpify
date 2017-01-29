@@ -72,7 +72,7 @@ matrix:
     - php: hhvm
       env: DB=pgsql
     - php: 5.5
-      env: CAKE_VERSION='dev-3.next'
+      env: DB=sqlite DB_DSN='sqlite:///:memory:' CAKE_VERSION='dev-3.next'
 
 before_install:
   - printenv || true

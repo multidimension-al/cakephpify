@@ -129,7 +129,7 @@ class ShopifyDatabaseComponent extends Component
         }
 
         $query = $this->shops->find;
-		$query = $query->findByShopDomain(['domain' => $domain]);
+        $query = $query->findByShopDomain(['domain' => $domain]);
         $shopEntity = $query->first();
             
         if ($shopEntity->isEmpty()) {
