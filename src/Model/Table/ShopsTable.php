@@ -44,10 +44,7 @@ class ShopsTable extends Table
     {
         parent::initialize($config);
 
-        //$this->table('shops');
         $this->displayField('myshopify_domain');
-        //$this->primaryKey('id');
-
         $this->hasMany(
             'AccessTokens',
             [
