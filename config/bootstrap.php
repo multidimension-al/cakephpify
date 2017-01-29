@@ -16,25 +16,9 @@
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 
-/*
- *
- *  DO NOT EDIT THIS CONFIGURATION! YOUR CHANGES WON'T SAVE THROUGH
- *  UPDATES! ONLY EDIT THE CONFIG/SHOPIFY.PHP FILE IN THE MAIN CONFIG
- *
- */
-
-$config = ['{API_KEY_HERE}' =>
-    [
-        'sharedSecret' => '{SHARED_SECRET_HERE}',
-        'scope' => '{SCOPE_HERE}',
-        'privateApp' => '{TRUE/FALSE_HERE}',
-        'privateAppPassword' => '{PRIVATE_APP_PASSWORD_HERE}'
-    ]
-];
-
 if (file_exists(CONFIG . 'shopify.php')) {
     Configure::load('shopify');
 } else {
-    Configure::write('Multidimensional/Cakephpify', $config);
+    Configure::write('Multidimensional/Cakephpify', NULL);
 }
 Plugin::load('Migrations');
