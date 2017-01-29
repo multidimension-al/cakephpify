@@ -124,7 +124,7 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getShopIdFromDomain($domain)
     {
-        if (empty($domain)) {
+        if (empty($domain) || $domain === true) {
             return false;    
         }
 
@@ -150,7 +150,7 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {
-        if (empty($accessToken) || empty($apiKey)) {
+        if (empty($accessToken) || empty($apiKey) || $accessToken === true || $apiKey === true) {
             return false;    
         }
         
@@ -185,7 +185,7 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
     {
-        if (empty($shopDomain) || empty($apiKey)) {
+        if (empty($shopDomain) || empty($apiKey) || $shopDomain === true || $apiKey === true) {
             return false;    
         }
         
