@@ -73,14 +73,6 @@ matrix:
       env: DB=pgsql
     - php: 5.5
       env: CAKE_VERSION='dev-3.next'
-    - php: 5.6
-      env: CAKE_VERSION='dev-3.next'
-    - php: 7.0
-      env: CAKE_VERSION='dev-3.next'
-    - php: 7.1
-      env: CAKE_VERSION='dev-3.next'
-    - php: hhvm
-      env: CAKE_VERSION='dev-3.next'
 
 before_install:
   - printenv || true
