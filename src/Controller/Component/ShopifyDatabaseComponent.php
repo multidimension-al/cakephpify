@@ -124,18 +124,17 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getShopIdFromDomain($domain)
     {
-		if (empty($domain)) {
-			return false;	
-		}
+        if (empty($domain)) {
+            return false;    
+        }
 
-       $query = $this->shops->findByMyshopifyDomain([$domain]);
-
-		$shopEntity = $query->first();
-			
-		if ($shopEntity->isEmpty()) {
-			return false;	
-		}
-			
+        $query = $this->shops->findByShopDomain(['domain' => $domain]);
+        $shopEntity = $query->first();
+            
+        if ($shopEntity->isEmpty()) {
+            return false;    
+        }
+            
         if ($shopEntity->id) {
             return (int)$shopEntity->id;
         } else {
@@ -150,10 +149,10 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {
-		if (empty($accessToken) || empty($apiKey)) {
-			return false;	
-		}
-		
+        if (empty($accessToken) || empty($apiKey)) {
+            return false;    
+        }
+        
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'token' => $accessToken]);
@@ -164,12 +163,12 @@ class ShopifyDatabaseComponent extends Component
         );
 
         $shopEntity = $query->first();
-		
-		if ($shopEntity->isEmpty()) {
-			return false;	
-		}
-		
-		$shopArray = $shopEntity->toArray();
+        
+        if ($shopEntity->isEmpty()) {
+            return false;    
+        }
+        
+        $shopArray = $shopEntity->toArray();
 
         if (is_array($shopArray['shop'])) {
             return $shopArray['shop'];
@@ -185,10 +184,10 @@ class ShopifyDatabaseComponent extends Component
      */
     public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
     {
-		if (empty($shopDomain) || empty($apiKey)) {
-			return false;	
-		}
-		
+        if (empty($shopDomain) || empty($apiKey)) {
+            return false;    
+        }
+        
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'Shops.myshopify_domain' => $shopDomain]);
@@ -200,9 +199,9 @@ class ShopifyDatabaseComponent extends Component
 
         $accessTokenEntity = $query->first();
 
-		if ($accessTokenEntity->isEmpty()) {
-			return false;	
-		}
+        if ($accessTokenEntity->isEmpty()) {
+            return false;    
+        }
 
         if ($accessTokenEntity->token) {
             return $accessTokenEntity->token;
