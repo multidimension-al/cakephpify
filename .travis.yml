@@ -96,7 +96,11 @@ matrix:
     - php: hhvm
       env: DB=pgsql
     - php: 5.5
+      env: DB=sqlite DB_DSN='sqlite:///:memory:' CAKE_VERSION='3.4.*'
+    - php: 5.5
       env: DB=sqlite DB_DSN='sqlite:///:memory:' CAKE_VERSION='dev-3.next'
+    - php: 5.5
+      env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test' CAKE_VERSION='3.4.*'
     - php: 5.5
       env: DB=pgsql DB_DSN='postgres://postgres@127.0.0.1/cakephp_test' CAKE_VERSION='dev-3.next'
 
