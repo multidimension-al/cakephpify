@@ -1,5 +1,11 @@
 <?php
 /**
+ *      __  ___      ____  _     ___                           _                    __
+ *     /  |/  /_  __/ / /_(_)___/ (_)___ ___  ___  ____  _____(_)___  ____   ____ _/ /
+ *    / /|_/ / / / / / __/ / __  / / __ `__ \/ _ \/ __ \/ ___/ / __ \/ __ \ / __ `/ /
+ *   / /  / / /_/ / / /_/ / /_/ / / / / / / /  __/ / / (__  ) / /_/ / / / // /_/ / /
+ *  /_/  /_/\__,_/_/\__/_/\__,_/_/_/ /_/ /_/\___/_/ /_/____/_/\____/_/ /_(_)__,_/_/
+ *
  * CakePHPify : CakePHP Plugin for Shopify API Authentication
  * Copyright (c) Multidimension.al (http://multidimension.al)
  * Github : https://github.com/multidimension-al/cakephpify
@@ -8,9 +14,9 @@
  * For full copyright and license information, please see the LICENSE file
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright (c) Multidimension.al (http://multidimension.al)
- * @link      https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
+ * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller\Component;
@@ -127,13 +133,9 @@ class ShopifyDatabaseComponent extends Component
 
         $query = $this->shops->find('shopDomain', ['domain' => $domain]);
         
-		$shopEntity = $query->first();
-            
-        /*if ($shopEntity->isEmpty()) {
-            return false;    
-        }*/
-            
-        if ($shopEntity->id) {
+        $shopEntity = $query->first();
+                        
+        if (isset($shopEntity->id)) {
             return (int)$shopEntity->id;
         } else {
             return false;
@@ -148,9 +150,9 @@ class ShopifyDatabaseComponent extends Component
     public function getShopDataFromAccessToken($accessToken, $apiKey)
     {
         if (empty($accessToken) || empty($apiKey) || $accessToken === true || $apiKey === true) {
-            return false;    
+            return false;
         }
-        
+
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'token' => $accessToken]);
@@ -163,9 +165,9 @@ class ShopifyDatabaseComponent extends Component
         $shopEntity = $query->first();
         
         if ($shopEntity->isEmpty()) {
-            return false;    
+            return false;
         }
-        
+
         $shopArray = $shopEntity->toArray();
 
         if (is_array($shopArray['shop'])) {
@@ -183,9 +185,9 @@ class ShopifyDatabaseComponent extends Component
     public function getAccessTokenFromShopDomain($shopDomain, $apiKey)
     {
         if (empty($shopDomain) || empty($apiKey) || $shopDomain === true || $apiKey === true) {
-            return false;    
+            return false;
         }
-        
+
         $query = $this->access_tokens->find();
         $query = $query->contain(['Shops']);
         $query = $query->where(['api_key' => $apiKey, 'Shops.myshopify_domain' => $shopDomain]);
@@ -201,7 +203,7 @@ class ShopifyDatabaseComponent extends Component
             return false;    
         }
 
-        if ($accessTokenEntity->token) {
+        if (isset($accessTokenEntity->token)) {
             return $accessTokenEntity->token;
         } else {
             return false;
