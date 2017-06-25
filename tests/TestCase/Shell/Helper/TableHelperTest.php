@@ -15,8 +15,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell\Helper;
@@ -33,13 +33,13 @@ class TableHelperTest extends TestCase
      * @var ConsoleOutput
      */
     public $stub;
-    
+
     /**
      * @var ConsoleIo
      */
-     
+
     public $io;
-    
+
     /**
      * @var TableHelper
      */
@@ -53,21 +53,21 @@ class TableHelperTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         $this->stub = new ConsoleOutput();
         $this->io = new ConsoleIo($this->stub);
         $this->helper = new TableHelper($this->io);
     }
-    
+
     public function testOutput()
     {
         $this->markTestIncomplete('Not implemented yet.');
         /*$data = [
-        
+
         ];
         $this->helper->output($data);
         $expected = [
-        
+
         ];
         $this->assertEquals($expected, $this->stub->messages());*/
     }

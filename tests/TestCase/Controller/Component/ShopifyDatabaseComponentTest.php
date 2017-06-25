@@ -15,21 +15,18 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Controller\Component;
 
 use Cake\Controller\ComponentRegistry;
-use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Cake\TestSuite\TestCase;
 use Multidimensional\Cakephpify\Controller\Component\ShopifyDatabaseComponent;
-use Multidimensional\Cakephpify\Test\Fixture\AccessTokensFixture;
-use Multidimensional\Cakephpify\Test\Fixture\ShopsFixture;
 
 class ShopifyDatabaseComponentTest extends TestCase
 {
@@ -79,16 +76,16 @@ class ShopifyDatabaseComponentTest extends TestCase
 
         $return = $this->component->getShopIdFromDomain('false.myshopify.com');
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopIdFromDomain('not-a-domain.com');
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopIdFromDomain(null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopIdFromDomain(true);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopIdFromDomain(false);
         $this->assertFalse($return);
     }
@@ -97,28 +94,28 @@ class ShopifyDatabaseComponentTest extends TestCase
     {
         $return = $this->component->getShopDataFromAccessToken(null, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(null, true);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(true, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(null, false);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(false, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(false, false);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(true, true);
         $this->assertFalse($return);
 
         $return = $this->component->getShopDataFromAccessToken('', '');
         $this->assertFalse($return);
-        
+
         $return = $this->component->getShopDataFromAccessToken(0, 0);
         $this->assertFalse($return);
     }
@@ -127,29 +124,29 @@ class ShopifyDatabaseComponentTest extends TestCase
     {
         $return = $this->component->getAccessTokenFromShopDomain(null, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(null, true);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(true, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(null, false);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(false, null);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(false, false);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(true, true);
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain('', '');
         $this->assertFalse($return);
-        
+
         $return = $this->component->getAccessTokenFromShopDomain(0, 0);
-        $this->assertFalse($return);              
+        $this->assertFalse($return);
     }
 }

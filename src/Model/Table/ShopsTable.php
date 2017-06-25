@@ -15,8 +15,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Model\Table;
@@ -268,13 +268,13 @@ class ShopsTable extends Table
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
-    } 
-    
+    }
+
     /**
-    * @param Query $query
-    * @param array $options
-    * @return Query
-    */
+     * @param Query $query
+     * @param array $options
+     * @return Query
+     */
     public function findShopDomain(Query $query, array $options)
     {
         $shopDomain = $options['domain'];

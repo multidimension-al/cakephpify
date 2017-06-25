@@ -15,8 +15,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller\Component;
@@ -26,7 +26,6 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotImplementedException;
 use Cake\Network\Http\Client;
-use Cake\Routing\Router;
 
 class ShopifyAPIComponent extends Component
 {
@@ -109,7 +108,7 @@ class ShopifyAPIComponent extends Component
     {
         return preg_match('/^([A-Za-z0-9]{1}(?:[A-Za-z0-9\-]{0,61}[A-Za-z0-9]{1})?)\.myshopify\.com$/i', $shopDomain) !== 0;
     }
-    
+
     /**
      * @param string $token
      * @return string|null
@@ -118,7 +117,7 @@ class ShopifyAPIComponent extends Component
     {
         return $this->token = $token;
     }
-    
+
     /**
      * @return string|null
      */

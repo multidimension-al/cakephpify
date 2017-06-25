@@ -15,14 +15,13 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Auth;
 
 use Cake\TestSuite\TestCase;
-use Multidimensional\Cakephpify\Auth\ShopifyAuthAuthenticate;
 
 class ShopifyAuthAuthenticateTest extends TestCase
 {
@@ -31,35 +30,34 @@ class ShopifyAuthAuthenticateTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     public function testAuthenticate()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
+
     public function testUnauthenticated()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
+
     public function testGetUser()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
+
     public function testImplementedEvents()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
+
     public function testAfterIdentify()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
+
     public function testLogout()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-    
 }

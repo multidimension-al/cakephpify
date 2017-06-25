@@ -15,8 +15,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Controller\Component;
@@ -128,13 +128,13 @@ class ShopifyDatabaseComponent extends Component
     public function getShopIdFromDomain($domain)
     {
         if (empty($domain) || $domain === true) {
-            return false;    
+            return false;
         }
 
         $query = $this->shops->find('shopDomain', ['domain' => $domain]);
-        
+
         $shopEntity = $query->first();
-                        
+
         if (isset($shopEntity->id)) {
             return (int)$shopEntity->id;
         } else {
@@ -163,7 +163,7 @@ class ShopifyDatabaseComponent extends Component
         );
 
         $shopEntity = $query->first();
-        
+
         if ($shopEntity->isEmpty()) {
             return false;
         }
@@ -200,7 +200,7 @@ class ShopifyDatabaseComponent extends Component
         $accessTokenEntity = $query->first();
 
         if ($accessTokenEntity->isEmpty()) {
-            return false;    
+            return false;
         }
 
         if (isset($accessTokenEntity->token)) {

@@ -15,14 +15,12 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 
 namespace Multidimensional\Cakephpify\Shell;
 
-use Cake\Console\Helper;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
 use Migrations\Migrations;
@@ -119,7 +117,6 @@ class ShopifyInstallShell extends Shell
             } else {
                 $isPrivateApp = 'false';
             }
-
 
             Configure::write('Multidimensional/Cakephpify.' . $apiKey . '.privateApp', $isPrivateApp);
 

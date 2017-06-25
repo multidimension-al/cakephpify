@@ -15,10 +15,9 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
@@ -42,4 +41,3 @@ ConnectionManager::config('test', [
     'url' => getenv('DB_DSN'),
     'timezone' => 'UTC'
 ]);
-

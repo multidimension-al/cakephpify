@@ -15,8 +15,8 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright  Copyright © 2016-2017 Multidimension.al (http://multidimension.al)
- * @link             https://github.com/multidimension-al/cakephpify CakePHPify Github
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link       https://github.com/multidimension-al/cakephpify CakePHPify Github
+ * @license    http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace Multidimensional\Cakephpify\Test\TestCase\Shell;
@@ -24,8 +24,6 @@ namespace Multidimensional\Cakephpify\Test\TestCase\Shell;
 use Cake\Console\ConsoleIo;
 use Cake\TestSuite\Stub\ConsoleOutput;
 use Cake\TestSuite\TestCase;
-use Multidimensional\Cakephpify\Shell\ShopifyInstallShell;
-use Symfony\Component\Console\Output\NullOutput;
 
 class ShopifyInstallShellTest extends TestCase
 {
@@ -33,24 +31,24 @@ class ShopifyInstallShellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         $this->out = new ConsoleOutput();
         $io = new ConsoleIo($this->out);
         $this->Shell = $this->getMockBuilder('ShopifyInstallShell')
             ->setMethods(['in', 'err', '_stop', 'clear'])
             ->setConstructorArgs([])
-            ->getMock();            
+            ->getMock();
     }
-    
+
     public function tearDown()
     {
         parent::tearDown();
         unset($this->shell);
     }
-    
+
     public function testMain()
     {
-        $this->markTestIncomplete('Not implemented yet.'); 
+        $this->markTestIncomplete('Not implemented yet.');
         /*$this->Shell->main();
         $output = $this->out->messages();
         $expected = "/(.*)/";
