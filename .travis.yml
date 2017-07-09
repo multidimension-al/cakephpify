@@ -101,7 +101,7 @@ before_install:
   - cd test && bin/cake || true
   - travis_retry composer require "multidimensional/cakephpify:dev-$TRAVIS_BRANCH#$TRAVIS_COMMIT" --no-interaction
   - if [[ $DEFAULT = 1 ]] ; then travis_retry composer require "cakephp/migrations:>=1.2.0-stable" --no-interaction --prefer-stable ; fi
-  - if [[ $DEFAULT = 1 && $CAKE_VERSION != '3.3.*' && [$TRAVIS_PHP_VERSION = '7.0' || $TRAVIS_PHP_VERSION = '7.1']]] ; then travis_retry composer require phpunit/phpunit:^6.0 --no-interaction --prefer-stable ; else travis_retry composer require phpunit/phpunit:^5.6 --no-interaction --prefer-stable ; fi
+  - if [[ $DEFAULT = 1 && $CAKE_VERSION != '3.3.*' && $TRAVIS_PHP_VERSION != 5.6]] ; then travis_retry composer require phpunit/phpunit:^6.0 --no-interaction --prefer-stable ; else travis_retry composer require phpunit/phpunit:^5.6 --no-interaction --prefer-stable ; fi
   - if [[ $PHPCS = 1 ]] ; then travis_retry composer require "cakephp/cakephp-codesniffer" --no-interaction --prefer-stable ; fi
   - if [[ $PHPCS = 1 ]] ; then ./vendor/bin/phpcs --config-set installed_paths /home/travis/build/test/vendor/cakephp/cakephp-codesniffer ; fi
   - mv -f ./vendor/multidimensional/cakephpify/tests/phpunit.xml.dist ./
