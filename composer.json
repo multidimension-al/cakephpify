@@ -27,5 +27,6 @@
             "Multidimensional\\Cakephpify\\Test\\Fixture\\": "tests\\Fixture",
             "Multidimensional\\Cakephpify\\Migrations\\": "config\\Migrations"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
